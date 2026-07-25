@@ -3,70 +3,33 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Personal Research Studio</title>
+<title>研究工作室</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
-
-/* ── Design Tokens ── */
-:root {
-  --bg: #F6F4EF;
-  --surface: #FBFAF7;
-  --border: #DDD6C8;
-  --primary: #1E1E1E;
-  --secondary: #78736A;
-  --accent: #6B7F5B;
-  --accent-light: #E8EDE4;
-  --accent-dim: #D5DDCE;
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --font-serif: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
-  --font-sans: 'Inter', -apple-system, sans-serif;
-  --shadow: 0 1px 2px rgba(0,0,0,.04);
-}
-
+:root{--bg:#F6F4EF;--surface:#FBFAF7;--border:#DDD6C8;--primary:#1E1E1E;--secondary:#78736A;--accent:#6B7F5B;--accent-light:#E8EDE4;--radius-sm:4px;--radius-md:8px;--radius-lg:12px;--font-serif:'Libre Baskerville','Cormorant Garamond',Georgia,serif;--font-sans:'Inter',-apple-system,sans-serif;--shadow:0 1px 2px rgba(0,0,0,.04)}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
 body{font-family:var(--font-sans);background:var(--bg);color:var(--primary);font-size:14px;line-height:1.7;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--accent-light);color:var(--primary)}
 ::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;color:var(--primary)}
-
-/* ── Grid pattern overlay ── */
 .bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.15}
 .app{position:relative;display:flex;flex-direction:column;height:100vh;z-index:1}
-
-/* ── Icon SVG (Lucide-like) ── */
-.icon{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--secondary)}
-.icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.icon-sm svg{width:14px;height:14px}
-.icon-lg svg{width:20px;height:20px}
-
-/* ── Nav ── */
 .nav{display:flex;align-items:center;padding:0 32px;height:52px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:2px;position:relative;z-index:10}
 .nav-logo{font-family:var(--font-serif);font-size:15px;font-weight:700;color:var(--primary);letter-spacing:-.3px;margin-right:20px;display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.8}
 .nav-logo:hover{opacity:1}
-.nav a{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--radius-sm);text-decoration:none;color:var(--secondary);font-size:12px;font-weight:400;cursor:pointer;transition:all .12s;font-family:inherit;border:none;background:transparent;text-transform:lowercase;letter-spacing:.3px}
+.nav a{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--radius-sm);text-decoration:none;color:var(--secondary);font-size:12px;font-weight:400;cursor:pointer;transition:all .12s;font-family:inherit;border:none;background:transparent;letter-spacing:.3px}
 .nav a:hover{background:var(--bg);color:var(--primary)}.nav a.active{color:var(--primary);font-weight:500}
 .nav .spacer{flex:1}
 .nav .search-btn{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--secondary);font-size:11px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .12s}
-.nav .search-btn:hover{border-color:var(--accent);color:var(--primary)}.nav .search-btn:focus-within{border-color:var(--accent)}
-
-/* ── Main ── */
+.nav .search-btn:hover{border-color:var(--accent);color:var(--primary)}
 .main{flex:1;overflow-y:auto;padding:32px 48px 60px;max-width:1100px;margin:0 auto;width:100%}
 .main::-webkit-scrollbar{width:3px}.main::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 @media(max-width:860px){.main{padding:20px 16px 60px}.nav{padding:0 12px;overflow-x:auto}.nav a{white-space:nowrap;padding:4px 8px;font-size:11px}.nav-logo{font-size:13px;margin-right:10px}}
-
-/* ── Page Header ── */
 .page-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
 .page-h h1{font-family:var(--font-serif);font-size:24px;font-weight:700;letter-spacing:-.5px;line-height:1.2}
-.page-h .sub{font-size:12px;color:var(--secondary);margin-top:2px;font-weight:400}
 .page-h .count{font-size:11px;color:var(--secondary);border:1px solid var(--border);padding:2px 10px;border-radius:20px}
-
-/* ── Cards (Archive Card style) ── */
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s;position:relative}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s}
 .card:hover{border-color:var(--accent);background:#FAF9F6}
-.card:active{transform:scale(.995)}
 .card .card-type{font-size:9px;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;font-weight:500;margin-bottom:2px;display:flex;align-items:center;gap:4px}
 .card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .card .meta{font-size:11px;color:var(--secondary);margin-bottom:3px}
@@ -74,26 +37,18 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .card .tags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
 .card .tags span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--bg);color:var(--secondary);letter-spacing:.2px}
 .stars{display:inline-flex;gap:1px;font-size:10px}.stars .f{color:#B8860B}.stars .e{color:#E0DDD5}
-
-/* ── Grids ── */
-.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
 .grid-4{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.grid-full{grid-column:1/-1}
-
-/* ── Home ── */
 .home-section{margin-bottom:32px}
-.home-section .hs-title{font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:10px;letter-spacing:.3px;display:flex;align-items:center;gap:6px;text-transform:lowercase}
+.home-section .hs-title{font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:10px;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
 .home-section .hs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
 .welcome{font-family:var(--font-serif);font-size:26px;font-weight:700;margin-bottom:4px;letter-spacing:-.5px}
 .welcome-sub{font-size:13px;color:var(--secondary);margin-bottom:24px;font-weight:300}
-
-/* ── Timeline (Journal) ── */
 .tl{position:relative;padding-left:28px}
 .tl::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--border)}
 .tl-item{position:relative;margin-bottom:14px}
 .tl-item::before{content:'';position:absolute;left:-22px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent);border:1.5px solid var(--surface)}
-.tl-date{font-size:10px;color:var(--secondary);letter-spacing:.3px;margin-bottom:3px;text-transform:uppercase}
+.tl-date{font-size:10px;color:var(--secondary);letter-spacing:.3px;margin-bottom:3px}
 .tl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s}
 .tl-card:hover{border-color:var(--accent)}
 .tl-card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:3px}
@@ -101,8 +56,6 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .tl-card .links{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
 .tl-card .links span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .1s}
 .tl-card .links span:hover{background:var(--accent);color:#fff}
-
-/* ── Concept Cards ── */
 .concept-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;gap:10px;align-items:flex-start}
 .concept-card:hover{border-color:var(--accent);background:#FAF9F6}
 .concept-card .ci{width:28px;height:28px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--accent)}
@@ -111,27 +64,21 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .concept-card .cb .cd{font-size:11px;color:var(--secondary);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .concept-card .cb .cr{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
 .concept-card .cb .cr span{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--bg);color:var(--secondary)}
-
-/* ── Project Hero ── */
 .p-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start}
 .p-hero .pi{width:44px;height:44px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .p-hero .pt{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:2px}
 .p-hero .pd{font-size:12px;color:var(--secondary);line-height:1.6;max-width:600px}
 .p-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
-.p-tabs button{padding:6px 16px;border:none;background:transparent;cursor:pointer;font-size:11px;font-family:inherit;color:var(--secondary);border-bottom:1px solid transparent;transition:all .12s;margin-bottom:-1px;letter-spacing:.3px;text-transform:lowercase}
+.p-tabs button{padding:6px 16px;border:none;background:transparent;cursor:pointer;font-size:11px;font-family:inherit;color:var(--secondary);border-bottom:1px solid transparent;transition:all .12s;margin-bottom:-1px;letter-spacing:.3px}
 .p-tabs button:hover{color:var(--primary)}.p-tabs button.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:500}
-
-/* ── Tree ── */
 .tree{list-style:none}.tree li{margin:1px 0}
 .tree-node{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:var(--radius-sm);cursor:pointer;transition:all .1s;font-size:12px;color:var(--secondary)}
 .tree-node:hover{background:var(--bg);color:var(--primary)}
 .tree-node .toggle{width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:6px;color:var(--border);cursor:pointer;transition:transform .15s}
 .tree-node .toggle.exp{transform:rotate(90deg)}
 .tree-node .tt{flex:1}.tree-children{padding-left:18px;display:none}.tree-children.open{display:block}
-
-/* ── Detail Page ── */
 .detail-page{padding:0;max-width:700px}
-.detail-page .dp-back{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--secondary);cursor:pointer;margin-bottom:16px;border:none;background:transparent;font-family:inherit;padding:2px 0;transition:all .1s}
+.detail-page .dp-back{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--secondary);cursor:pointer;margin-bottom:16px;border:none;background:transparent;font-family:inherit;padding:2px 0}
 .detail-page .dp-back:hover{color:var(--primary)}
 .detail-page .dp-h{margin-bottom:20px}
 .detail-page .dp-h h1{font-family:var(--font-serif);font-size:28px;font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:4px}
@@ -141,16 +88,12 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .detail-page .dp-section .sec-body{font-size:13px;color:var(--primary);line-height:1.8;font-weight:300}
 .detail-page .dp-section .sec-body p{margin-bottom:8px}
 .detail-page .dp-section .rel-items{display:flex;gap:4px;flex-wrap:wrap}
-.detail-page .dp-section .rel-items span{padding:2px 10px;border-radius:12px;font-size:11px;background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .1s}
+.detail-page .dp-section .rel-items span{padding:2px 10px;border-radius:12px;font-size:11px;background:var(--accent-light);color:var(--accent);cursor:pointer}
 .detail-page .dp-section .rel-items span:hover{background:var(--accent);color:#fff}
-
-/* ── Filter ── */
 .fb{display:flex;gap:3px;margin-bottom:16px;flex-wrap:wrap}
 .fb button{padding:3px 12px;border-radius:20px;border:1px solid transparent;background:transparent;color:var(--secondary);cursor:pointer;font-size:11px;font-family:inherit;transition:all .12s}
 .fb button:hover{border-color:var(--border);color:var(--primary)}
 .fb button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-
-/* ── Graph ── */
 .graph-container{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;position:relative;min-height:400px;overflow:hidden}
 .graph-container svg{width:100%;height:100%;min-height:400px}
 .graph-info{position:absolute;right:20px;top:20px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;box-shadow:0 4px 16px rgba(0,0,0,.04);display:none}
@@ -160,9 +103,7 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .graph-info .gi-body{font-size:11px;color:var(--secondary);line-height:1.5;margin-bottom:4px}
 .graph-info .gi-links{display:flex;gap:3px;flex-wrap:wrap}
 .graph-info .gi-links span{padding:1px 7px;border-radius:3px;font-size:9px;background:var(--bg);color:var(--secondary);cursor:pointer}
-
-/* ── Modal ── */
-.mo{display:none;position:fixed;inset:0;background:rgba(30,30,30,.15);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.mo{display:none;position:fixed;inset:0;background:rgba(30,30,30,.15);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
 .mo.show{display:flex}
 .mm{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:24px 28px;box-shadow:0 16px 48px rgba(0,0,0,.06);animation:mi .2s}
 @keyframes mi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
@@ -171,344 +112,158 @@ a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;col
 .mm .cl{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--secondary);line-height:1}
 .f2{display:flex;gap:8px;margin-bottom:7px}
 .f2 .fd{flex:1}
-.f2 .fd label{font-size:10px;color:var(--secondary);margin-bottom:2px;font-weight:500;display:block;letter-spacing:.3px;text-transform:uppercase}
+.f2 .fd label{font-size:10px;color:var(--secondary);margin-bottom:2px;font-weight:500;display:block;letter-spacing:.3px}
 .f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;font-family:inherit;background:var(--bg);transition:all .12s;color:var(--primary)}
 .f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:var(--surface)}
 .f2 .fd textarea{resize:vertical;min-height:34px}
-.mm .sub{width:100%;padding:7px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px;transition:all .12s}
+.mm .sub{width:100%;padding:7px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px}
 .mm .sub:hover{opacity:.85}
-
-/* ── Empty ── */
 .empty{text-align:center;padding:48px 16px;color:var(--secondary)}.empty .ei{font-size:24px;margin-bottom:4px;opacity:.4;font-family:var(--font-serif)}
-
-@media(max-width:640px){.grid-2{grid-template-columns:1fr}.home-section .hs-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.home-section .hs-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
 <div class="bg-grid"></div>
 <div class="app">
   <nav class="nav">
-    <div class="nav-logo">◈ Research Studio</div>
-    <a class="active" data-p="home">Home</a>
-    <a data-p="journal">Journal</a>
-    <a data-p="reading">Reading</a>
-    <a data-p="project">Projects</a>
-    <a data-p="concept">Concepts</a>
-    <a data-p="graph">Graph</a>
+    <div class="nav-logo">◈ 研究工作室</div>
+    <a class="active" data-p="home">首页</a>
+    <a data-p="journal">日记</a>
+    <a data-p="reading">阅读</a>
+    <a data-p="project">课题</a>
+    <a data-p="concept">概念</a>
+    <a data-p="graph">图谱</a>
     <div class="spacer"></div>
-    <button class="search-btn" onclick="showSearch()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>Search</button>
-    <button class="search-btn" style="margin-left:4px" onclick="showImport()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Import</button>
-    <button class="search-btn" style="margin-left:4px" onclick="showAdd()">＋ New</button>
+    <button class="search-btn" onclick="showSearch()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>搜索</button>
+    <button class="search-btn" style="margin-left:4px" onclick="showImport()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导入</button>
+    <button class="search-btn" style="margin-left:4px" onclick="showAdd()">＋ 新建</button>
   </nav>
   <div class="main" id="main"></div>
 </div>
 
-<!-- Search Modal -->
 <div class="mo" id="searchModal" onclick="if(event.target===this)closeSearch()">
   <div class="mm" style="max-width:560px" onclick="event.stopPropagation()">
-    <div class="f2"><div class="fd"><input id="searchInput" placeholder="Search research studio…" style="font-size:14px;padding:10px 14px" autofocus oninput="doSearch()"></div></div>
+    <div class="f2"><div class="fd"><input id="searchInput" placeholder="搜索研究工作室…" style="font-size:14px;padding:10px 14px" autofocus oninput="doSearch()"></div></div>
     <div id="searchResults" style="max-height:400px;overflow-y:auto"></div>
   </div>
 </div>
 
-<!-- Import Modal -->
 <div class="mo" id="importModal" onclick="if(event.target===this)closeImport()">
   <div class="mm" onclick="event.stopPropagation()">
     <button class="cl" onclick="closeImport()">✕</button>
-    <h2>Import</h2>
-    <p class="ms">Paste a link to automatically analyse and index</p>
+    <h2>导入链接</h2>
+    <p class="ms">粘贴链接，AI 自动分析并索引</p>
     <div class="f2"><div class="fd"><input id="importUrl" placeholder="https://…" style="font-size:13px"></div></div>
-    <button class="sub" onclick="doImport()">Analyse</button>
+    <button class="sub" onclick="doImport()">分析</button>
     <div id="importResult" style="margin-top:8px;display:none"></div>
   </div>
 </div>
 
-<!-- Add Modal -->
 <div class="mo" id="addModal" onclick="if(event.target===this)closeAdd()">
   <div class="mm" onclick="event.stopPropagation()">
     <button class="cl" onclick="closeAdd()">✕</button>
-    <h2>New</h2>
-    <p class="ms">Choose type to begin</p>
-    <div class="f2"><div class="fd"><label>Type</label><select id="aType" onchange="buildAddForm()"><option value="journal">Journal</option><option value="reading">Reading</option><option value="project">Project</option><option value="concept">Concept</option><option value="skill">Skill</option></select></div></div>
+    <h2>新建</h2>
+    <p class="ms">选择类型开始记录</p>
+    <div class="f2"><div class="fd"><label>类型</label><select id="aType" onchange="buildAddForm()"><option value="journal">日记</option><option value="reading">阅读</option><option value="project">课题</option><option value="concept">概念</option><option value="skill">技能</option></select></div></div>
     <div id="addForm"></div>
-    <button class="sub" onclick="confirmAdd()">Create</button>
+    <button class="sub" onclick="confirmAdd()">创建</button>
   </div>
 </div>
 
 <script>
-// ═══ ICONS ═══════════════════════════════════════
-function icon(name){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#${name}"/></svg>`}
-
-// ═══ DATA ═══════════════════════════════════════
 const DATA={
-  journal:[{id:'j1',title:'Beginning the Research Studio',date:'2026-07-25',body:'Today I began constructing the Personal Research Studio — a space for long-form reading, research, and writing. The structure rests on six pillars: Journal, Reading, Project, Concept, Skill, and Graph.',tags:['research','pkm'],rels:{projects:['p1'],concepts:['c3']}},
-    {id:'j2',title:'Notes on Cultural Geography',date:'2026-07-22',body:'The distinction between space and place is foundational. Space is abstract, geometric; place is lived, meaningful. Every landscape carries traces of the cultures that shaped it.',tags:['geography','culture'],rels:{projects:['p1'],reading:['r1'],concepts:['c1','c2']}},
-    {id:'j3',title:'Birding at Zhongshan Park',date:'2026-07-20',body:'Observed Dendrocopos major and Aegithalos caudatus. The woodpecker\'s drumming carried across the park. The long-tailed tits moved in a restless flock through the canopy.',tags:['birding','field-notes'],rels:{projects:['p2'],concepts:['c4']}}],
-  reading:[{id:'r1',type:'book',title:'Cultural Geography',creator:'Mike Crang',status:'reading',rating:4,date:'2026-07',tags:['geography','theory'],notes:'Core argument: space becomes place through human experience and representation.',highlights:['"Place is not just a setting for events but is continually being created and recreated through people\'s experience and description of it."'],projects:['p1'],concepts:['c1','c2']},
-    {id:'r2',type:'book',title:'One Hundred Years of Solitude',creator:'Gabriel García Márquez',status:'read',rating:5,date:'2026-06',tags:['fiction','magical-realism'],notes:'Macondo is not merely a fictional town—it is a mythic space condensing the history of a continent.',highlights:['"Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice."'],projects:['p1'],concepts:['c2']},
-    {id:'r3',type:'book',title:'A Field Guide to Chinese Birds',creator:'Liu Yang',status:'reading',rating:0,date:'2026-07',tags:['ornithology'],notes:'Comprehensive guide to 1400+ species. Essential for field identification.',projects:['p2'],concepts:['c4']}],
-  project:[{id:'p1',title:'Cultural Geography',icon:'◇',desc:'The study of cultural phenomena distributed across space, their diffusion, and their relationship with the physical environment.',tags:['geography','culture','theory'],created:'2026-07-20',
-    tree:[{n:'Core Concepts',c:[{n:'Space & Place'},{n:'Landscape'},{n:'Cultural Turn'},{n:'Scale'}]},{n:'Key Scholars',c:[{n:'Carl Sauer'},{n:'Yi-Fu Tuan'},{n:'Edward Soja'},{n:'Mike Crang'}]},{n:'Related Fields',c:[{n:'Human Geography'},{n:'Urban Studies'},{n:'Literary Geography'}]}],
+  journal:[{id:'j1',title:'开始搭建研究工作室',date:'2026-07-25',body:'今天开始构建个人研究工作室——一个用于长期阅读、研究和写作的空间。系统以六大模块为核心：日记、阅读、课题、概念、技能和图谱。',tags:['研究','知识管理'],rels:{projects:['p1'],concepts:['c3']}},
+    {id:'j2',title:'文化地理学笔记',date:'2026-07-22',body:'空间与地方的区分是基础性的。空间是抽象的、几何的；地方是被经验、被赋予意义的。每一处景观都承载着塑造它的文化痕迹。',tags:['地理','文化'],rels:{projects:['p1'],reading:['r1'],concepts:['c1','c2']}},
+    {id:'j3',title:'中山公园观鸟',date:'2026-07-20',body:'观察到一只大斑啄木鸟和一群银喉长尾山雀。啄木鸟的敲击声传得很远。长尾山雀在树冠中不停地跳动。',tags:['观鸟','野外记录'],rels:{projects:['p2'],concepts:['c4']}}],
+  reading:[{id:'r1',type:'book',title:'文化地理学',creator:'迈克·克朗',status:'reading',rating:4,date:'2026-07',tags:['地理','理论'],notes:'核心论点：空间通过人的体验和再现被不断创造为地方。',highlights:['"地方不仅是事件的背景，而是通过人们对它的体验和描述被不断创造和重塑的。"'],projects:['p1'],concepts:['c1','c2']},
+    {id:'r2',type:'book',title:'百年孤独',creator:'加西亚·马尔克斯',status:'read',rating:5,date:'2026-06',tags:['小说','魔幻现实'],notes:'马孔多不仅是一个虚构的城镇，更是一个浓缩了整个拉丁美洲历史的神话空间。',highlights:['"多年以后，面对行刑队，奥雷里亚诺·布恩迪亚上校将会回想起父亲带他去见识冰块的那个遥远的下午。"'],projects:['p1'],concepts:['c2']},
+    {id:'r3',type:'book',title:'中国鸟类观察手册',creator:'刘阳',status:'reading',rating:0,date:'2026-07',tags:['鸟类'],notes:'记录了中国1400余种鸟类。对于野外识别很有帮助。',projects:['p2'],concepts:['c4']}],
+  project:[{id:'p1',title:'文化地理学',icon:'◇',desc:'研究文化现象在空间中的分布、传播及其与地理环境的关系。',tags:['地理','文化','理论'],created:'2026-07-20',
+    tree:[{n:'核心概念',c:[{n:'空间与地方'},{n:'景观'},{n:'文化转向'},{n:'尺度'}]},{n:'重要学者',c:[{n:'卡尔·索尔'},{n:'段义孚'},{n:'爱德华·索亚'},{n:'迈克·克朗'}]},{n:'相关领域',c:[{n:'人文地理学'},{n:'城市研究'},{n:'文学地理学'}]}],
     readings:['r1','r2'],concepts:['c1','c2'],journal:['j1','j2'],resources:[]},
-    {id:'p2',title:'Birding & Ornithology',icon:'◇',desc:'Systematic observation and study of wild birds: identification, behaviour, ecology, and conservation.',tags:['birds','ecology','fieldwork'],created:'2026-07-18',
-    tree:[{n:'Taxonomy',c:[{n:'Passeriformes'},{n:'Piciformes'},{n:'Falconiformes'}]},{n:'Field Skills',c:[{n:'Identification'},{n:'Song Recognition'},{n:'Recording'}]},{n:'Local Species',c:[{n:'Forest Birds'},{n:'Waterfowl'},{n:'Raptors'}]}],
+    {id:'p2',title:'观鸟与鸟类学',icon:'◇',desc:'系统观察和研究野生鸟类：识别、行为、生态和保护。',tags:['鸟类','生态','野外'],created:'2026-07-18',
+    tree:[{n:'分类',c:[{n:'雀形目'},{n:'鴷形目'},{n:'隼形目'}]},{n:'野外技能',c:[{n:'识别'},{n:'鸣声辨别'},{n:'记录'}]},{n:'本地鸟种',c:[{n:'林鸟'},{n:'水鸟'},{n:'猛禽'}]}],
     readings:['r3'],concepts:['c4'],journal:['j3'],resources:[]}],
-  concept:[{id:'c1',title:'Place',definition:'A meaningful segment of geographic space. Unlike abstract "space," place is invested with human experience, memory, and significance.',background:'The concept of place gained prominence in human geography in the 1970s, notably through the work of Yi-Fu Tuan and Edward Relph.',tags:['geography','theory'],rels:{reading:['r1','r2'],projects:['p1'],journal:['j2'],concepts:['c2','c3']}},
-    {id:'c2',title:'Landscape',definition:'The visible features of an area of land, often considered in terms of their aesthetic, cultural, and historical meaning.',background:'Landscape study bridges geography and art history. Carl Sauer defined landscape as an area composed of a distinct association of forms, both physical and cultural.',tags:['geography','aesthetics'],rels:{reading:['r1','r2'],projects:['p1'],concepts:['c1','c3']}},
-    {id:'c3',title:'Knowledge',definition:'Information, understanding, and skill acquired through experience, education, or research. In this system, knowledge is the emergent property of connections between concepts, readings, and projects.',tags:['philosophy','pkm'],rels:{journal:['j1'],concepts:['c1']}},
-    {id:'c4',title:'Habitat',definition:'The natural environment in which a species or group of species lives, characterized by physical and biological features.',background:'Habitat analysis is fundamental to ecology and conservation biology. It encompasses the resources and conditions that allow a species to survive and reproduce.',tags:['ecology','biology'],rels:{reading:['r3'],projects:['p2'],journal:['j3']}}],
-  skill:[{id:'s1',title:'English Reading',level:'intermediate',progress:55,status:'practicing',tags:['language'],practices:[{d:'2026-07-24',n:'To Kill a Mockingbird chapter',t:'40min'}]},
-    {id:'s2',title:'Live2D Modeling',level:'beginner',progress:25,status:'learning',tags:['digital-art'],practices:[{d:'2026-07-20',n:'Mesh deformation basics',t:'60min'}]}]
+  concept:[{id:'c1',title:'地方',definition:'具有意义的空间片段。与抽象的"空间"不同，地方被赋予人类经验、记忆和意义。',background:'地方概念在1970年代的人文地理学中获得 prominence，段义孚和爱德华·雷尔夫是重要奠基者。',tags:['地理','理论'],rels:{reading:['r1','r2'],projects:['p1'],journal:['j2'],concepts:['c2','c3']}},
+    {id:'c2',title:'景观',definition:'一片土地的可视特征，通常从美学、文化和历史角度加以考量。',background:'景观研究连接地理学与艺术史。卡尔·索尔将景观定义为由独特的形态组合构成的区域，包括自然形态和文化形态。',tags:['地理','美学'],rels:{reading:['r1','r2'],projects:['p1'],concepts:['c1','c3']}},
+    {id:'c3',title:'知识',definition:'通过经验、教育或研究获得的信息、理解和技能。在此系统中，知识是概念、阅读和课题之间连接的涌现属性。',tags:['哲学','知识管理'],rels:{journal:['j1'],concepts:['c1']}},
+    {id:'c4',title:'栖息地',definition:'一个物种或群体赖以生存的自然环境，由物理和生物特征共同界定。',background:'栖息地分析是生态学和保护生物学的核心。它包括一个物种生存和繁殖所需的资源和条件。',tags:['生态','生物学'],rels:{reading:['r3'],projects:['p2'],journal:['j3']}}],
+  skill:[{id:'s1',title:'英语阅读',level:'intermediate',progress:55,status:'practicing',tags:['语言'],practices:[{d:'2026-07-24',n:'阅读 To Kill a Mockingbird 一章',t:'40分钟'}]},
+    {id:'s2',title:'Live2D 建模',level:'beginner',progress:25,status:'learning',tags:['数字艺术'],practices:[{d:'2026-07-20',n:'学习网格变形基础',t:'60分钟'}]}]
 }
-const KEYS={journal:'journals',reading:'readings',project:'projects',concept:'concepts',skill:'skills'}
-let PAGE='home',CURRENT_PROJECT='p1',PROJECT_TAB='overview',CURRENT_CONCEPT='c1',DETAIL_TYPE=null,DETAIL_ID=null
+const KEYS={journal:'journal',reading:'reading',project:'project',concept:'concept',skill:'skill'}
+let PAGE='home',CURRENT_PROJECT='p1',PROJECT_TAB='overview',DETAIL_TYPE=null,DETAIL_ID=null
 function persist(){try{localStorage.setItem('rs_data',JSON.stringify(DATA))}catch(e){}}
 function loadData(){try{const s=localStorage.getItem('rs_data');if(s)Object.assign(DATA,JSON.parse(s))}catch(e){}}
 loadData()
-
 function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function sr(r){if(!r)return '';return Array.from({length:5},(_,i)=>`<span class="${i<r?'f':'e'}">★</span>`).join('')}
 function byId(id){for(let k of Object.keys(DATA)){const f=DATA[k].find(d=>d.id===id);if(f)return f}return null}
-
-function navigate(p){
-  PAGE=p
-  document.querySelectorAll('.nav a[data-p]').forEach(a=>a.classList.remove('active'))
-  const el=document.querySelector(`.nav a[data-p="${p}"]`);if(el)el.classList.add('active')
-  render()
-}
+function navigate(p){PAGE=p;document.querySelectorAll('.nav a[data-p]').forEach(a=>a.classList.remove('active'));const el=document.querySelector(`.nav a[data-p="${p}"]`);if(el)el.classList.add('active');render()}
 document.querySelectorAll('.nav a[data-p]').forEach(a=>{a.onclick=()=>navigate(a.dataset.p)})
-
-function render(){
-  const mc=document.getElementById('main')
-  if(PAGE==='home')renderHome(mc)
-  else if(PAGE==='journal')renderJournal(mc)
-  else if(PAGE==='reading')renderReading(mc)
+function render(){const mc=document.getElementById('main')
+  if(PAGE==='home')renderHome(mc);else if(PAGE==='journal'){const entries=DATA.journal.slice().reverse();mc.innerHTML=`<div class="page-h"><h1>日记</h1><span class="count">${entries.length}</span></div><div class="tl">${entries.map(j=>{const links=[...(j.rels?.projects||[]).map(id=>{const p=byId(id);return p?`<span onclick="event.stopPropagation();navigateToProject('${id}')">${esc(p.title)}</span>`:''}).filter(Boolean),...(j.rels?.concepts||[]).map(id=>{const c=byId(id);return c?`<span onclick="event.stopPropagation();openDetail('concept','${id}')">${esc(c.title)}</span>`:''}).filter(Boolean)];return`<div class="tl-item"><div class="tl-date">${j.date}</div><div class="tl-card" onclick="openDetail('journal','${j.id}')"><h3>${esc(j.title)}</h3><div class="body">${esc(j.body||'')}</div>${links.length?`<div class="links">${links.join('')}</div>`:''}</div></div>`}).join('')}</div>`}
+  else if(PAGE==='reading')mc.innerHTML=`<div class="page-h"><h1>阅读</h1><span class="count">${DATA.reading.length}</span></div><div class="grid-4">${DATA.reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div><div class="ex">${esc(r.notes||'').slice(0,80)}</div>${r.tags?.length?`<div class="tags">${r.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`
   else if(PAGE==='project')renderProjectList(mc)
-  else if(PAGE==='concept')renderConceptList(mc)
+  else if(PAGE==='concept'){mc.innerHTML=`<div class="page-h"><h1>概念</h1><span class="count">${DATA.concept.length}</span></div><div class="grid-3">${DATA.concept.map(c=>`<div class="concept-card" onclick="openDetail('concept','${c.id}')"><div class="ci">◇</div><div class="cb"><div class="cn">${esc(c.title)}</div><div class="cd">${esc(c.definition||'').slice(0,80)}</div>${c.tags?.length?`<div class="cr">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`}
   else if(PAGE==='graph')renderGraph(mc)
 }
-
-// ═══ HOME ═════════════════════════════════════════
-function renderHome(mc){
-  const recent=DATA.journal.slice(-3).reverse()
-  const reading=DATA.reading.filter(r=>r.status==='reading').slice(0,3)
-  const projects=DATA.project.slice(0,4)
-  const concepts=DATA.concept.slice(0,4)
-  mc.innerHTML=`
-    <div class="welcome">Research Studio</div>
-    <div class="welcome-sub">A personal workspace for reading, research, and writing.</div>
-    <div class="home-section">
-      <div class="hs-title">Continue Reading</div>
-      <div class="hs-grid">${reading.length?reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join(''):'<div class="card"><div style="color:var(--secondary);font-size:12px">No reading in progress</div></div>'}</div>
-    </div>
-    <div class="home-section">
-      <div class="hs-title">Recent Journal</div>
-      <div class="hs-grid">${recent.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,80)}</div></div>`).join('')}</div>
-    </div>
-    <div class="home-section">
-      <div class="hs-title">Current Projects</div>
-      <div class="hs-grid">${projects.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div class="card-type">${p.icon||'◇'} project</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,80)}</div></div>`).join('')}</div>
-    </div>
-    <div class="home-section">
-      <div class="hs-title">Recent Concepts</div>
-      <div class="hs-grid">${concepts.map(c=>`<div class="card" onclick="openDetail('concept','${c.id}')"><div class="card-type" style="color:var(--accent)">concept</div><h3>${esc(c.title)}</h3><div class="ex">${esc(c.definition||'').slice(0,80)}</div></div>`).join('')}</div>
-    </div>`
-}
-
-// ═══ JOURNAL ═══════════════════════════════════════
-function renderJournal(mc){
-  const entries=DATA.journal.slice().reverse()
-  mc.innerHTML=`<div class="page-h"><h1>Journal</h1><span class="count">${entries.length}</span></div>
-  <div class="tl">${entries.map(j=>{
-    const links=[...(j.rels?.projects||[]).map(id=>{const p=byId(id);return p?`<span onclick="event.stopPropagation();navigateToProject('${id}')">${esc(p.title)}</span>`:''}).filter(Boolean),...(j.rels?.concepts||[]).map(id=>{const c=byId(id);return c?`<span onclick="event.stopPropagation();openDetail('concept','${id}')">${esc(c.title)}</span>`:''}).filter(Boolean)]
-    return `<div class="tl-item"><div class="tl-date">${j.date}</div><div class="tl-card" onclick="openDetail('journal','${j.id}')"><h3>${esc(j.title)}</h3><div class="body">${esc(j.body||'')}</div>${links.length?`<div class="links">${links.join('')}</div>`:''}</div></div>`
-  }).join('')}</div>`
-}
-
-// ═══ READING ═══════════════════════════════════════
-function renderReading(mc){
-  mc.innerHTML=`<div class="page-h"><h1>Reading</h1><span class="count">${DATA.reading.length}</span></div>
-  <div class="grid-4">${DATA.reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div><div class="ex">${esc(r.notes||'').slice(0,80)}</div>${r.tags?.length?`<div class="tags">${r.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`
-}
-
-// ═══ PROJECTS ═════════════════════════════════════
-function renderProjectList(mc){
-  mc.innerHTML=`<div class="page-h"><h1>Projects</h1><span class="count">${DATA.project.length}</span></div>
-  <div class="grid-3">${DATA.project.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div style="font-size:18px;margin-bottom:4px;opacity:.6">${p.icon||'◇'}</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,60)}</div></div>`).join('')}</div>`
-}
+function renderHome(mc){const recent=DATA.journal.slice(-3).reverse(),reading=DATA.reading.filter(r=>r.status==='reading').slice(0,3),projects=DATA.project.slice(0,4),concepts=DATA.concept.slice(0,4)
+  mc.innerHTML=`<div class="welcome">研究工作室</div><div class="welcome-sub">用于阅读、研究与写作的个人空间。</div>
+  <div class="home-section"><div class="hs-title">继续阅读</div><div class="hs-grid">${reading.length?reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join(''):'<div class="card"><div style="color:var(--secondary);font-size:12px">暂无进行中的阅读</div></div>'}</div></div>
+  <div class="home-section"><div class="hs-title">最近日记</div><div class="hs-grid">${recent.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,80)}</div></div>`).join('')}</div></div>
+  <div class="home-section"><div class="hs-title">当前课题</div><div class="hs-grid">${projects.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div class="card-type">${p.icon||'◇'} 课题</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,80)}</div></div>`).join('')}</div></div>
+  <div class="home-section"><div class="hs-title">最近概念</div><div class="hs-grid">${concepts.map(c=>`<div class="card" onclick="openDetail('concept','${c.id}')"><div class="card-type" style="color:var(--accent)">概念</div><h3>${esc(c.title)}</h3><div class="ex">${esc(c.definition||'').slice(0,80)}</div></div>`).join('')}</div></div>`}
+function renderProjectList(mc){mc.innerHTML=`<div class="page-h"><h1>课题</h1><span class="count">${DATA.project.length}</span></div><div class="grid-3">${DATA.project.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div style="font-size:18px;margin-bottom:4px;opacity:.6">${p.icon||'◇'}</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,60)}</div></div>`).join('')}</div>`}
 function navigateToProject(id){PAGE='project';CURRENT_PROJECT=id;PROJECT_TAB='overview';renderProjectDetail()}
-function renderProjectDetail(){
-  const p=byId(CURRENT_PROJECT);if(!p){navigate('project');return}
-  const mc=document.getElementById('main'),tabs=['overview','knowledge','reading','journal']
-  const tl=['Overview','Knowledge','Reading','Journal']
-  mc.innerHTML=`<div class="page-h"><h1>${p.icon||'◇'} ${esc(p.title)}</h1></div>
-  <div class="p-hero"><div class="pi">${p.icon||'◇'}</div><div><div class="pt">${esc(p.title)}</div><div class="pd">${esc(p.desc||'')}</div></div></div>
-  <div class="p-tabs">${tabs.map((t,i)=>`<button class="${PROJECT_TAB===t?'active':''}" onclick="PROJECT_TAB='${t}';renderProjectDetail()">${tl[i]}</button>`).join('')}</div><div id="pContent"></div>`
-  renderProjectTab(p)
-}
-function renderProjectTab(p){
+function renderProjectDetail(){const p=byId(CURRENT_PROJECT);if(!p){navigate('project');return}
+  const mc=document.getElementById('main'),tabs=['overview','knowledge','reading','journal'],tl=['概览','知识树','阅读','日记']
+  mc.innerHTML=`<div class="page-h"><h1>${p.icon||'◇'} ${esc(p.title)}</h1></div><div class="p-hero"><div class="pi">${p.icon||'◇'}</div><div><div class="pt">${esc(p.title)}</div><div class="pd">${esc(p.desc||'')}</div></div></div><div class="p-tabs">${tabs.map((t,i)=>`<button class="${PROJECT_TAB===t?'active':''}" onclick="PROJECT_TAB='${t}';renderProjectDetail()">${tl[i]}</button>`).join('')}</div><div id="pContent"></div>`
   const pc=document.getElementById('pContent')
-  if(PROJECT_TAB==='overview'){
-    pc.innerHTML=`<div style="font-size:13px;color:var(--secondary);line-height:1.8;font-weight:300">${esc(p.desc||'')}</div>${p.tags?.length?`<div style="display:flex;gap:4px;margin-top:12px;flex-wrap:wrap">${p.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;border-radius:12px;background:var(--bg);color:var(--secondary)">${esc(t)}</span>`).join('')}</div>`:''}`
-  }else if(PROJECT_TAB==='knowledge'){
-    pc.innerHTML=buildTree(p.tree||[])
-  }else if(PROJECT_TAB==='reading'){
-    const rs=(p.readings||[]).map(id=>byId(id)).filter(Boolean)
-    pc.innerHTML=rs.length?`<div class="grid-4">${rs.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">No linked reading</div></div>'
-  }else if(PROJECT_TAB==='journal'){
-    const js=(p.journal||[]).map(id=>byId(id)).filter(Boolean)
-    pc.innerHTML=js.length?`<div class="grid-4">${js.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,60)}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">No linked journal entries</div></div>'
-  }
+  if(PROJECT_TAB==='overview'){pc.innerHTML=`<div style="font-size:13px;color:var(--secondary);line-height:1.8;font-weight:300">${esc(p.desc||'')}</div>${p.tags?.length?`<div style="display:flex;gap:4px;margin-top:12px;flex-wrap:wrap">${p.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;border-radius:12px;background:var(--bg);color:var(--secondary)">${esc(t)}</span>`).join('')}</div>`:''}`
+  }else if(PROJECT_TAB==='knowledge'){pc.innerHTML=buildTree(p.tree||[])}
+  else if(PROJECT_TAB==='reading'){const rs=(p.readings||[]).map(id=>byId(id)).filter(Boolean);pc.innerHTML=rs.length?`<div class="grid-3">${rs.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">暂无关联阅读</div></div>'}
+  else if(PROJECT_TAB==='journal'){const js=(p.journal||[]).map(id=>byId(id)).filter(Boolean);pc.innerHTML=js.length?`<div class="grid-3">${js.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,60)}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">暂无关联日记</div></div>'}
 }
-
-function buildTree(nodes){if(!nodes||!nodes.length)return'<div class="empty"><div class="ei">No structure yet</div></div>'
-  return`<ul class="tree">${nodes.map(n=>`<li><div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('exp');this.nextElementSibling.classList.toggle('open')"`:''}>${n.c?.length?`<span class="toggle">▶</span>`:'<span style="width:12px"></span>'}<span class="tt">${esc(n.n||'')}</span>${n.c?.length?`<span style="font-size:10px;color:var(--border)">${n.c.length}</span>`:''}</div>${n.c?.length?`<ul class="tree-children">${buildTree(n.c)}</ul>`:''}</li>`).join('')}</ul>`
-}
-
-// ═══ CONCEPT ═══════════════════════════════════════
-function renderConceptList(mc){
-  mc.innerHTML=`<div class="page-h"><h1>Concepts</h1><span class="count">${DATA.concept.length}</span></div>
-  <div class="grid-3">${DATA.concept.map(c=>`<div class="concept-card" onclick="openDetail('concept','${c.id}')"><div class="ci">◇</div><div class="cb"><div class="cn">${esc(c.title)}</div><div class="cd">${esc(c.definition||'').slice(0,80)}</div>${c.tags?.length?`<div class="cr">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`
-}
-
-// ═══ DETAIL PAGES ═════════════════════════════════
-function openDetail(type,id){
-  const item=byId(id);if(!item)return
-  DETAIL_TYPE=type;DETAIL_ID=id
-  const mc=document.getElementById('main')
-  const rels=item.rels||{}
-
-  let relatedHtml=''
-  if(rels.reading||rels.projects||rels.journal||rels.concepts){
-    relatedHtml='<div class="dp-section"><div class="sec-title">Related</div><div class="rel-items">'
-    if(rels.reading)rels.reading.forEach(rid=>{const r=byId(rid);if(r)relatedHtml+=`<span onclick="openDetail('reading','${rid}')">${esc(r.title)}</span>`})
-    if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)relatedHtml+=`<span onclick="navigateToProject('${pid}')">${esc(p.title)}</span>`})
-    if(rels.journal)rels.journal.forEach(jid=>{const j=byId(jid);if(j)relatedHtml+=`<span onclick="openDetail('journal','${jid}')">${esc(j.title)}</span>`})
-    if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)relatedHtml+=`<span onclick="openDetail('concept','${cid}')">${esc(c.title)}</span>`})
-    relatedHtml+='</div></div>'
-  }
-
+function buildTree(nodes){if(!nodes||!nodes.length)return'<div class="empty"><div class="ei">暂无结构</div></div>';return`<ul class="tree">${nodes.map(n=>`<li><div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('exp');this.nextElementSibling.classList.toggle('open')"`:''}>${n.c?.length?`<span class="toggle">▶</span>`:'<span style="width:12px"></span>'}<span class="tt">${esc(n.n||'')}</span>${n.c?.length?`<span style="font-size:10px;color:var(--border)">${n.c.length}</span>`:''}</div>${n.c?.length?`<ul class="tree-children">${buildTree(n.c)}</ul>`:''}</li>`).join('')}</ul>`}
+function openDetail(type,id){const item=byId(id);if(!item)return;const mc=document.getElementById('main');const rels=item.rels||{};let relatedHtml='';if(rels.reading||rels.projects||rels.journal||rels.concepts){relatedHtml='<div class="dp-section"><div class="sec-title">关联</div><div class="rel-items">';if(rels.reading)rels.reading.forEach(rid=>{const r=byId(rid);if(r)relatedHtml+=`<span onclick="openDetail('reading','${rid}')">${esc(r.title)}</span>`});if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)relatedHtml+=`<span onclick="navigateToProject('${pid}')">${esc(p.title)}</span>`});if(rels.journal)rels.journal.forEach(jid=>{const j=byId(jid);if(j)relatedHtml+=`<span onclick="openDetail('journal','${jid}')">${esc(j.title)}</span>`});if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)relatedHtml+=`<span onclick="openDetail('concept','${cid}')">${esc(c.title)}</span>`});relatedHtml+='</div></div>'}
   let body=''
-  if(type==='journal'){
-    body=`
-      <div class="dp-back" onclick="navigate('journal')">← Journal</div>
-      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.date}</span>${item.tags?`<span>${item.tags.join(' · ')}</span>`:''}</div></div>
-      <div class="dp-section"><div class="sec-title">Notes</div><div class="sec-body"><p>${esc(item.body||'')}</p></div></div>
-      ${relatedHtml}`
-  }else if(type==='reading'){
-    body=`
-      <div class="dp-back" onclick="navigate('reading')">← Reading</div>
-      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.type}</span><span>${esc(item.creator||'')}</span>${item.rating?`<span><span class="stars">${sr(item.rating)}</span></span>`:''}</div></div>
-      ${item.notes?`<div class="dp-section"><div class="sec-title">Notes</div><div class="sec-body"><p>${esc(item.notes)}</p></div></div>`:''}
-      ${item.highlights?.length?`<div class="dp-section"><div class="sec-title">Highlights</div><div class="sec-body">${item.highlights.map(h=>`<blockquote style="border-left:2px solid var(--accent);padding:6px 14px;margin:6px 0;color:var(--secondary);font-style:italic">${esc(h)}</blockquote>`).join('')}</div></div>`:''}
-      ${relatedHtml}`
-  }else if(type==='concept'){
-    body=`
-      <div class="dp-back" onclick="navigate('concept')">← Concepts</div>
-      <div class="dp-h"><h1>${esc(item.title)}</h1></div>
-      ${item.definition?`<div class="dp-section"><div class="sec-title">Definition</div><div class="sec-body"><p>${esc(item.definition)}</p></div></div>`:''}
-      ${item.background?`<div class="dp-section"><div class="sec-title">Background</div><div class="sec-body"><p>${esc(item.background)}</p></div></div>`:''}
-      ${relatedHtml}`
-  }else if(type==='skill'){
-    body=`
-      <div class="dp-back" onclick="navigate('skill')">← Skills</div>
-      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.level||''}</span><span>${item.progress||0}%</span></div></div>
-      ${item.practices?.length?`<div class="dp-section"><div class="sec-title">Practice Log</div><div class="sec-body">${item.practices.map(p=>`<p style="margin-bottom:4px">${p.d} — ${esc(p.n||'')} (${p.t||''})</p>`).join('')}</div></div>`:''}`
-  }
+  if(type==='journal'){body=`<div class="dp-back" onclick="navigate('journal')">← 日记</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.date}</span>${item.tags?`<span>${item.tags.join(' · ')}</span>`:''}</div></div><div class="dp-section"><div class="sec-title">笔记</div><div class="sec-body"><p>${esc(item.body||'')}</p></div></div>${relatedHtml}`}
+  else if(type==='reading'){body=`<div class="dp-back" onclick="navigate('reading')">← 阅读</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.type}</span><span>${esc(item.creator||'')}</span>${item.rating?`<span><span class="stars">${sr(item.rating)}</span></span>`:''}</div></div>${item.notes?`<div class="dp-section"><div class="sec-title">笔记</div><div class="sec-body"><p>${esc(item.notes)}</p></div></div>`:''}${item.highlights?.length?`<div class="dp-section"><div class="sec-title">摘录</div><div class="sec-body">${item.highlights.map(h=>`<blockquote style="border-left:2px solid var(--accent);padding:6px 14px;margin:6px 0;color:var(--secondary);font-style:italic">${esc(h)}</blockquote>`).join('')}</div></div>`:''}${relatedHtml}`}
+  else if(type==='concept'){body=`<div class="dp-back" onclick="navigate('concept')">← 概念</div><div class="dp-h"><h1>${esc(item.title)}</h1></div>${item.definition?`<div class="dp-section"><div class="sec-title">定义</div><div class="sec-body"><p>${esc(item.definition)}</p></div></div>`:''}${item.background?`<div class="dp-section"><div class="sec-title">背景</div><div class="sec-body"><p>${esc(item.background)}</p></div></div>`:''}${relatedHtml}`}
+  else if(type==='skill'){body=`<div class="dp-back" onclick="render()">← 返回</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.level||''}</span><span>${item.progress||0}%</span></div></div>${item.practices?.length?`<div class="dp-section"><div class="sec-title">练习记录</div><div class="sec-body">${item.practices.map(p=>`<p style="margin-bottom:4px">${p.d} — ${esc(p.n||'')}（${p.t||''}）</p>`).join('')}</div></div>`:''}`}
   mc.innerHTML=body
 }
-
-// ═══ GRAPH ════════════════════════════════════════
-function renderGraph(mc){
-  const all=[...DATA.project,...DATA.concept,...DATA.reading.filter(r=>r.rating>=4)]
-  const cx=350,cy=220,r=170
-  mc.innerHTML=`<div class="page-h"><h1>Knowledge Graph</h1></div>
-  <div class="graph-container" id="gc"><svg viewBox="0 0 700 440" id="gsvg"></svg><div class="graph-info" id="ginfo"></div></div>`
-  setTimeout(()=>drawGraph(all,cx,cy,r),50)
+function renderGraph(mc){const all=[...DATA.project,...DATA.concept,...DATA.reading.filter(r=>r.rating>=4)];const cx=350,cy=220,r=170
+  mc.innerHTML=`<div class="page-h"><h1>知识图谱</h1></div><div class="graph-container" id="gc"><svg viewBox="0 0 700 440" id="gsvg"></svg><div class="graph-info" id="ginfo"></div></div>`
+  setTimeout(()=>{const svg=document.getElementById('gsvg');const colors={project:'var(--accent)',concept:'var(--primary)',reading:'var(--border)'};const angles=all.map((_,i)=>2*Math.PI*i/all.length-Math.PI/2);const pos=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}));let l='',c='',t='';for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){if(Math.random()>.7)l+=`<line x1="${pos[i].x}" y1="${pos[i].y}" x2="${pos[j].x}" y2="${pos[j].y}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>`}all.forEach((n,i)=>{const col=n.type==='project'?colors.project:n.type==='concept'?colors.concept:colors.reading;const sz=n.type==='project'?10:n.type==='concept'?7:5;c+=`<g class="kg-node" style="cursor:pointer" onclick="showGraphInfo('${n.id}')"><circle cx="${pos[i].x}" cy="${pos[i].y}" r="${sz}" fill="${col}" stroke="#fff" stroke-width="1.5" opacity=".85"/></g>`;t+=`<text x="${pos[i].x}" y="${pos[i].y+16}" text-anchor="middle" font-size="9" fill="var(--secondary)">${esc(n.title||'').slice(0,10)}</text>`});svg.innerHTML=l+c+t},50)
 }
-function drawGraph(nodes,cx,cy,r){
-  const svg=document.getElementById('gsvg')
-  const colors={project:'var(--accent)',concept:'var(--primary)',reading:'var(--border)'}
-  const angles=nodes.map((_,i)=>2*Math.PI*i/nodes.length-Math.PI/2)
-  const pos=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}))
-  let l='',c='',t=''
-  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
-    const connected=Math.random()>.7
-    if(connected)l+=`<line x1="${pos[i].x}" y1="${pos[i].y}" x2="${pos[j].x}" y2="${pos[j].y}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>`
-  }
-  nodes.forEach((n,i)=>{
-    const col=n.type==='project'?colors.project:n.type==='concept'?colors.concept:colors.reading
-    const sz=n.type==='project'?10:n.type==='concept'?7:5
-    c+=`<g class="kg-node" style="cursor:pointer" onclick="showGraphInfo('${n.id}')"><circle cx="${pos[i].x}" cy="${pos[i].y}" r="${sz}" fill="${col}" stroke="#fff" stroke-width="1.5" opacity=".85"/></g>`
-    t+=`<text x="${pos[i].x}" y="${pos[i].y+16}" text-anchor="middle" font-size="9" fill="var(--secondary)" font-family="var(--font-sans)">${esc(n.title||'').slice(0,10)}</text>`
-  })
-  svg.innerHTML=l+c+t
-}
-function showGraphInfo(id){
-  const d=byId(id);if(!d)return
-  const el=document.getElementById('ginfo')
-  let rels=[]
-  if(d.rels?.reading)rels.push(...d.rels.reading.map(rid=>{const r=byId(rid);return r?esc(r.title):''}).filter(Boolean))
-  if(d.rels?.projects)rels.push(...d.rels.projects.map(pid=>{const p=byId(pid);return p?esc(p.title):''}).filter(Boolean))
-  if(d.rels?.journal)rels.push(...d.rels.journal.map(jid=>{const j=byId(jid);return j?esc(j.title):''}).filter(Boolean))
-  if(d.rels?.concepts)rels.push(...d.rels.concepts.map(cid=>{const c=byId(cid);return c?esc(c.title):''}).filter(Boolean))
-  el.innerHTML=`<div class="gi-title">${esc(d.title)}</div><div class="gi-type">${d.type||d.constructor?.name||'item'}</div>${d.definition?`<div class="gi-body">${esc(d.definition).slice(0,100)}</div>`:d.desc?`<div class="gi-body">${esc(d.desc).slice(0,100)}</div>`:d.notes?`<div class="gi-body">${esc(d.notes).slice(0,100)}</div>`:''}${rels.length?`<div class="gi-links">${rels.slice(0,5).map(r=>`<span onclick="openDetail('concept','${id}')">${r}</span>`).join('')}</div>`:''}`
-  el.classList.add('show')
-}
+function showGraphInfo(id){const d=byId(id);if(!d)return;const el=document.getElementById('ginfo');let rels=[];if(d.rels?.reading)rels.push(...d.rels.reading.map(rid=>{const r=byId(rid);return r?esc(r.title):''}).filter(Boolean));if(d.rels?.projects)rels.push(...d.rels.projects.map(pid=>{const p=byId(pid);return p?esc(p.title):''}).filter(Boolean));if(d.rels?.journal)rels.push(...d.rels.journal.map(jid=>{const j=byId(jid);return j?esc(j.title):''}).filter(Boolean));if(d.rels?.concepts)rels.push(...d.rels.concepts.map(cid=>{const c=byId(cid);return c?esc(c.title):''}).filter(Boolean));el.innerHTML=`<div class="gi-title">${esc(d.title)}</div><div class="gi-type">${d.type||'条目'}</div>${d.definition?`<div class="gi-body">${esc(d.definition).slice(0,100)}</div>`:d.desc?`<div class="gi-body">${esc(d.desc).slice(0,100)}</div>`:d.notes?`<div class="gi-body">${esc(d.notes).slice(0,100)}</div>`:''}${rels.length?`<div class="gi-links">${rels.slice(0,5).map(r=>`<span onclick="openDetail('reading','${d.id}')">${r}</span>`).join('')}</div>`:''}`;el.classList.add('show')}
 document.addEventListener('click',e=>{if(!e.target.closest('.kg-node')&&!e.target.closest('.graph-info'))document.getElementById('ginfo')?.classList.remove('show')})
-
-// ═══ SEARCH ═══════════════════════════════════════
 function showSearch(){document.getElementById('searchModal').classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('searchInput')?.focus(),100)}
 function closeSearch(){document.getElementById('searchModal').classList.remove('show');document.body.style.overflow=''}
-function doSearch(){
-  const q=document.getElementById('searchInput').value.toLowerCase().trim()
-  const res=document.getElementById('searchResults')
-  if(!q){res.innerHTML='<div style="padding:16px 0;font-size:12px;color:var(--secondary)">Type to search…</div>';return}
-  let results=[]
-  Object.entries(DATA).forEach(([type,items])=>{items.forEach(item=>{if((item.title||'').toLowerCase().includes(q)||(item.body||'').toLowerCase().includes(q)||(item.notes||'').toLowerCase().includes(q)||(item.definition||'').toLowerCase().includes(q)||(item.tags||[]).join(' ').toLowerCase().includes(q))results.push({type,id:item.id,title:item.title,sub:item.type||item.level||item.date||''})})})
-  results=results.slice(0,12)
-  res.innerHTML=results.length?results.map(r=>{
-    const navMap={journal:'journal',reading:'reading',project:'project',concept:'concept'}
-    const navType=navMap[r.type]||'home'
-    return`<div class="card" style="margin-bottom:4px;padding:10px 14px" onclick="closeSearch();${navType==='project'?`navigateToProject('${r.id}')`:`openDetail('${navType}','${r.id}')`}"><div style="display:flex;align-items:center;justify-content:space-between"><h3 style="font-family:var(--font-sans);font-size:13px">${esc(r.title)}</h3><span style="font-size:9px;color:var(--secondary)">${r.type}</span></div></div>`
-  }).join(''):'<div style="padding:16px 0;font-size:12px;color:var(--secondary)">No results</div>'
-}
-document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();showSearch()}})
-
-// ═══ IMPORT ═══════════════════════════════════════
+function doSearch(){const q=document.getElementById('searchInput').value.toLowerCase().trim();const res=document.getElementById('searchResults');if(!q){res.innerHTML='<div style="padding:16px 0;font-size:12px;color:var(--secondary)">输入关键词搜索…</div>';return}let results=[];Object.entries(DATA).forEach(([type,items])=>{items.forEach(item=>{if((item.title||'').toLowerCase().includes(q)||(item.body||'').toLowerCase().includes(q)||(item.notes||'').toLowerCase().includes(q)||(item.definition||'').toLowerCase().includes(q)||(item.tags||[]).join(' ').toLowerCase().includes(q))results.push({type,id:item.id,title:item.title})})});results=results.slice(0,12);res.innerHTML=results.length?results.map(r=>{const navMap={journal:'journal',reading:'reading',project:'project',concept:'concept'};const nt=navMap[r.type]||'home';return`<div class="card" style="margin-bottom:4px;padding:10px 14px" onclick="closeSearch();${nt==='project'?`navigateToProject('${r.id}')`:`openDetail('${nt}','${r.id}')`}"><div style="display:flex;align-items:center;justify-content:space-between"><h3 style="font-family:var(--font-sans);font-size:13px">${esc(r.title)}</h3><span style="font-size:9px;color:var(--secondary)">${r.type}</span></div></div>`}).join(''):'<div style="padding:16px 0;font-size:12px;color:var(--secondary)">无结果</div>'}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();showSearch()}if(e.key==='Escape'){['searchModal','importModal','addModal'].forEach(m=>{const el=document.getElementById(m);if(el&&el.classList.contains('show'))el.classList.remove('show')});document.body.style.overflow=''}})
 function showImport(){document.getElementById('importModal').classList.add('show');document.body.style.overflow='hidden'}
 function closeImport(){document.getElementById('importModal').classList.remove('show');document.body.style.overflow=''}
-function doImport(){
-  const url=document.getElementById('importUrl').value.trim()
-  if(!url)return
-  document.getElementById('importResult').style.display='block'
-  document.getElementById('importResult').innerHTML='<div style="padding:8px;background:var(--bg);border-radius:var(--radius-sm);font-size:12px;color:var(--secondary)">Analysing… This would connect to an AI service to extract title, author, summary, entities, and suggest relations.</div>'
-}
-
-// ═══ ADD MODAL ════════════════════════════════════
+function doImport(){const url=document.getElementById('importUrl').value.trim();if(!url)return;document.getElementById('importResult').style.display='block';document.getElementById('importResult').innerHTML='<div style="padding:8px;background:var(--bg);border-radius:var(--radius-sm);font-size:12px;color:var(--secondary)">正在分析… 此处将连接 AI 服务提取标题、作者、摘要、实体，并建议关联。</div>'}
 function showAdd(){document.getElementById('addModal').classList.add('show');document.body.style.overflow='hidden';buildAddForm()}
 function closeAdd(){document.getElementById('addModal').classList.remove('show');document.body.style.overflow=''}
-function buildAddForm(){
-  const tp=document.getElementById('aType').value
-  if(tp==='journal'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Body</label><textarea id="aB" rows="4"></textarea></div></div>`;return}
-  if(tp==='reading'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div><div class="fd"><label>Type</label><select id="aST"><option value="book">Book</option><option value="movie">Movie</option><option value="paper">Paper</option><option value="website">Website</option></select></div></div><div class="f2"><div class="fd"><label>Author</label><input id="aC"></div><div class="fd"><label>Tags</label><input id="aTg" placeholder="comma separated"></div></div>`;return}
-  if(tp==='project'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Description</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
-  if(tp==='concept'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Definition</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
-  if(tp==='skill'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Skill</label><input id="aT"></div><div class="fd"><label>Level</label><select id="aL"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></div></div>`}
+function buildAddForm(){const tp=document.getElementById('aType').value
+  if(tp==='journal'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>内容</label><textarea id="aB" rows="4"></textarea></div></div>`;return}
+  if(tp==='reading'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="aT"></div><div class="fd"><label>类型</label><select id="aST"><option value="book">书籍</option><option value="movie">电影</option><option value="paper">论文</option><option value="website">网页</option></select></div></div><div class="f2"><div class="fd"><label>作者</label><input id="aC"></div><div class="fd"><label>标签</label><input id="aTg" placeholder="逗号分隔"></div></div>`;return}
+  if(tp==='project'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>名称</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>描述</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
+  if(tp==='concept'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>名称</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>定义</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
+  if(tp==='skill'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>技能</label><input id="aT"></div><div class="fd"><label>等级</label><select id="aL"><option value="beginner">初级</option><option value="intermediate">中级</option><option value="advanced">高级</option></select></div></div>`}
 }
-function confirmAdd(){
-  const tp=document.getElementById('aType').value;const t=document.getElementById('aT')?.value.trim()
-  if(!t)return;const id=tp.charAt(0)+Date.now()
-  let item={id,title:t,tags:[],createdAt:new Date().toISOString(),rels:{}}
+function confirmAdd(){const tp=document.getElementById('aType').value;const t=document.getElementById('aT')?.value.trim();if(!t)return;const id=tp.charAt(0)+Date.now();let item={id,title:t,tags:[],createdAt:new Date().toISOString(),rels:{}}
   if(tp==='journal'){item.date=new Date().toISOString().slice(0,10);item.body=document.getElementById('aB')?.value.trim()||''}
   else if(tp==='reading'){item.type=document.getElementById('aST')?.value||'book';item.creator=document.getElementById('aC')?.value.trim()||'';item.tags=document.getElementById('aTg')?.value.split(',').map(s=>s.trim()).filter(Boolean)||[];item.notes='';item.highlights=[]}
   else if(tp==='project'){item.icon='◇';item.desc=document.getElementById('aD')?.value.trim()||'';item.tree=[];item.readings=[];item.concepts=[];item.journal=[]}
   else if(tp==='concept'){item.definition=document.getElementById('aD')?.value.trim()||'';item.background=''}
   else if(tp==='skill'){item.level=document.getElementById('aL')?.value||'beginner';item.progress=0;item.status='learning';item.practices=[]}
-  const key=KEYS[tp]||(tp+'s');if(!DATA[key])DATA[key]=[];DATA[key].push(item);persist();closeAdd();render()
+  if(!DATA[tp])DATA[tp]=[];DATA[tp].push(item);persist();closeAdd();render()
 }
-
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const modals=['searchModal','importModal','addModal'];modals.forEach(m=>{const el=document.getElementById(m);if(el&&el.classList.contains('show'))el.classList.remove('show')});document.body.style.overflow=''}})
 render()
 </script>
 </body>
