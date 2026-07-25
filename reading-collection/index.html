@@ -7,200 +7,308 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-:root{--sidebar:1a1a2e;--sidebar-hover:16213e;--sidebar-active:0f3460;--accent:#4facfe;--accent2:#00f2fe;--bg:#0f0f1a;--card:rgba(255,255,255,.05);--card-hover:rgba(255,255,255,.08);--text:#e8e8f0;--t2:rgba(255,255,255,.5);--border:rgba(255,255,255,.08);--radius:10px;--star:#fbbf24}
-body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;overflow:hidden;height:100vh}
-.app{display:flex;height:100vh}
+:root{--bg:#f8f9fa;--card:#fff;--surface:#fff;--text:#1a1a2e;--t2:#6c757d;--t3:#adb5bd;--accent:#4361ee;--accent2:#7209b7;--al:#eef1ff;--border:#dee2e6;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.04);--star:#f59e0b;--green:#06d6a0;--blue:#4361ee;--orange:#fb8500}
+body{font-family:'Inter','Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;height:100vh;overflow:hidden}
 
-/* Sidebar - Dark Glass */
-.sb{width:200px;flex-shrink:0;background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.sb-h{padding:18px 14px 10px;border-bottom:1px solid var(--border);background:linear-gradient(135deg,var(--sidebar),var(--sidebar-hover))}
-.sb-h h1{font-size:13px;font-weight:700;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;display:flex;align-items:center;gap:8px}
-.sb-n{flex:1;overflow-y:auto;padding:6px 0 12px}
-.sb-g{font-size:10px;color:var(--t2);padding:12px 14px 4px;font-weight:600;letter-spacing:1px;text-transform:uppercase;opacity:.5}
-.sb-n button{display:flex;align-items:center;gap:8px;width:calc(100%-8px);margin:1px 4px;padding:8px 10px;border:none;background:transparent;cursor:pointer;border-radius:var(--radius);transition:all .2s;font-family:inherit;font-size:12px;color:var(--t2);text-align:left}
-.sb-n button:hover{background:var(--sidebar-hover);color:#fff}
-.sb-n button.active{background:linear-gradient(135deg,var(--sidebar-active),rgba(15,52,96,.4));color:var(--accent);font-weight:600;border:1px solid rgba(79,172,254,.2)}
-.sb-n button .si{font-size:14px;width:20px;text-align:center}
+/* ── Top Navigation ── */
+.top{background:var(--surface);border-bottom:1px solid var(--border);display:flex;flex-direction:column;flex-shrink:0}
+.top-main{display:flex;align-items:center;padding:8px 20px;gap:4px;flex-wrap:wrap}
+.top-main .logo{font-size:15px;font-weight:700;margin-right:12px;display:flex;align-items:center;gap:6px;letter-spacing:-.3px}
+.top-main .logo span{background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.top-nav{display:flex;gap:2px;flex-wrap:wrap}
+.top-nav button{padding:6px 16px;border:none;background:transparent;cursor:pointer;border-radius:8px;font-size:13px;font-family:inherit;color:var(--t2);transition:all .15s;display:flex;align-items:center;gap:5px}
+.top-nav button:hover{background:var(--al);color:var(--accent)}
+.top-nav button.active{background:var(--accent);color:#fff;font-weight:500;box-shadow:0 2px 8px rgba(67,97,238,.25)}
+.top-actions{margin-left:auto;display:flex;gap:4px}
+.top-actions button{padding:6px 12px;border-radius:8px;border:none;cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
+.top-actions .btn-ai{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;font-weight:500}
+.top-actions .btn-add{background:var(--al);color:var(--accent)}
 
-/* Main */
-.mn{flex:1;display:flex;flex-direction:column;overflow:hidden;background:radial-gradient(ellipse at 20% 50%,rgba(79,172,254,.05),transparent 50%)}
-.mn-h{display:flex;align-items:center;gap:10px;padding:12px 20px;flex-wrap:wrap;border-bottom:1px solid var(--border)}
-.mn-h .vl{font-size:12px;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px;margin-right:12px;letter-spacing:.5px;text-transform:uppercase;opacity:.8}
-.mn-h .vl .c{font-size:10px;color:var(--t2);background:var(--card);padding:1px 8px;border-radius:8px}
-.fr{display:flex;gap:2px;flex-wrap:wrap}
-.fr button{padding:3px 10px;border-radius:15px;border:1px solid transparent;background:transparent;color:var(--t2);cursor:pointer;font-size:11px;font-family:inherit;transition:all .2s}
-.fr button:hover{border-color:rgba(79,172,254,.3);color:var(--accent)}
-.fr button.active{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0f0f1a;font-weight:600;border-color:transparent}
+/* ── Sub Navigation ── */
+.sub{display:flex;align-items:center;padding:4px 20px 6px;gap:6px;flex-wrap:wrap;border-top:1px solid var(--border)}
+.sub .label{font-size:11px;font-weight:600;color:var(--t2);margin-right:8px;letter-spacing:.3px}
+.sub .filter{display:flex;gap:2px;flex-wrap:wrap}
+.sub .filter button{padding:2px 10px;border-radius:12px;border:none;background:transparent;color:var(--t2);cursor:pointer;font-size:11px;font-family:inherit;transition:all .15s}
+.sub .filter button:hover{background:var(--al);color:var(--accent)}
+.sub .filter button.active{background:var(--accent);color:#fff}
 
-/* Content */
-.ct{flex:1;overflow-y:auto;padding:14px 18px 24px}
-.ct::-webkit-scrollbar{width:3px}
-.ct::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+/* ── Main Content ── */
+.content{flex:1;overflow-y:auto;padding:16px 20px 80px;display:flex;flex-wrap:wrap;align-content:flex-start;gap:8px}
+.content::-webkit-scrollbar{width:4px}
+.content::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-/* Cards - Glass Dark */
-.glass{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;cursor:pointer;transition:all .25s;backdrop-filter:blur(10px)}
-.glass:hover{background:var(--card-hover);border-color:rgba(79,172,254,.2);transform:translateY(-1px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
-.gc-top{display:flex;align-items:center;gap:5px;margin-bottom:3px}
-.gc-badge{font-size:9px;padding:1px 7px;border-radius:10px;background:rgba(255,255,255,.06);color:var(--t2)}
-.gc-status{font-size:9px;padding:1px 7px;border-radius:10px;color:#0f0f1a;font-weight:600}
-.glass h3{font-size:13px;font-weight:600;margin-bottom:1px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.gc-meta{font-size:11px;color:var(--t2);margin-bottom:2px}
-.gc-ex{font-size:11px;color:var(--t2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:3px;padding-top:3px;border-top:1px solid var(--border)}
-.gc-links{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.gc-links .gl{font-size:9px;padding:1px 7px;border-radius:8px;background:rgba(79,172,254,.15);color:var(--accent)}
-.stars{display:inline-flex;gap:1px;font-size:10px}
-.stars .sf{color:var(--star)}.stars .se{color:rgba(255,255,255,.15)}
-.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px;margin-top:2px}
+/* ── Card ── */
+.card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px;cursor:pointer;transition:all .2s;width:calc(33.333% - 6px);min-width:260px;flex:1 1 260px}
+.card:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(67,97,238,.08);transform:translateY(-2px)}
+.card .tag{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--t3);background:var(--bg);padding:2px 8px;border-radius:10px;margin-bottom:4px}
+.card .tag .dot{width:6px;height:6px;border-radius:50%;display:inline-block}
+.card .tag .dot.in{background:var(--blue)}.card .tag .dot.out{background:var(--orange)}.card .tag .dot.sk{background:var(--green)}.card .tag .dot.sb{background:var(--accent2)}
+.card h3{font-size:14px;font-weight:600;margin-bottom:2px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{font-size:11px;color:var(--t2);margin-bottom:2px}
+.card .excerpt{font-size:12px;color:var(--t2);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;padding-top:4px;border-top:1px solid var(--bg)}
+.card .links{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
+.card .links span{font-size:9px;padding:1px 7px;border-radius:8px;background:var(--al);color:var(--accent)}
+.stars{display:inline-flex;gap:1px;font-size:11px}
+.stars .f{color:var(--star)}.stars .e{color:#e5e5ea}
 
-/* Timeline */
-.tl{position:relative;padding-left:26px}
-.tl::before{content:'';position:absolute;left:9px;top:4px;bottom:4px;width:1px;background:var(--border)}
-.tl-item{position:relative;margin-bottom:8px}
-.tl-item::before{content:'';position:absolute;left:-20px;top:10px;width:7px;height:7px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));box-shadow:0 0 8px rgba(79,172,254,.3)}
-.tl-item .tl-date{font-size:10px;color:var(--t2);margin-bottom:2px}
+/* ── Journal Timeline ── */
+.timeline{position:relative;padding-left:24px;width:100%}
+.timeline::before{content:'';position:absolute;left:8px;top:4px;bottom:4px;width:1.5px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:10px;width:100%}
+.tl-item::before{content:'';position:absolute;left:-18px;top:10px;width:8px;height:8px;border-radius:50%;background:var(--accent);border:2px solid #fff;box-shadow:0 0 0 3px rgba(67,97,238,.15)}
+.tl-item .date{font-size:10px;color:var(--t3);margin-bottom:2px}
+.tl-item .card{width:100%;flex:none}
 
-/* Subject */
-.sub-card{background:linear-gradient(135deg,var(--card),rgba(79,172,254,.05));border-radius:var(--radius);border:1px solid var(--border);padding:16px 18px;cursor:pointer;transition:all .25s;margin-bottom:10px;display:flex;gap:14px}
-.sub-card:hover{background:var(--card-hover);border-color:rgba(79,172,254,.2)}
-.sub-card .sub-icon{font-size:24px;flex-shrink:0}
-.sub-card .sub-title{font-size:15px;font-weight:600;margin-bottom:2px}
-.sub-card .sub-desc{font-size:12px;color:var(--t2);line-height:1.5}
-.sub-card .sub-stats{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
-.sub-card .sub-stats span{font-size:10px;padding:2px 8px;border-radius:10px;background:rgba(79,172,254,.15);color:var(--accent)}
+/* ── Skills Board ── */
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:8px;width:100%}
+.sk-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:14px;cursor:pointer;transition:all .2s}
+.sk-card:hover{border-color:var(--accent);box-shadow:0 4px 12px rgba(67,97,238,.08)}
+.sk-card .hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.sk-card .hd .name{font-size:14px;font-weight:600}
+.sk-card .hd .lvl{font-size:10px;padding:2px 8px;border-radius:10px;background:var(--al);color:var(--accent)}
+.sk-card .bar{height:4px;border-radius:2px;background:var(--bg);overflow:hidden;margin-top:6px}
+.sk-card .bar .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue),var(--green))}
+.sk-card .stat{display:flex;gap:8px;margin-top:4px;font-size:10px;color:var(--t2)}
 
-/* Skill */
-.sk-card{background:var(--card);border-radius:var(--radius);border:1px solid var(--border);padding:12px 14px;cursor:pointer;transition:all .25s;margin-bottom:6px}
-.sk-card:hover{background:var(--card-hover);border-color:rgba(79,172,254,.2)}
-.sk-card .sk-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:3px}
-.sk-card .sk-name{font-size:13px;font-weight:600}
-.sk-card .sk-level{font-size:9px;padding:2px 8px;border-radius:10px;background:rgba(79,172,254,.15);color:var(--accent)}
-.sk-card .sk-bar{height:3px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden;margin-top:4px}
-.sk-card .sk-bar .fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.sk-card .sk-meta{display:flex;gap:10px;margin-top:3px;font-size:10px;color:var(--t2)}
-.sk-card .sk-tags{display:flex;gap:2px;margin-top:3px;flex-wrap:wrap}
-.sk-card .sk-tags span{font-size:9px;padding:1px 6px;border-radius:4px;background:rgba(255,255,255,.06);color:var(--t2)}
+/* ── Subject View ── */
+.sub-hero{width:100%;background:linear-gradient(135deg,var(--al),rgba(114,9,183,.05));border-radius:var(--radius);padding:20px;margin-bottom:12px;display:flex;gap:16px;align-items:flex-start;border:1px solid var(--border)}
+.sub-hero .icon{font-size:32px;flex-shrink:0}
+.sub-hero .title{font-size:18px;font-weight:700;margin-bottom:2px}
+.sub-hero .desc{font-size:12px;color:var(--t2);line-height:1.5}
+.sub-group{margin-bottom:16px;width:100%}
+.sub-group .g-title{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px;padding-left:2px}
+.sub-group .g-cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:6px}
 
-.sec-title{font-size:10px;font-weight:600;color:var(--t2);margin-bottom:5px;letter-spacing:.5px;text-transform:uppercase;opacity:.6}
-.es{text-align:center;padding:48px 16px;color:var(--t2)}.es .ei{font-size:28px;margin-bottom:6px;opacity:.4}
+/* ── Detail Panel (slide-in) ── */
+.detail-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:100}
+.detail-overlay.show{display:block}
+.detail-panel{position:fixed;top:0;right:-480px;width:480px;max-width:90vw;height:100vh;background:var(--surface);z-index:101;overflow-y:auto;transition:right .25s ease;box-shadow:-4px 0 24px rgba(0,0,0,.08);border-left:1px solid var(--border)}
+.detail-panel.show{right:0}
+.detail-panel .dp-h{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:2}
+.detail-panel .dp-h h2{font-size:16px;font-weight:600}
+.detail-panel .dp-h .close{background:none;border:none;font-size:20px;cursor:pointer;color:var(--t2);padding:4px}
+.detail-panel .dp-b{padding:16px 20px 40px}
+.detail-panel .dp-b .field{margin-bottom:12px}
+.detail-panel .dp-b .field label{font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
+.detail-panel .dp-b .field .val{font-size:13px;color:var(--text);line-height:1.5}
+.detail-panel .dp-b .field input,.detail-panel .dp-b .field textarea,.detail-panel .dp-b .field select{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:6px;font-size:12px;font-family:inherit;background:var(--bg)}
+.detail-panel .dp-b .field textarea{resize:vertical;min-height:60px}
+.detail-panel .dp-b .save-btn{width:100%;padding:8px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:13px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px}
 
-.fab{position:fixed;bottom:24px;right:24px;width:40px;height:40px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0f0f1a;border:none;font-size:18px;cursor:pointer;box-shadow:0 4px 20px rgba(79,172,254,.3);z-index:100;display:flex;align-items:center;justify-content:center;font-weight:700}
-.fab:hover{transform:scale(1.06)}
-.fab2{position:fixed;bottom:24px;right:72px;height:34px;border-radius:17px;background:var(--card);color:var(--text);border:1px solid var(--border);font-size:11px;cursor:pointer;z-index:99;display:flex;align-items:center;gap:4px;padding:0 12px;font-family:inherit;backdrop-filter:blur(10px)}
-.fab2:hover{border-color:rgba(79,172,254,.3)}
+/* ── Empty ── */
+.empty{text-align:center;padding:60px 20px;color:var(--t2);width:100%}
+.empty .ei{font-size:32px;margin-bottom:6px;opacity:.4}
 
-.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(5px)}
-.mo.o{display:flex}
-.mm{background:#1a1a2e;border-radius:14px;width:100%;max-width:460px;max-height:85vh;overflow-y:auto;padding:20px 22px;border:1px solid var(--border);box-shadow:0 20px 60px rgba(0,0,0,.3);animation:in .2s}
-@keyframes in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.mm h2{font-size:14px;font-weight:600;margin-bottom:2px;color:#fff}
-.mm .ms{font-size:11px;color:var(--t2);margin-bottom:12px}
-.mm .cl{float:right;background:none;border:none;font-size:18px;cursor:pointer;color:var(--t2);padding:0;line-height:1}
+/* ── Add Modal ── */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.3);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.mo.show{display:flex}
+.mo-inner{background:var(--surface);border-radius:14px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:20px 22px;box-shadow:0 20px 60px rgba(0,0,0,.12)}
+.mo-inner h2{font-size:15px;font-weight:600;margin-bottom:2px}
+.mo-inner .ms{font-size:11px;color:var(--t2);margin-bottom:12px}
+.mo-inner .close{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--t2);line-height:1}
 .f2{display:flex;gap:8px;margin-bottom:6px}
 .f2 .fd{flex:1}
-.f2 .fd label{font-size:10px;color:var(--t2);margin-bottom:2px;font-weight:500;display:block;letter-spacing:.5px;text-transform:uppercase}
-.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:rgba(255,255,255,.04);color:var(--text);transition:all .2s}
-.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:rgba(255,255,255,.06);box-shadow:0 0 0 3px rgba(79,172,254,.08)}
+.f2 .fd label{font-size:10px;color:var(--t2);margin-bottom:2px;display:block;font-weight:500}
+.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:12px;font-family:inherit;background:var(--bg);transition:all .15s}
+.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(67,97,238,.08)}
 .f2 .fd textarea{resize:vertical;min-height:30px}
-.mm .sb2{width:100%;padding:8px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:#0f0f1a;border:none;border-radius:8px;font-size:12px;font-family:inherit;cursor:pointer;font-weight:700;margin-top:4px}
+.mo-inner .sb2{width:100%;padding:8px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px}
 
 @media(max-width:768px){
-  .sb{width:48px}.sb-h{padding:14px 0 8px;text-align:center}.sb-h h1{font-size:0;justify-content:center;background:none;-webkit-text-fill-color:initial}.sb-h h1::after{content:'🧠';font-size:16px;background:none;-webkit-text-fill-color:initial}.sb-n button{width:40px;margin:1px 4px;padding:7px 0;justify-content:center;font-size:0}.sb-n .sg{text-align:center}.gr{grid-template-columns:1fr 1fr}.ct{padding:10px 12px}.f2{flex-direction:column;gap:0}
+  .card{flex:1 1 100%;min-width:0}
+  .detail-panel{width:100vw;max-width:100vw}
+  .top-main{padding:8px 12px}
+  .top-main .logo{font-size:13px}
+  .top-nav button{padding:4px 10px;font-size:12px}
+  .sub{padding:4px 12px 6px}
+  .content{padding:10px 12px 70px}
+}
+
+/* ── Responsive Card ── */
+@media(max-width:480px){
+  .sk-grid{grid-template-columns:1fr}
+  .sub-group .g-cards{grid-template-columns:1fr}
 }
 </style>
 </head>
 <body>
-<div class="app">
-  <div class="sb">
-    <div class="sb-h"><h1>🧠 知识体系</h1></div>
-    <div class="sb-n">
-      <div class="sg">📔 日记</div>
-      <button data-v="journal" class="active">📝 时间线</button>
-      <button data-v="journal-week">📅 周记</button>
-      <div class="sg">📥 输入</div>
-      <button data-v="book">📚 书籍</button>
-      <button data-v="movie">🎬 影视</button>
-      <button data-v="article">📝 文章</button>
-      <button data-v="podcast">🎙️ 播客</button>
-      <div class="sg">🎯 技能</div>
-      <button data-v="english">🇬🇧 英语</button>
-      <button data-v="skill">🎨 技能</button>
-      <div class="sg">📚 课题</div>
-      <div id="subjectBtns"></div>
+<div class="app" style="display:flex;flex-direction:column;height:100vh">
+  <!-- Top Navigation -->
+  <div class="top">
+    <div class="top-main">
+      <div class="logo"><span>🧠 知识体系</span></div>
+      <div class="top-nav" id="mainNav">
+        <button class="active" data-v="journal">📔 日记</button>
+        <button data-v="book">📥 输入</button>
+        <button data-v="skill">🎯 技能</button>
+        <button data-v="subject-landing">📚 课题</button>
+      </div>
+      <div class="top-actions">
+        <button class="btn-ai" onclick="showAdd('ai')">🤖 AI</button>
+        <button class="btn-add" onclick="showAdd('manual')">＋ 添加</button>
+      </div>
+    </div>
+    <div class="sub" id="subBar">
+      <div class="label" id="viewLabel">📔 日记</div>
+      <div class="filter" id="filterRow"></div>
     </div>
   </div>
-  <div class="mn">
-    <div class="mn-h">
-      <div class="vl" id="vl"><span class="c" id="cnt"></span></div>
-      <div class="fr" id="fr"></div>
-    </div>
-    <div class="ct" id="content"></div>
+
+  <!-- Content -->
+  <div class="content" id="content"></div>
+</div>
+
+<!-- Detail Panel -->
+<div class="detail-overlay" id="detailOverlay" onclick="closeDetail()"></div>
+<div class="detail-panel" id="detailPanel">
+  <div class="dp-h"><h2 id="detailTitle">详情</h2><button class="close" onclick="closeDetail()">✕</button></div>
+  <div class="dp-b" id="detailBody"></div>
+</div>
+
+<!-- Add Modal -->
+<div class="mo" id="addModal" onclick="closeAdd(event)">
+  <div class="mo-inner" onclick="event.stopPropagation()">
+    <button class="close" onclick="closeAdd()">✕</button>
+    <div id="addBody"></div>
   </div>
 </div>
-<button class="fab2" onclick="oM('subject')">📚 新课题</button>
-<button class="fab" onclick="oM('manual')">＋</button>
-<div class="mo" id="mo" onclick="cM(event)">
-  <div class="mm" onclick="event.stopPropagation()">
-    <button class="cl" onclick="cM()">✕</button>
-    <div id="modalBody"></div>
-  </div>
-</div>
+
 <script>
-const T={book:'📚',movie:'🎬',article:'📝',podcast:'🎙️',english:'🇬🇧',skill:'🎨',subject:'📚',review:'🔄',sop:'📋',idea:'💡',tool:'🔧'}
-const L={book:'书籍',movie:'影视',article:'文章',podcast:'播客',english:'英语',skill:'技能',subject:'课题',review:'复盘',sop:'SOP',idea:'灵感',tool:'工具'}
+const IC={journal:'📔',book:'📚',movie:'🎬',article:'📝',podcast:'🎙️',english:'🇬🇧',skill:'🎯',subject:'📚',review:'🔄',sop:'📋',idea:'💡',tool:'🔧'}
+const LB={journal:'日记',book:'书籍',movie:'影视',article:'文章',podcast:'播客',english:'英语',skill:'技能',subject:'课题',review:'复盘',sop:'SOP',idea:'灵感',tool:'工具'}
 const ST={read:'已读',reading:'在读',want:'想读',done:'完成',watching:'在看',saved:'已存',listening:'在听',learning:'学习中',practicing:'练习中',mastered:'已掌握',todo:'待学',active:'启用',archived:'归档',ongoing:'进行中',paused:'暂停',using:'在用',tried:'试过'}
+const FL={in:['book','movie','article','podcast','english'],out:['project','review','sop','idea'],tool:['tool']}
 const LV={beginner:'初级',intermediate:'中级',advanced:'高级',expert:'专家'}
-const D=[{t:'journal',ti:'开始搭建知识体系',da:'2026-07-25',bo:'今天开始搭建个人知识体系。',su:['知识体系构建']},{t:'journal',ti:'读文学地理学笔记',da:'2026-07-23',bo:'文学地理学涉及空间、地方与文学的关系。',su:['文学地理学']},{t:'subject',ti:'文学地理学',ic:'🌍',de:'研究文学与地理空间关系的学科。',ta:['文学','地理']},{t:'subject',ti:'鸟类知识体系',ic:'🐦',de:'系统整理鸟类学知识。',ta:['动物','自然']},{t:'subject',ti:'知识体系构建',ic:'🧠',de:'个人知识管理方法论。',ta:['PKM']},{t:'book',ti:'文学地理学',cr:'迈克·克朗',st:'reading',su:'人文社科',da:'2026-07',tg:['文学'],ex:'研究文学中的空间与地方。',sb:['文学地理学']},{t:'book',ti:'百年孤独',cr:'马尔克斯',st:'read',rt:5,su:'文学小说',da:'2026-07',tg:['魔幻现实'],ex:'马孔多小镇的百年兴衰。',sb:['文学地理学']},{t:'movie',ti:'霸王别姬',cr:'陈凯歌',st:'done',rt:5,su:'剧情',da:'2025-09',tg:['华语经典'],ex:'不疯魔不成活。',sb:['文学地理学']},{t:'english',ti:'Serendipity',cr:'词汇',st:'learning',lv:'beginner',pr:30,su:'词汇',da:'2026-07',tg:['词汇'],ex:'意外发现美好事物的能力。'},{t:'skill',ti:'Live2D 建模',cr:'自学',st:'learning',lv:'beginner',pr:25,su:'数字绘画',da:'2026-07',tg:['Live2D'],ex:'Live2D 角色建模与动画。'},{t:'review',ti:'7月第三周复盘',cr:'自己',st:'done',rt:4,su:'weekly',da:'2026-07-21',tg:['复盘'],ex:'整体状态不错。',sb:['知识体系构建']},{t:'tool',ti:'Obsidian',cr:'Obsidian MD',st:'using',su:'笔记',rt:5,da:'2025-06',tg:['PKM'],ex:'个人知识管理神器。',sb:['知识体系构建']}]
-const DF=D.map(d=>d.ti||d.bo?.slice(0,20));const SK='kv5';let I=[],VI='journal',FI='all'
+const D=[{t:'journal',ti:'开始搭建知识体系',da:'2026-07-25',bo:'今天开始搭建个人知识体系。',sb:['知识体系构建']},{t:'journal',ti:'读文学地理学笔记',da:'2026-07-23',bo:'文学地理学涉及空间、地方与文学的关系。',sb:['文学地理学']},
+{t:'subject',ti:'文学地理学',ic:'🌍',de:'研究文学与地理空间关系的学科。',ta:['文学','地理']},{t:'subject',ti:'鸟类知识体系',ic:'🐦',de:'系统整理鸟类学知识。',ta:['动物','自然']},{t:'subject',ti:'知识体系构建',ic:'🧠',de:'个人知识管理方法论。',ta:['PKM']},
+{t:'book',ti:'文学地理学',cr:'迈克·克朗',st:'reading',su:'人文社科',da:'2026-07',tg:['文学'],ex:'研究文学中的空间与地方。',sb:['文学地理学']},{t:'book',ti:'百年孤独',cr:'马尔克斯',st:'read',rt:5,su:'文学小说',da:'2026-07',tg:['魔幻现实'],ex:'马孔多小镇的百年兴衰。',sb:['文学地理学']},{t:'book',ti:'活着',cr:'余华',st:'read',rt:5,su:'文学小说',da:'2025-12',tg:['中国文学'],ex:'人是为了活着本身而活着。'},
+{t:'movie',ti:'肖申克的救赎',cr:'德拉邦特',st:'done',rt:5,su:'剧情',da:'2026-06',tg:['经典'],ex:'恐惧让你沦为囚犯。'},{t:'movie',ti:'霸王别姬',cr:'陈凯歌',st:'done',rt:5,su:'剧情',da:'2025-09',tg:['华语经典'],ex:'不疯魔不成活。',sb:['文学地理学']},
+{t:'english',ti:'Serendipity',cr:'词汇',st:'learning',lv:'beginner',pr:30,su:'词汇',tg:['词汇'],ex:'意外发现美好事物的能力。'},{t:'skill',ti:'Live2D 建模',cr:'自学',st:'learning',lv:'beginner',pr:25,su:'数字绘画',tg:['Live2D'],ex:'角色建模与动画。'},{t:'skill',ti:'UI/UX 设计',cr:'自学',st:'practicing',lv:'intermediate',pr:55,su:'设计',tg:['Figma'],ex:'界面设计与用户研究。'},
+{t:'review',ti:'7月第三周复盘',cr:'自己',st:'done',rt:4,su:'weekly',da:'2026-07-21',tg:['复盘'],ex:'整体状态不错。',sb:['知识体系构建']},{t:'sop',ti:'周复盘流程',cr:'自我管理',st:'active',su:'效率',tg:['复盘'],ex:'每周日的复盘标准流程。',sb:['知识体系构建']},{t:'tool',ti:'Obsidian',cr:'Obsidian MD',st:'using',su:'笔记',rt:5,tg:['PKM'],ex:'个人知识管理神器。',sb:['知识体系构建']}]
+const DF=D.map(d=>d.ti||d.bo?.slice(0,20));const SK='kv6';let I=[],VIEW='journal',SUB='journal',FIL='all',DETAIL=null
+
 function sv(){const c=I.filter(i=>!DF.includes(i.ti||i.bo?.slice(0,20)));try{localStorage.setItem(SK,JSON.stringify(c))}catch(e){}}
 function ld(){I=JSON.parse(JSON.stringify(D));try{const s=localStorage.getItem(SK);if(s){let e=JSON.parse(s);if(Array.isArray(e))I.push(...e)}}catch(e){}sv()}
 function id(x){return I.indexOf(x)}
 function es(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
-function sr(r){if(!r)return '';return Array.from({length:5},(_,i)=>`<span class="${i<r?'sf':'se'}">★</span>`).join('')}
+function sr(r){if(!r)return '';return Array.from({length:5},(_,i)=>`<span class="${i<r?'f':'e'}">★</span>`).join('')}
 function gs(){return I.filter(i=>i.t==='subject')}
+function dot(t){if(t==='journal')return'dot in';const fl=Object.entries(FL);for(let[k,v]of fl)if(v.includes(t))return`dot ${k}`;return'dot sb'}
 
-function rd(){const ct=document.getElementById('content');const vl=document.getElementById('vl')
-  document.querySelectorAll('.sb-n button[data-v]').forEach(b=>b.classList.remove('active'))
-  if(VI==='journal'){vl.innerHTML='📝 时间线 <span class="c" id="cnt"></span>';document.querySelector('button[data-v="journal"]')?.classList.add('active');rj(ct)}
-  else if(VI==='journal-week'){vl.innerHTML='📅 周记 <span class="c" id="cnt"></span>';document.querySelector('button[data-v="journal-week"]')?.classList.add('active');rw(ct)}
-  else if(VI==='skill'||VI==='english'){const lb={skill:'🎨 技能',english:'🇬🇧 英语'}[VI];vl.innerHTML=`${lb} <span class="c" id="cnt"></span>`;document.querySelector(`button[data-v="${VI}"]`)?.classList.add('active');rs(ct,VI)}
-  else if(VI.startsWith('s:')){const sn=VI.slice(2);vl.innerHTML=`<span class="c" id="cnt"></span>`;rsub(ct,sn)}
-  else if(T[VI]){vl.innerHTML=`${T[VI]} ${L[VI]} <span class="c" id="cnt"></span>`;document.querySelector(`button[data-v="${VI}"]`)?.classList.add('active');ri(ct)}
-  bu()
+function navigate(view,sub){
+  VIEW=view;SUB=sub||'all';FIL='all'
+  document.querySelectorAll('#mainNav button').forEach(b=>b.classList.remove('active'))
+  const btn=document.querySelector(`#mainNav button[data-v="${view}"]`)
+  if(btn)btn.classList.add('active')
+  render()
 }
-function rj(ct){const e=I.filter(i=>i.t==='journal').sort((a,b)=>b.da.localeCompare(a.da));document.getElementById('cnt').textContent=e.length;if(!e.length){ct.innerHTML=`<div class="es"><div class="ei">📝</div><p>暂无日记</p></div>`;return}
-ct.innerHTML=`<div class="tl">${e.map(x=>`<div class="tl-item"><div class="tl-date">${x.da||''}</div><div class="glass" onclick="od(${id(x)})"><h3>${es(x.ti||'')}</h3><div style="font-size:11px;color:var(--t2);margin-top:2px;line-height:1.5">${es(x.bo||'')}</div>${x.su?.length?`<div class="gc-links">${x.su.map(s=>`<span class="gl">📚${es(s)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`
+
+function render(){
+  const ct=document.getElementById('content');const vl=document.getElementById('viewLabel')
+  const subs=getSubjects()
+  // Build sub nav based on view
+  let sbHtml=''
+  if(VIEW==='journal'){vl.innerHTML='📔 日记';sbHtml='<button class="active" data-s="journal">📝 时间线</button><button data-s="week">📅 周记</button>'}
+  else if(VIEW==='book'||VIEW==='movie'||VIEW==='article'||VIEW==='podcast'||VIEW==='english'||VIEW==='skill'){vl.innerHTML=`${IC[VIEW]||''} ${LB[VIEW]||VIEW}`}
+  else if(VIEW==='subject-landing'){vl.innerHTML='📚 课题';sbHtml=subs.map(s=>`<button data-s="sub:${es(s.ti)}">${s.ic||'📚'} ${es(s.ti)}</button>`).join('')}
+  else if(VIEW.startsWith('sub:')){const sn=VIEW.slice(4);const s=subs.find(x=>x.ti===sn);vl.innerHTML=`${s?.ic||'📚'} ${sn||''}`}
+  document.getElementById('filterRow').innerHTML=sbHtml
+  document.querySelectorAll('#filterRow button').forEach(b=>{b.onclick=()=>{document.querySelectorAll('#filterRow button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');SUB=b.dataset.s;navigate(VIEW,SUB)}})
+
+  // Render content
+  if(VIEW==='journal'&&SUB==='journal')renderJournal(ct)
+  else if(VIEW==='journal'&&SUB==='week')renderWeek(ct)
+  else if(VIEW==='skill')renderSkills(ct)
+  else if(VIEW==='english')renderSkills(ct)
+  else if(VIEW.startsWith('sub:'))renderSubject(ct,VIEW.slice(4))
+  else if(VIEW==='subject-landing')renderSubjectLanding(ct)
+  else renderItems(ct)
 }
-function rw(ct){const e=I.filter(i=>i.t==='review'&&i.su==='weekly').sort((a,b)=>b.da.localeCompare(a.da));document.getElementById('cnt').textContent=e.length;if(!e.length){ct.innerHTML=`<div class="es"><div class="ei">📅</div><p>暂无周记</p></div>`;return}
-ct.innerHTML=`<div style="display:flex;flex-direction:column;gap:6px">${e.map(x=>`<div class="glass" onclick="od(${id(x)})"><div style="font-size:10px;color:var(--t2);margin-bottom:2px">${x.da||''}</div><h3>${es(x.ti||'')}</h3><div style="font-size:11px;color:var(--t2);margin-top:2px;line-height:1.5">${es(x.ex||'')}</div></div>`).join('')}</div>`
+
+function renderJournal(ct){
+  const entries=I.filter(i=>i.t==='journal').sort((a,b)=>b.da.localeCompare(a.da))
+  if(!entries.length){ct.innerHTML=`<div class="empty"><div class="ei">📝</div><p>暂无日记</p></div>`;return}
+  ct.innerHTML=`<div class="timeline">${entries.map(x=>`<div class="tl-item"><div class="date">${x.da||''}</div><div class="card" onclick="openDetail(${id(x)})"><h3>${es(x.ti||'')}</h3><div style="font-size:12px;color:var(--t2);margin-top:2px;line-height:1.5">${es(x.bo||'')}</div>${x.sb?.length?`<div class="links">${x.sb.map(s=>`<span>📚${es(s)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`
 }
-function rs(ct,tp){const l=I.filter(i=>i.t===tp).sort((a,b)=>(b.pr||0)-(a.pr||0));document.getElementById('cnt').textContent=l.length;if(!l.length){ct.innerHTML=`<div class="es"><div class="ei">🎯</div><p>暂无</p></div>`;return}
-ct.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:6px">${l.map(x=>{const p=Math.min(x.pr||0,100);return`<div class="sk-card" onclick="od(${id(x)})"><div class="sk-hd"><span class="sk-name">${tp==='english'?'🇬🇧':'🎨'} ${es(x.ti||'')}</span><span class="sk-level">${LV[x.lv]||x.lv||''}</span></div><div style="font-size:10px;color:var(--t2)">${es(x.cr||'')}</div><div class="sk-bar"><div class="fill" style="width:${p}%"></div></div><div class="sk-meta"><span>${p}%</span><span>${ST[x.st]||x.st}</span></div><div style="font-size:11px;color:var(--t2);margin-top:2px">${es(x.ex||'')}</div></div>`}).join('')}</div>`
+function renderWeek(ct){
+  const entries=I.filter(i=>i.t==='review'&&i.su==='weekly').sort((a,b)=>b.da.localeCompare(a.da))
+  if(!entries.length){ct.innerHTML=`<div class="empty"><div class="ei">📅</div><p>暂无周记</p></div>`;return}
+  ct.innerHTML=`<div style="display:flex;flex-direction:column;gap:6px;width:100%">${entries.map(x=>`<div class="card" style="width:100%;flex:none" onclick="openDetail(${id(x)})"><div style="font-size:10px;color:var(--t3);margin-bottom:2px">${x.da||''}</div><h3>${es(x.ti||'')}</h3><div style="font-size:12px;color:var(--t2);margin-top:2px">${es(x.ex||'')}</div></div>`).join('')}</div>`
 }
-function rsub(ct,sn){const sub=I.find(i=>i.t==='subject'&&i.ti===sn);const rl=I.filter(i=>i.sb?.includes(sn));document.getElementById('cnt').textContent=rl.length;let h='';if(sub)h+=`<div class="sub-card" onclick="od(${id(sub)})"><div class="sub-icon">${sub.ic||'🌐'}</div><div><div class="sub-title">${es(sub.ti)}</div><div class="sub-desc">${es(sub.de||'')}</div>${sub.ta?.length?`<div class="sub-stats">${sub.ta.map(t=>`<span>#${es(t)}</span>`).join('')}</div>`:''}</div></div>`;const gr={};rl.forEach(i=>{const t=i.t;if(!gr[t])gr[t]=[];gr[t].push(i)});const or=['book','movie','article','podcast','english','skill','review','sop','idea','tool','journal'];if(!rl.length){h+=`<div class="es"><div class="ei">📭</div><p>暂无关联内容</p></div>`;ct.innerHTML=h;return}
-or.filter(t=>gr[t]).forEach(t=>{h+=`<div style="margin-bottom:12px"><div class="sec-title">${T[t]||''} ${L[t]||t}</div><div class="gr">${gr[t].map(x=>`<div class="glass" onclick="od(${id(x)})"><div class="gc-top"><span class="gc-badge">${T[x.t]||''} ${L[x.t]||''}</span></div><h3>${es(x.ti||'')}</h3><div class="gc-ex">${es(x.ex||'')}</div></div>`).join('')}</div></div>`});ct.innerHTML=h}
-function ri(ct){let l=I.filter(i=>i.t===VI).sort((a,b)=>(b.da||'').localeCompare(a.da||''));if(FI!=='all')l=l.filter(i=>i.st===FI||i.su===FI||(i.tg&&i.tg.includes(FI)));document.getElementById('cnt').textContent=l.length;if(!l.length){ct.innerHTML=`<div class="es"><div class="ei">📭</div><p>暂无</p></div>`;bf(l);return}
-ct.innerHTML=`<div class="gr">${l.map(x=>{const sl=x.sb?.filter(s=>s).length||0;return`<div class="glass" onclick="od(${id(x)})"><div class="gc-top"><span class="gc-badge">${T[x.t]||''} ${L[x.t]||''}</span></div><h3>${es(x.ti||'')}</h3><div class="gc-meta">${es(x.cr||'')}${x.da?` · ${x.da}`:''}${x.rt?` · <span class="stars">${sr(x.rt)}</span>`:''}</div><div class="gc-ex">${es(x.ex||'')}</div>${sl?`<div class="gc-links">${x.sb.map(s=>`<span class="gl">📚${es(s)}</span>`).join('')}</div>`:''}</div>`}).join('')}</div>`;bf(l)}
-function bf(l){const f=document.getElementById('fr');f.innerHTML='<button class="active" data-v="all">全部</button>';const al=[...new Set([...l.map(i=>i.st),...l.map(i=>i.su).filter(Boolean)])].slice(0,15);al.forEach(v=>{f.innerHTML+=`<button data-v="${v}">${ST[v]||v}</button>`});f.querySelectorAll('button').forEach(b=>{b.onclick=()=>{f.querySelectorAll('button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');FI=b.dataset.v;rd()}})}
-function bu(){const c=document.getElementById('subjectBtns');const s=gs();if(!s.length){c.innerHTML='';return}c.innerHTML=s.map(x=>`<button data-v="s:${es(x.ti)}"><span class="si">${x.ic||'📚'}</span>${es(x.ti)}</button>`).join('');c.querySelectorAll('button').forEach(b=>{b.onclick=()=>{FI='all';VI=b.dataset.v;rd()}})}
-document.querySelectorAll('.sb-n button[data-v]').forEach(b=>{b.onclick=()=>{FI='all';VI=b.dataset.v;rd()}})
-function od(i){localStorage.setItem('k_idx',JSON.stringify(i));localStorage.setItem('k_data',JSON.stringify(I));window.location.href='detail.html'}
-function oM(m){document.getElementById('mo').classList.add('o');document.body.style.overflow='hidden';if(m==='subject')showSubModal();else showManual()}
-function cM(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('mo').classList.remove('o');document.body.style.overflow=''}
-function showSubModal(){document.getElementById('modalBody').innerHTML=`<h2>📚 新建课题</h2><p class="ms">创建一个新的知识研究领域</p><div class="f2"><div class="fd"><label>课题名称</label><input id="sT" placeholder="例：文学地理学"></div></div><div class="f2"><div class="fd"><label>图标</label><select id="sI"><option value="🌐">🌐 地球</option><option value="🐦">🐦 鸟类</option><option value="🧠">🧠 大脑</option><option value="📚">📚 书籍</option><option value="🔬">🔬 科学</option><option value="🌿">🌿 自然</option></select></div></div><div class="f2"><div class="fd"><label>描述</label><textarea id="sD" rows="3" placeholder="这个课题研究什么？"></textarea></div></div><div class="f2"><div class="fd"><label>标签</label><input id="sTg" placeholder="逗号分隔"></div></div><button class="sb2" onclick="cfSub()">✅ 创建课题</button>`}
-function cfSub(){const t=document.getElementById('sT').value.trim();if(!t)return;I.push({t:'subject',ti:t,ic:document.getElementById('sI').value,de:document.getElementById('sD').value.trim(),ta:document.getElementById('sTg').value.split(/[,，、]/).map(x=>x.trim()).filter(Boolean),da:new Date().toISOString().slice(0,10)});sv();cM();bu();VI=`s:${t}`;FI='all';rd()}
-function showManual(){const s=gs();document.getElementById('modalBody').innerHTML=`<h2>➕ 添加</h2><p class="ms">记录你的所思所学</p><div class="f2"><div class="fd"><label>类型</label><select id="mT" onchange="bMf()"><option value="journal">📝 日记</option><option value="book">📚 书籍</option><option value="movie">🎬 影视</option><option value="article">📝 文章</option><option value="podcast">🎙️ 播客</option><option value="english">🇬🇧 英语</option><option value="skill">🎨 技能</option><option value="review">🔄 复盘</option><option value="tool">🔧 工具</option></select></div></div><div id="mF"></div><button class="sb2" onclick="cfM()">✅ 添加</button>`;bMf()}
-function bMf(){const tp=document.getElementById('mT').value;const s=gs();const so=s.length?`<div class="f2"><div class="fd"><label>关联课题</label><select id="mSj"><option value="">不关联</option>${s.map(x=>`<option value="${es(x.ti)}">${x.ic||'📚'} ${es(x.ti)}</option>`).join('')}</select></div></div>`:''
-if(tp==='journal'){document.getElementById('mF').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="mT"></div></div><div class="f2"><div class="fd"><label>内容</label><textarea id="mB" rows="4"></textarea></div></div>${so}`;return}
-if(tp==='skill'||tp==='english'){const lv=[['beginner','初级'],['intermediate','中级'],['advanced','高级'],['expert','专家']];const ss={skill:[['learning','学习中'],['practicing','练习中'],['mastered','已掌握']],english:[['learning','学习中'],['reading','在读'],['mastered','已掌握']]}[tp]||[];document.getElementById('mF').innerHTML=`<div class="f2"><div class="fd"><label>名称</label><input id="mT"></div><div class="fd"><label>来源</label><input id="mC"></div></div><div class="f2"><div class="fd"><label>等级</label><select id="mLV">${lv.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div><div class="fd"><label>状态</label><select id="mS">${ss.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div></div><div class="f2"><div class="fd"><label>分类</label><input id="mSu"></div><div class="fd"><label>${tp==='skill'?'进度':'音标'}</label><input id="mEx"></div></div><div class="f2"><div class="fd" style="display:flex;align-items:center;gap:8px"><label>进度</label><input type="range" min="0" max="100" value="50" oninput="document.getElementById('pv').textContent=this.value+'%'" style="flex:3"><span id="pv" style="font-size:11px;color:var(--t2);min-width:36px">50%</span></div></div><div class="f2"><div class="fd"><label>标签</label><input id="mTg" placeholder="逗号分隔"></div></div>${so}`;return}
-const el={book:'页数',movie:'年份',article:'来源',podcast:'平台',review:'周期',tool:'平台'}[tp]||'备注';document.getElementById('mF').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="mT"></div><div class="fd"><label>作者</label><input id="mC"></div></div><div class="f2"><div class="fd"><label>状态</label><select id="mS">${({book:[['read','已读'],['reading','在读'],['want','想读']],movie:[['done','已看'],['watching','在看'],['want','想看']],article:[['read','已读'],['saved','待读']],podcast:[['done','已听'],['listening','在听'],['saved','待听']],review:[['done','完成'],['draft','草稿']],tool:[['using','在用'],['tried','试过'],['want','想试']]}[tp]||[['done','完成'],['todo','待做']]).map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div><div class="fd"><label>评分</label><select id="mR"><option value="0">无</option>${[5,4,3,2,1].map(i=>`<option value="${i}">⭐${i}</option>`).join('')}</select></div></div><div class="f2"><div class="fd"><label>分类</label><input id="mSu"></div><div class="fd"><label>${el}</label><input id="mEx"></div></div>${so}<div class="f2"><div class="fd"><label>简介</label><textarea id="mEx" rows="2"></textarea></div></div>`}
-function cfM(){const tp=document.getElementById('mT').value;const sj=document.getElementById('mSj')?.value||'';const sb=sj?[sj]:[];let x
-if(tp==='journal'){x={t:tp,ti:document.getElementById('mT').value.trim()||'无标题',bo:document.getElementById('mB').value.trim()||'',da:new Date().toISOString().slice(0,10),sb}}
-else if(tp==='skill'||tp==='english'){const pc=parseInt(document.querySelector('#mF input[type=range]')?.value)||0
-x={t:tp,ti:document.getElementById('mT').value.trim(),cr:document.getElementById('mC')?.value.trim()||'',st:document.getElementById('mS')?.value||'learning',lv:document.getElementById('mLV')?.value||'beginner',pr:pc,su:document.getElementById('mSu')?.value.trim()||'',ex:document.getElementById('mEx')?.value.trim()||'',tg:document.getElementById('mTg')?.value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean)||[],da:new Date().toISOString().slice(0,10),sb}}
-else{x={t:tp,ti:document.getElementById('mT').value.trim(),cr:document.getElementById('mC')?.value.trim()||'',st:document.getElementById('mS')?.value||'read',rt:parseInt(document.getElementById('mR')?.value)||0,su:document.getElementById('mSu')?.value.trim()||'',ex:document.getElementById('mEx')?.value.trim()||'',tg:document.getElementById('mTg')?.value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean)||[],sb,da:new Date().toISOString().slice(0,10)}}
-if(!x.ti&&tp!=='journal')return;I.push(x);sv();cM();VI=sj?`s:${sj}`:tp;FI='all';rd()}
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){const o=document.getElementById('mo');if(o.classList.contains('o'))cM()}})
-ld();rd()
+function renderSkills(ct){
+  const list=I.filter(i=>i.t===VIEW).sort((a,b)=>(b.pr||0)-(a.pr||0))
+  if(!list.length){ct.innerHTML=`<div class="empty"><div class="ei">🎯</div><p>暂无</p></div>`;return}
+  ct.innerHTML=`<div class="sk-grid">${list.map(x=>{const p=Math.min(x.pr||0,100);return`<div class="sk-card" onclick="openDetail(${id(x)})"><div class="hd"><span class="name">${VIEW==='english'?'🇬🇧':'🎯'} ${es(x.ti||'')}</span><span class="lvl">${LV[x.lv]||x.lv||''}</span></div><div style="font-size:10px;color:var(--t2)">${es(x.cr||'')} · ${es(x.su||'')}</div><div class="bar"><div class="fill" style="width:${p}%"></div></div><div class="stat"><span>${p}%</span><span>${ST[x.st]||x.st}</span></div></div>`}).join('')}</div>`
+}
+function renderSubjectLanding(ct){
+  const subs=gs()
+  if(!subs.length){ct.innerHTML=`<div class="empty"><div class="ei">📚</div><p>暂无课题，点击右下角创建</p></div>`;return}
+  ct.innerHTML=`<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px;width:100%">${subs.map(x=>{const cnt=I.filter(i=>i.sb?.includes(x.ti)).length;return`<div class="card" onclick="navigate('sub:${es(x.ti)}')"><div style="font-size:24px;margin-bottom:4px">${x.ic||'📚'}</div><h3>${es(x.ti)}</h3><div class="meta" style="margin-top:2px">${cnt} 条关联 · ${x.ta?.map(t=>`#${t}`).join(' ')||''}</div><div class="excerpt">${es(x.de||'')}</div></div>`}).join('')}</div>`
+}
+function renderSubject(ct,sn){
+  const sub=I.find(i=>i.t==='subject'&&i.ti===sn);const rl=I.filter(i=>i.sb?.includes(sn))
+  let h=''
+  if(sub)h+=`<div class="sub-hero"><div class="icon">${sub.ic||'📚'}</div><div><div class="title">${es(sub.ti)}</div><div class="desc">${es(sub.de||'')}</div></div></div>`
+  const gr={};rl.forEach(i=>{const t=i.t;if(!gr[t])gr[t]=[];gr[t].push(i)})
+  const or=['book','movie','article','podcast','english','skill','review','sop','idea','tool','journal']
+  if(!rl.length){h+=`<div class="empty" style="width:100%"><div class="ei">📭</div><p>暂无关联内容</p></div>`;ct.innerHTML=h;return}
+  or.filter(t=>gr[t]).forEach(t=>{h+=`<div class="sub-group"><div class="g-title">${IC[t]||''} ${LB[t]||t}</div><div class="g-cards">${gr[t].map(x=>`<div class="card" onclick="openDetail(${id(x)})"><h3>${es(x.ti||'')}</h3><div class="meta">${es(x.cr||'')}${x.da?` · ${x.da}`:''}</div><div class="excerpt">${es(x.ex||'')}</div></div>`).join('')}</div></div>`})
+  ct.innerHTML=h
+}
+function renderItems(ct){
+  let list=I.filter(i=>i.t===VIEW).sort((a,b)=>(b.da||'').localeCompare(a.da||''))
+  if(FIL!=='all')list=list.filter(i=>i.st===FIL||i.su===FIL||(i.tg&&i.tg.includes(FIL)))
+  if(!list.length){ct.innerHTML=`<div class="empty"><div class="ei">📭</div><p>暂无内容</p></div>`;return}
+  ct.innerHTML=list.map(x=>`<div class="card" onclick="openDetail(${id(x)})"><div class="tag"><span class="dot ${dot(x.t)}"></span>${IC[x.t]||''} ${LB[x.t]||x.t}</div><h3>${es(x.ti||'')}</h3><div class="meta">${es(x.cr||'')}${x.da?` · ${x.da}`:''}${x.rt?` · <span class="stars">${sr(x.rt)}</span>`:''}</div><div class="excerpt">${es(x.ex||'')}</div>${x.sb?.length?`<div class="links">${x.sb.map(s=>`<span>📚${es(s)}</span>`).join('')}</div>`:''}</div>`).join('')
+  // Build filter
+  const f=document.getElementById('filterRow')
+  if(VIEW!=='journal'){const all=[...new Set([...list.map(i=>i.st),...list.map(i=>i.su).filter(Boolean)])].slice(0,15);f.innerHTML=all.map(v=>`<button data-s="${v}">${ST[v]||v}</button>`);f.querySelectorAll('button').forEach(b=>{b.onclick=()=>{f.querySelectorAll('button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');FIL=b.dataset.s;render()}})}
+}
+
+// NAV
+document.querySelectorAll('#mainNav button').forEach(b=>{b.onclick=()=>{navigate(b.dataset.v,'all')}})
+
+// DETAIL PANEL
+function openDetail(i){
+  const item=I[i];if(!item)return
+  DETAIL=i
+  document.getElementById('detailOverlay').classList.add('show')
+  document.getElementById('detailPanel').classList.add('show')
+  document.getElementById('detailTitle').textContent=item.ti||'详情'
+  renderDetail(item)
+}
+function closeDetail(){
+  document.getElementById('detailOverlay').classList.remove('show')
+  document.getElementById('detailPanel').classList.remove('show')
+}
+function renderDetail(item){
+  const info=LB[item.t]||''
+  const h=[`<div class="field"><label>类型</label><div class="val">${IC[item.t]||''} ${info}</div></div>`
+  ,`<div class="field"><label>标题</label><input value="${es(item.ti||'')}" id="dT"></div>`
+  ,`<div class="field"><label>${item.t==='journal'?'内容':'作者'}</label><textarea id="dB" rows="3">${es(item.bo||item.cr||'')}</textarea></div>`]
+  if(item.st)h.push(`<div class="field"><label>状态</label><select id="dS"><option value="${item.st}">${ST[item.st]||item.st}</option></select></div>`)
+  if(item.ex)h.push(`<div class="field"><label>简介</label><textarea id="dE" rows="2">${es(item.ex)}</textarea></div>`)
+  if(item.sb?.length)h.push(`<div class="field"><label>关联课题</label><div class="val">${item.sb.map(s=>`📚${es(s)}`).join(' ')}</div></div>`)
+  h.push(`<button class="save-btn" onclick="saveDetail()">💾 保存</button>`)
+  document.getElementById('detailBody').innerHTML=h.join('')
+}
+function saveDetail(){
+  const item=I[DETAIL];if(!item)return
+  const t=document.getElementById('dT');if(t)item.ti=t.value.trim()
+  const b=document.getElementById('dB');if(b){if(item.t==='journal')item.bo=b.value.trim();else item.cr=b.value.trim()}
+  const e=document.getElementById('dE');if(e)item.ex=e.value.trim()
+  sv();closeDetail();render()
+}
+
+// ADD MODAL
+function showAdd(mode){
+  document.getElementById('addModal').classList.add('show');document.body.style.overflow='hidden'
+  if(mode==='ai')showAiImport()
+  else showManualForm()
+}
+function closeAdd(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('addModal').classList.remove('show');document.body.style.overflow=''}
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.getElementById('detailPanel').classList.contains('show'))closeDetail();else if(document.getElementById('addModal').classList.contains('show'))closeAdd()}})
+ld();navigate('journal','all')
 </script>
 </body>
 </html>
