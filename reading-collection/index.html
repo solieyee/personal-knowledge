@@ -6,127 +6,213 @@
 <title>研究工作室</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
-:root{--bg:#F6F4EF;--surface:#FBFAF7;--border:#DDD6C8;--primary:#1E1E1E;--secondary:#78736A;--accent:#6B7F5B;--accent-light:#E8EDE4;--radius-sm:4px;--radius-md:8px;--radius-lg:12px;--font-serif:'Libre Baskerville','Cormorant Garamond',Georgia,serif;--font-sans:'Inter',-apple-system,sans-serif;--shadow:0 1px 2px rgba(0,0,0,.04)}
+/* ═════════════════════════════════════
+   Swiss Editorial Design System
+   Museum Archive · Research Journal
+   ═════════════════════════════════════ */
+:root{
+  --paper:#F6F4EF;
+  --ink:#1E1E1E;
+  --ink-light:#7A7570;
+  --ink-dim:#B0ABA4;
+  --accent:#6B7F5B;
+  --rule:#D6D0C8;
+  --rule-light:#E6E2DA;
+  --font-serif:'Libre Baskerville','Cormorant Garamond',Georgia,serif;
+  --font-sans:'Inter',-apple-system,sans-serif;
+  --grid:12;
+  --col:60px;
+  --gutter:20px;
+  --reading:680px;
+}
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{height:100%}
-body{font-family:var(--font-sans);background:var(--bg);color:var(--primary);font-size:14px;line-height:1.7;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
-::selection{background:var(--accent-light);color:var(--primary)}
-::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.15}
-.app{position:relative;display:flex;flex-direction:column;height:100vh;z-index:1}
-.nav{display:flex;align-items:center;padding:0 32px;height:52px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:2px;position:relative;z-index:10}
-.nav-logo{font-family:var(--font-serif);font-size:15px;font-weight:700;color:var(--primary);letter-spacing:-.3px;margin-right:20px;display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.8}
-.nav-logo:hover{opacity:1}
-.nav a{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--radius-sm);text-decoration:none;color:var(--secondary);font-size:12px;font-weight:400;cursor:pointer;transition:all .12s;font-family:inherit;border:none;background:transparent;letter-spacing:.3px}
-.nav a:hover{background:var(--bg);color:var(--primary)}.nav a.active{color:var(--primary);font-weight:500}
+body{font-family:var(--font-sans);background:var(--paper);color:var(--ink);font-size:14px;line-height:1.7;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:#fff}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-thumb{background:var(--rule);border-radius:1px}
+
+/* ── 12-Column Grid Container ── */
+.app{display:flex;flex-direction:column;height:100vh}
+
+/* ── Navigation / Top Rule ── */
+.nav{display:flex;align-items:center;padding:0 48px;height:44px;border-bottom:1px solid var(--rule);background:var(--paper);flex-shrink:0;gap:0;position:relative;z-index:10}
+.nav-logo{font-family:var(--font-serif);font-size:13px;font-weight:400;color:var(--ink);letter-spacing:.02em;margin-right:28px;opacity:.6;cursor:default}
+.nav a{display:inline-flex;align-items:center;gap:4px;padding:0 12px;height:44px;text-decoration:none;color:var(--ink-light);font-size:11px;font-weight:400;cursor:pointer;transition:all .12s;font-family:inherit;border:none;background:transparent;letter-spacing:.03em;position:relative}
+.nav a:hover{color:var(--ink);opacity:1}
+.nav a.active{color:var(--ink)}
+.nav a.active::after{content:'';position:absolute;bottom:-1px;left:12px;right:12px;height:1px;background:var(--ink)}
 .nav .spacer{flex:1}
-.nav .search-btn{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--secondary);font-size:11px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .12s}
-.nav .search-btn:hover{border-color:var(--accent);color:var(--primary)}
-.main{flex:1;overflow-y:auto;padding:32px 48px 60px;max-width:1100px;margin:0 auto;width:100%}
-.main::-webkit-scrollbar{width:3px}.main::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
-@media(max-width:860px){.main{padding:20px 16px 60px}.nav{padding:0 12px;overflow-x:auto}.nav a{white-space:nowrap;padding:4px 8px;font-size:11px}.nav-logo{font-size:13px;margin-right:10px}}
-.page-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.page-h h1{font-family:var(--font-serif);font-size:24px;font-weight:700;letter-spacing:-.5px;line-height:1.2}
-.page-h .count{font-size:11px;color:var(--secondary);border:1px solid var(--border);padding:2px 10px;border-radius:20px}
-.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s}
-.card:hover{border-color:var(--accent);background:#FAF9F6}
-.card .card-type{font-size:9px;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;font-weight:500;margin-bottom:2px;display:flex;align-items:center;gap:4px}
-.card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.card .meta{font-size:11px;color:var(--secondary);margin-bottom:3px}
-.card .ex{font-size:13px;color:var(--secondary);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:300}
-.card .tags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.card .tags span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--bg);color:var(--secondary);letter-spacing:.2px}
-.stars{display:inline-flex;gap:1px;font-size:10px}.stars .f{color:#B8860B}.stars .e{color:#E0DDD5}
-.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
-.grid-4{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.home-section{margin-bottom:32px}
-.home-section .hs-title{font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:10px;letter-spacing:.3px;display:flex;align-items:center;gap:6px}
-.home-section .hs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
-.welcome{font-family:var(--font-serif);font-size:26px;font-weight:700;margin-bottom:4px;letter-spacing:-.5px}
-.welcome-sub{font-size:13px;color:var(--secondary);margin-bottom:24px;font-weight:300}
-.tl{position:relative;padding-left:28px}
-.tl::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--border)}
-.tl-item{position:relative;margin-bottom:14px}
-.tl-item::before{content:'';position:absolute;left:-22px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent);border:1.5px solid var(--surface)}
-.tl-date{font-size:10px;color:var(--secondary);letter-spacing:.3px;margin-bottom:3px}
-.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s}
-.tl-card:hover{border-color:var(--accent)}
-.tl-card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:3px}
-.tl-card .body{font-size:13px;color:var(--secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-weight:300}
-.tl-card .links{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
-.tl-card .links span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .1s}
-.tl-card .links span:hover{background:var(--accent);color:#fff}
-.concept-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;gap:10px;align-items:flex-start}
-.concept-card:hover{border-color:var(--accent);background:#FAF9F6}
-.concept-card .ci{width:28px;height:28px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--accent)}
-.concept-card .cb{flex:1}
-.concept-card .cb .cn{font-family:var(--font-serif);font-size:14px;font-weight:600;margin-bottom:1px}
-.concept-card .cb .cd{font-size:11px;color:var(--secondary);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.concept-card .cb .cr{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
-.concept-card .cb .cr span{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--bg);color:var(--secondary)}
-.p-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start}
-.p-hero .pi{width:44px;height:44px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.p-hero .pt{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:2px}
-.p-hero .pd{font-size:12px;color:var(--secondary);line-height:1.6;max-width:600px}
-.p-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
-.p-tabs button{padding:6px 16px;border:none;background:transparent;cursor:pointer;font-size:11px;font-family:inherit;color:var(--secondary);border-bottom:1px solid transparent;transition:all .12s;margin-bottom:-1px;letter-spacing:.3px}
-.p-tabs button:hover{color:var(--primary)}.p-tabs button.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:500}
-.tree{list-style:none}.tree li{margin:1px 0}
-.tree-node{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:var(--radius-sm);cursor:pointer;transition:all .1s;font-size:12px;color:var(--secondary)}
-.tree-node:hover{background:var(--bg);color:var(--primary)}
-.tree-node .toggle{width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:6px;color:var(--border);cursor:pointer;transition:transform .15s}
-.tree-node .toggle.exp{transform:rotate(90deg)}
-.tree-node .tt{flex:1}.tree-children{padding-left:18px;display:none}.tree-children.open{display:block}
-.detail-page{padding:0;max-width:700px}
-.detail-page .dp-back{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--secondary);cursor:pointer;margin-bottom:16px;border:none;background:transparent;font-family:inherit;padding:2px 0}
-.detail-page .dp-back:hover{color:var(--primary)}
-.detail-page .dp-h{margin-bottom:20px}
-.detail-page .dp-h h1{font-family:var(--font-serif);font-size:28px;font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:4px}
-.detail-page .dp-h .dp-meta{font-size:11px;color:var(--secondary);display:flex;gap:12px;flex-wrap:wrap}
-.detail-page .dp-section{margin-bottom:24px}
-.detail-page .dp-section .sec-title{font-size:10px;font-weight:600;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;padding-bottom:3px;border-bottom:1px solid var(--border)}
-.detail-page .dp-section .sec-body{font-size:13px;color:var(--primary);line-height:1.8;font-weight:300}
-.detail-page .dp-section .sec-body p{margin-bottom:8px}
-.detail-page .dp-section .rel-items{display:flex;gap:4px;flex-wrap:wrap}
-.detail-page .dp-section .rel-items span{padding:2px 10px;border-radius:12px;font-size:11px;background:var(--accent-light);color:var(--accent);cursor:pointer}
-.detail-page .dp-section .rel-items span:hover{background:var(--accent);color:#fff}
-.fb{display:flex;gap:3px;margin-bottom:16px;flex-wrap:wrap}
-.fb button{padding:3px 12px;border-radius:20px;border:1px solid transparent;background:transparent;color:var(--secondary);cursor:pointer;font-size:11px;font-family:inherit;transition:all .12s}
-.fb button:hover{border-color:var(--border);color:var(--primary)}
-.fb button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.graph-container{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;position:relative;min-height:400px;overflow:hidden}
-.graph-container svg{width:100%;height:100%;min-height:400px}
-.graph-info{position:absolute;right:20px;top:20px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;box-shadow:0 4px 16px rgba(0,0,0,.04);display:none}
+.nav .search-btn{display:inline-flex;align-items:center;gap:4px;padding:0 10px;height:28px;border:1px solid var(--rule);background:transparent;color:var(--ink-light);font-size:10px;font-family:inherit;cursor:pointer;letter-spacing:.03em;transition:all .12s;border-radius:0}
+.nav .search-btn:hover{border-color:var(--ink);color:var(--ink)}
+.nav .search-btn svg{width:12px;height:12px}
+
+/* ── Content Area ── */
+.main{flex:1;overflow-y:auto;padding:0}
+.main::-webkit-scrollbar{width:2px}.main::-webkit-scrollbar-thumb{background:var(--rule);border-radius:1px}
+
+/* ── Reading Layout (680px centered) ── */
+.reading{max-width:var(--reading);margin:0 auto;padding:48px 24px 80px}
+.reading-wide{max-width:880px;margin:0 auto;padding:48px 24px 80px}
+
+/* ── Editorial Typography ── */
+.ed-h1{font-family:var(--font-serif);font-size:28px;font-weight:700;line-height:1.2;letter-spacing:-.01em;margin-bottom:6px}
+.ed-h2{font-family:var(--font-serif);font-size:20px;font-weight:600;line-height:1.3;margin-bottom:4px;margin-top:32px}
+.ed-h3{font-family:var(--font-serif);font-size:16px;font-weight:600;line-height:1.4;margin-bottom:3px;margin-top:24px}
+.ed-body{font-size:14px;line-height:1.8;color:var(--ink);font-weight:300}
+.ed-body p{margin-bottom:10px}
+.ed-meta{font-size:10px;color:var(--ink-light);letter-spacing:.05em;font-weight:400}
+.ed-caption{font-size:11px;color:var(--ink-light);font-weight:300;font-style:italic}
+.ed-section-num{font-size:9px;color:var(--ink-dim);letter-spacing:.1em;font-weight:500;margin-bottom:2px}
+.ed-rule{border:none;border-top:1px solid var(--rule);margin:28px 0}
+.ed-rule-light{border:none;border-top:1px solid var(--rule-light);margin:20px 0}
+.ed-blockquote{border-left:1px solid var(--accent);padding:4px 16px;margin:12px 0;font-family:var(--font-serif);font-style:italic;color:var(--ink-light);font-size:13px;line-height:1.7}
+.ed-label{font-size:9px;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:6px}
+
+/* ── Page Header ── */
+.page-h{padding-bottom:20px;margin-bottom:32px;border-bottom:1px solid var(--rule);display:flex;align-items:flex-end;justify-content:space-between}
+.page-h .left{flex:1}
+.page-h .ed-section-num{margin-bottom:2px}
+.page-h .count{font-size:10px;color:var(--ink-dim);letter-spacing:.05em}
+
+/* ── Home ── */
+.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;row-gap:32px;column-gap:40px;margin-top:8px}
+.home-section{border-top:1px solid var(--rule-light);padding-top:16px}
+.home-section .hs-title{font-size:9px;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:8px}
+.home-entry{display:block;padding:6px 0;cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:inherit;font-size:13px;line-height:1.5;color:var(--ink);border-bottom:1px solid var(--rule-light);transition:all .12s}
+.home-entry:hover{color:var(--accent)}
+.home-entry:last-child{border-bottom:none}
+.home-entry .he-date{font-size:10px;color:var(--ink-dim);margin-top:.5px}
+.home-entry .he-type{font-size:9px;color:var(--ink-light);letter-spacing:.05em}
+
+/* ── Journal Timeline ── */
+.tl{max-width:var(--reading);margin:0 auto;padding:40px 24px 80px}
+.tl-entry{border-bottom:1px solid var(--rule-light);padding:24px 0;cursor:pointer;transition:all .12s}
+.tl-entry:hover{border-bottom-color:var(--accent)}
+.tl-entry:first-child{padding-top:0}
+.tl-entry .tl-date{font-size:9px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:3px}
+.tl-entry .tl-title{font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:3px;line-height:1.3}
+.tl-entry .tl-body{font-size:13px;color:var(--ink-light);line-height:1.7;font-weight:300;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.tl-entry .tl-links{display:flex;gap:4px;margin-top:5px;flex-wrap:wrap}
+.tl-entry .tl-links span{font-size:10px;color:var(--accent);cursor:pointer;transition:all .1s}
+.tl-entry .tl-links span:hover{text-decoration:underline}
+
+/* ── Reading List (Apple Books style) ── */
+.reading-list{max-width:var(--reading);margin:0 auto;padding:40px 24px 80px}
+.rl-item{display:block;padding:16px 0;border-bottom:1px solid var(--rule-light);cursor:pointer;transition:all .12s;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.rl-item:hover .rl-title{color:var(--accent)}
+.rl-item:first-child{padding-top:0}
+.rl-item .rl-type{font-size:9px;color:var(--ink-dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:1px}
+.rl-item .rl-title{font-family:var(--font-serif);font-size:16px;font-weight:600;margin-bottom:1px;transition:color .12s}
+.rl-item .rl-meta{font-size:11px;color:var(--ink-light);font-weight:300}
+.rl-item .rl-excerpt{font-size:12px;color:var(--ink-light);line-height:1.6;font-weight:300;margin-top:3px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ── Project Card (minimal list) ── */
+.project-list{max-width:var(--reading);margin:0 auto;padding:40px 24px 80px}
+.pl-item{display:block;padding:14px 0;border-bottom:1px solid var(--rule-light);cursor:pointer;transition:all .12s;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.pl-item:hover .pl-title{color:var(--accent)}
+.pl-item .pl-icon{font-size:10px;color:var(--ink-dim);margin-bottom:1px}
+.pl-item .pl-title{font-family:var(--font-serif);font-size:16px;font-weight:600;margin-bottom:1px;transition:color .12s}
+.pl-item .pl-desc{font-size:12px;color:var(--ink-light);font-weight:300;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+
+/* ── Concept List ── */
+.concept-list{max-width:var(--reading);margin:0 auto;padding:40px 24px 80px}
+.cl-item{display:block;padding:12px 0;border-bottom:1px solid var(--rule-light);cursor:pointer;transition:all .12s;border:none;background:none;width:100%;text-align:left;font-family:inherit}
+.cl-item:hover .cl-title{color:var(--accent)}
+.cl-item .cl-title{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:1px;transition:color .12s}
+.cl-item .cl-def{font-size:12px;color:var(--ink-light);font-weight:300;line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cl-item .cl-tags{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
+.cl-item .cl-tags span{font-size:9px;color:var(--ink-dim)}
+
+/* ── Detail Page (magazine spread) ── */
+.detail-page{max-width:var(--reading);margin:0 auto;padding:48px 24px 80px}
+.detail-page .dp-back{display:inline-flex;align-items:center;gap:4px;font-size:10px;color:var(--ink-light);cursor:pointer;margin-bottom:24px;border:none;background:transparent;font-family:inherit;padding:0;letter-spacing:.05em;transition:color .12s}
+.detail-page .dp-back:hover{color:var(--ink)}
+.detail-page .dp-h{margin-bottom:24px}
+.detail-page .dp-meta{font-size:10px;color:var(--ink-dim);letter-spacing:.05em;display:flex;gap:12px}
+
+/* ─── Project Detail (Wikipedia style) ─── */
+.pd-section{margin-bottom:28px}
+.pd-section .pd-title{font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:6px;padding-bottom:4px;border-bottom:1px solid var(--rule);display:flex;align-items:center;gap:8px}
+.pd-section .pd-body{font-size:13px;color:var(--ink);line-height:1.8;font-weight:300}
+.pd-section .pd-body p{margin-bottom:8px}
+
+/* ─── Concept Detail (two column) ─── */
+.cd-grid{display:grid;grid-template-columns:1fr 220px;gap:40px;max-width:880px;margin:0 auto;padding:48px 24px 80px}
+.cd-main{min-width:0}
+.cd-side{min-width:0}
+.cd-side .cd-widget{margin-bottom:24px}
+.cd-side .cd-widget .cdw-title{font-size:9px;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;font-weight:500;margin-bottom:4px;padding-bottom:3px;border-bottom:1px solid var(--rule-light)}
+.cd-side .cd-widget .cdw-item{display:block;padding:3px 0;font-size:12px;color:var(--ink);cursor:pointer;transition:color .12s;border:none;background:none;font-family:inherit;text-align:left}
+.cd-side .cd-widget .cdw-item:hover{color:var(--accent)}
+.stars{display:inline-flex;gap:1px;font-size:10px}.stars .f{color:var(--ink)}.stars .e{color:var(--ink-dim)}
+
+/* ── Graph ── */
+.graph-wrap{max-width:880px;margin:0 auto;padding:40px 24px 80px}
+.graph-container{background:var(--paper);border:1px solid var(--rule);padding:24px;position:relative;min-height:360px}
+.graph-container svg{width:100%;height:100%;min-height:360px}
+.graph-info{position:absolute;right:16px;top:16px;width:200px;background:var(--paper);border:1px solid var(--rule);padding:12px 14px;display:none}
 .graph-info.show{display:block}
-.graph-info .gi-title{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px}
-.graph-info .gi-type{font-size:9px;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
-.graph-info .gi-body{font-size:11px;color:var(--secondary);line-height:1.5;margin-bottom:4px}
-.graph-info .gi-links{display:flex;gap:3px;flex-wrap:wrap}
-.graph-info .gi-links span{padding:1px 7px;border-radius:3px;font-size:9px;background:var(--bg);color:var(--secondary);cursor:pointer}
-.mo{display:none;position:fixed;inset:0;background:rgba(30,30,30,.15);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.graph-info .gi-title{font-family:var(--font-serif);font-size:14px;font-weight:600;margin-bottom:1px}
+.graph-info .gi-type{font-size:9px;color:var(--ink-light);letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px}
+.graph-info .gi-body{font-size:11px;color:var(--ink-light);line-height:1.5;margin-bottom:3px}
+.graph-info .gi-links{display:flex;gap:2px;flex-wrap:wrap}
+.graph-info .gi-links span{font-size:9px;color:var(--accent);cursor:pointer}
+.graph-info .gi-links span:hover{text-decoration:underline}
+
+/* ── Modal ── */
+.mo{display:none;position:fixed;inset:0;background:rgba(30,30,30,.08);z-index:200;align-items:center;justify-content:center;padding:16px}
 .mo.show{display:flex}
-.mm{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:24px 28px;box-shadow:0 16px 48px rgba(0,0,0,.06);animation:mi .2s}
-@keyframes mi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.mm h2{font-family:var(--font-serif);font-size:18px;font-weight:700;margin-bottom:2px}
-.mm .ms{font-size:11px;color:var(--secondary);margin-bottom:14px}
-.mm .cl{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--secondary);line-height:1}
-.f2{display:flex;gap:8px;margin-bottom:7px}
+.mm{background:var(--paper);border:1px solid var(--rule);width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:24px 28px;animation:mi .2s ease-out}
+@keyframes mi{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+.mm h2{font-family:var(--font-serif);font-size:18px;font-weight:600;margin-bottom:2px}
+.mm .ms{font-size:11px;color:var(--ink-light);margin-bottom:14px}
+.mm .cl{float:right;background:none;border:none;font-size:16px;cursor:pointer;color:var(--ink-dim);line-height:1;transition:color .12s}
+.mm .cl:hover{color:var(--ink)}
+.f2{display:flex;gap:6px;margin-bottom:6px}
 .f2 .fd{flex:1}
-.f2 .fd label{font-size:10px;color:var(--secondary);margin-bottom:2px;font-weight:500;display:block;letter-spacing:.3px}
-.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;font-family:inherit;background:var(--bg);transition:all .12s;color:var(--primary)}
-.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:var(--surface)}
-.f2 .fd textarea{resize:vertical;min-height:34px}
-.mm .sub{width:100%;padding:7px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px}
-.mm .sub:hover{opacity:.85}
-.empty{text-align:center;padding:48px 16px;color:var(--secondary)}.empty .ei{font-size:24px;margin-bottom:4px;opacity:.4;font-family:var(--font-serif)}
-@media(max-width:640px){.home-section .hs-grid{grid-template-columns:1fr 1fr}}
+.f2 .fd label{font-size:9px;color:var(--ink-light);margin-bottom:2px;display:block;letter-spacing:.05em;font-weight:500}
+.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:6px 10px;border:1px solid var(--rule);font-size:12px;font-family:inherit;background:transparent;transition:all .12s;color:var(--ink)}
+.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--ink)}
+.f2 .fd textarea{resize:vertical;min-height:30px}
+.mm .sub{width:100%;padding:6px;background:none;color:var(--ink);border:1px solid var(--rule);font-size:11px;font-family:inherit;cursor:pointer;font-weight:400;margin-top:4px;transition:all .12s;letter-spacing:.05em}
+.mm .sub:hover{border-color:var(--ink)}
+
+/* ── Tree ── */
+.tree{list-style:none;padding:0}.tree li{margin:0}
+.tree-node{display:flex;align-items:center;gap:4px;padding:3px 0;cursor:pointer;transition:all .1s;font-size:12px;color:var(--ink-light)}
+.tree-node:hover{color:var(--ink)}
+.tree-node .toggle{width:10px;height:10px;display:flex;align-items:center;justify-content:center;font-size:5px;color:var(--ink-dim);cursor:pointer;transition:transform .15s;flex-shrink:0}
+.tree-node .toggle.exp{transform:rotate(90deg)}
+.tree-node .tt{flex:1;font-size:12px}
+.tree-children{padding-left:14px;display:none}.tree-children.open{display:block}
+
+/* ── Utilities ── */
+.empty{text-align:center;padding:48px 16px;color:var(--ink-dim);font-size:12px;font-weight:300}
+.welcome{font-family:var(--font-serif);font-size:26px;font-weight:700;letter-spacing:-.01em;margin-bottom:2px;line-height:1.2}
+.welcome-sub{font-size:12px;color:var(--ink-light);font-weight:300;margin-bottom:0}
+
+/* ── Responsive ── */
+@media(max-width:768px){
+  .nav{padding:0 16px;overflow-x:auto}
+  .nav a{white-space:nowrap;padding:0 8px;font-size:10px}
+  .nav-logo{font-size:12px;margin-right:14px}
+  .reading{padding:32px 16px 60px}
+  .reading-wide{padding:32px 16px 60px}
+  .tl{padding:32px 16px 60px}
+  .reading-list{padding:32px 16px 60px}
+  .project-list{padding:32px 16px 60px}
+  .concept-list{padding:32px 16px 60px}
+  .detail-page{padding:32px 16px 60px}
+  .cd-grid{grid-template-columns:1fr;gap:24px;padding:32px 16px 60px}
+  .graph-wrap{padding:32px 16px 60px}
+  .home-grid{grid-template-columns:1fr;column-gap:0}
+}
 </style>
 </head>
 <body>
-<div class="bg-grid"></div>
 <div class="app">
   <nav class="nav">
-    <div class="nav-logo">◈ 研究工作室</div>
+    <div class="nav-logo">研究工作室</div>
     <a class="active" data-p="home">首页</a>
     <a data-p="journal">日记</a>
     <a data-p="reading">阅读</a>
@@ -134,8 +220,8 @@ body{font-family:var(--font-sans);background:var(--bg);color:var(--primary);font
     <a data-p="concept">概念</a>
     <a data-p="graph">图谱</a>
     <div class="spacer"></div>
-    <button class="search-btn" onclick="showSearch()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>搜索</button>
-    <button class="search-btn" style="margin-left:4px" onclick="showImport()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导入</button>
+    <button class="search-btn" onclick="showSearch()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>搜索</button>
+    <button class="search-btn" style="margin-left:4px" onclick="showImport()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>导入</button>
     <button class="search-btn" style="margin-left:4px" onclick="showAdd()">＋ 新建</button>
   </nav>
   <div class="main" id="main"></div>
@@ -202,51 +288,59 @@ function byId(id){for(let k of Object.keys(DATA)){const f=DATA[k].find(d=>d.id==
 function navigate(p){PAGE=p;document.querySelectorAll('.nav a[data-p]').forEach(a=>a.classList.remove('active'));const el=document.querySelector(`.nav a[data-p="${p}"]`);if(el)el.classList.add('active');render()}
 document.querySelectorAll('.nav a[data-p]').forEach(a=>{a.onclick=()=>navigate(a.dataset.p)})
 function render(){const mc=document.getElementById('main')
-  if(PAGE==='home')renderHome(mc);else if(PAGE==='journal'){const entries=DATA.journal.slice().reverse();mc.innerHTML=`<div class="page-h"><h1>日记</h1><span class="count">${entries.length}</span></div><div class="tl">${entries.map(j=>{const links=[...(j.rels?.projects||[]).map(id=>{const p=byId(id);return p?`<span onclick="event.stopPropagation();navigateToProject('${id}')">${esc(p.title)}</span>`:''}).filter(Boolean),...(j.rels?.concepts||[]).map(id=>{const c=byId(id);return c?`<span onclick="event.stopPropagation();openDetail('concept','${id}')">${esc(c.title)}</span>`:''}).filter(Boolean)];return`<div class="tl-item"><div class="tl-date">${j.date}</div><div class="tl-card" onclick="openDetail('journal','${j.id}')"><h3>${esc(j.title)}</h3><div class="body">${esc(j.body||'')}</div>${links.length?`<div class="links">${links.join('')}</div>`:''}</div></div>`}).join('')}</div>`}
-  else if(PAGE==='reading')mc.innerHTML=`<div class="page-h"><h1>阅读</h1><span class="count">${DATA.reading.length}</span></div><div class="grid-4">${DATA.reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div><div class="ex">${esc(r.notes||'').slice(0,80)}</div>${r.tags?.length?`<div class="tags">${r.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`
-  else if(PAGE==='project')renderProjectList(mc)
-  else if(PAGE==='concept'){mc.innerHTML=`<div class="page-h"><h1>概念</h1><span class="count">${DATA.concept.length}</span></div><div class="grid-3">${DATA.concept.map(c=>`<div class="concept-card" onclick="openDetail('concept','${c.id}')"><div class="ci">◇</div><div class="cb"><div class="cn">${esc(c.title)}</div><div class="cd">${esc(c.definition||'').slice(0,80)}</div>${c.tags?.length?`<div class="cr">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`}
-  else if(PAGE==='graph')renderGraph(mc)
+  if(PAGE==='home')renderHome(mc);else if(PAGE==='journal')renderJournal(mc);else if(PAGE==='reading')renderReading(mc);else if(PAGE==='project')renderProjectList(mc);else if(PAGE==='concept')renderConceptList(mc);else if(PAGE==='graph')renderGraph(mc)
 }
 function renderHome(mc){const recent=DATA.journal.slice(-3).reverse(),reading=DATA.reading.filter(r=>r.status==='reading').slice(0,3),projects=DATA.project.slice(0,4),concepts=DATA.concept.slice(0,4)
-  mc.innerHTML=`<div class="welcome">研究工作室</div><div class="welcome-sub">用于阅读、研究与写作的个人空间。</div>
-  <div class="home-section"><div class="hs-title">继续阅读</div><div class="hs-grid">${reading.length?reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join(''):'<div class="card"><div style="color:var(--secondary);font-size:12px">暂无进行中的阅读</div></div>'}</div></div>
-  <div class="home-section"><div class="hs-title">最近日记</div><div class="hs-grid">${recent.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,80)}</div></div>`).join('')}</div></div>
-  <div class="home-section"><div class="hs-title">当前课题</div><div class="hs-grid">${projects.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div class="card-type">${p.icon||'◇'} 课题</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,80)}</div></div>`).join('')}</div></div>
-  <div class="home-section"><div class="hs-title">最近概念</div><div class="hs-grid">${concepts.map(c=>`<div class="card" onclick="openDetail('concept','${c.id}')"><div class="card-type" style="color:var(--accent)">概念</div><h3>${esc(c.title)}</h3><div class="ex">${esc(c.definition||'').slice(0,80)}</div></div>`).join('')}</div></div>`}
-function renderProjectList(mc){mc.innerHTML=`<div class="page-h"><h1>课题</h1><span class="count">${DATA.project.length}</span></div><div class="grid-3">${DATA.project.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div style="font-size:18px;margin-bottom:4px;opacity:.6">${p.icon||'◇'}</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,60)}</div></div>`).join('')}</div>`}
-function navigateToProject(id){PAGE='project';CURRENT_PROJECT=id;PROJECT_TAB='overview';renderProjectDetail()}
-function renderProjectDetail(){const p=byId(CURRENT_PROJECT);if(!p){navigate('project');return}
-  const mc=document.getElementById('main'),tabs=['overview','knowledge','reading','journal'],tl=['概览','知识树','阅读','日记']
-  mc.innerHTML=`<div class="page-h"><h1>${p.icon||'◇'} ${esc(p.title)}</h1></div><div class="p-hero"><div class="pi">${p.icon||'◇'}</div><div><div class="pt">${esc(p.title)}</div><div class="pd">${esc(p.desc||'')}</div></div></div><div class="p-tabs">${tabs.map((t,i)=>`<button class="${PROJECT_TAB===t?'active':''}" onclick="PROJECT_TAB='${t}';renderProjectDetail()">${tl[i]}</button>`).join('')}</div><div id="pContent"></div>`
-  const pc=document.getElementById('pContent')
-  if(PROJECT_TAB==='overview'){pc.innerHTML=`<div style="font-size:13px;color:var(--secondary);line-height:1.8;font-weight:300">${esc(p.desc||'')}</div>${p.tags?.length?`<div style="display:flex;gap:4px;margin-top:12px;flex-wrap:wrap">${p.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;border-radius:12px;background:var(--bg);color:var(--secondary)">${esc(t)}</span>`).join('')}</div>`:''}`
-  }else if(PROJECT_TAB==='knowledge'){pc.innerHTML=buildTree(p.tree||[])}
-  else if(PROJECT_TAB==='reading'){const rs=(p.readings||[]).map(id=>byId(id)).filter(Boolean);pc.innerHTML=rs.length?`<div class="grid-3">${rs.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">暂无关联阅读</div></div>'}
-  else if(PROJECT_TAB==='journal'){const js=(p.journal||[]).map(id=>byId(id)).filter(Boolean);pc.innerHTML=js.length?`<div class="grid-3">${js.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,60)}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">暂无关联日记</div></div>'}
+  mc.innerHTML=`<div class="reading"><div class="welcome">研究工作室</div><div class="welcome-sub">用于阅读、研究与写作的个人空间。</div>
+  <hr class="ed-rule" style="margin-top:28px">
+  <div class="home-section"><div class="hs-title">继续阅读</div>${reading.length?reading.map(r=>`<div class="home-entry" onclick="openDetail('reading','${r.id}')"><div class="he-type">${r.type}</div>${r.title}<div class="he-date">${r.creator||''}</div></div>`).join(''):'<div style="font-size:12px;color:var(--ink-light)">暂无进行中的阅读</div>'}</div>
+  <div class="home-section"><div class="hs-title">最近日记</div>${recent.map(j=>`<div class="home-entry" onclick="openDetail('journal','${j.id}')">${j.title}<div class="he-date">${j.date}</div></div>`).join('')}</div>
+  <div class="home-section"><div class="hs-title">当前课题</div>${projects.map(p=>`<div class="home-entry" onclick="navigateToProject('${p.id}')">${p.icon||'◇'} ${p.title}<div class="he-date">${p.tags?.slice(0,2).join(' · ')||''}</div></div>`).join('')}</div>
+  <div class="home-section"><div class="hs-title">最近概念</div>${concepts.map(c=>`<div class="home-entry" onclick="openDetail('concept','${c.id}')">${c.title}<div class="he-date">${(c.tags||[]).slice(0,2).join(' · ')}</div></div>`).join('')}</div></div>`
 }
-function buildTree(nodes){if(!nodes||!nodes.length)return'<div class="empty"><div class="ei">暂无结构</div></div>';return`<ul class="tree">${nodes.map(n=>`<li><div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('exp');this.nextElementSibling.classList.toggle('open')"`:''}>${n.c?.length?`<span class="toggle">▶</span>`:'<span style="width:12px"></span>'}<span class="tt">${esc(n.n||'')}</span>${n.c?.length?`<span style="font-size:10px;color:var(--border)">${n.c.length}</span>`:''}</div>${n.c?.length?`<ul class="tree-children">${buildTree(n.c)}</ul>`:''}</li>`).join('')}</ul>`}
-function openDetail(type,id){const item=byId(id);if(!item)return;const mc=document.getElementById('main');const rels=item.rels||{};let relatedHtml='';if(rels.reading||rels.projects||rels.journal||rels.concepts){relatedHtml='<div class="dp-section"><div class="sec-title">关联</div><div class="rel-items">';if(rels.reading)rels.reading.forEach(rid=>{const r=byId(rid);if(r)relatedHtml+=`<span onclick="openDetail('reading','${rid}')">${esc(r.title)}</span>`});if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)relatedHtml+=`<span onclick="navigateToProject('${pid}')">${esc(p.title)}</span>`});if(rels.journal)rels.journal.forEach(jid=>{const j=byId(jid);if(j)relatedHtml+=`<span onclick="openDetail('journal','${jid}')">${esc(j.title)}</span>`});if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)relatedHtml+=`<span onclick="openDetail('concept','${cid}')">${esc(c.title)}</span>`});relatedHtml+='</div></div>'}
-  let body=''
-  if(type==='journal'){body=`<div class="dp-back" onclick="navigate('journal')">← 日记</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.date}</span>${item.tags?`<span>${item.tags.join(' · ')}</span>`:''}</div></div><div class="dp-section"><div class="sec-title">笔记</div><div class="sec-body"><p>${esc(item.body||'')}</p></div></div>${relatedHtml}`}
-  else if(type==='reading'){body=`<div class="dp-back" onclick="navigate('reading')">← 阅读</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.type}</span><span>${esc(item.creator||'')}</span>${item.rating?`<span><span class="stars">${sr(item.rating)}</span></span>`:''}</div></div>${item.notes?`<div class="dp-section"><div class="sec-title">笔记</div><div class="sec-body"><p>${esc(item.notes)}</p></div></div>`:''}${item.highlights?.length?`<div class="dp-section"><div class="sec-title">摘录</div><div class="sec-body">${item.highlights.map(h=>`<blockquote style="border-left:2px solid var(--accent);padding:6px 14px;margin:6px 0;color:var(--secondary);font-style:italic">${esc(h)}</blockquote>`).join('')}</div></div>`:''}${relatedHtml}`}
-  else if(type==='concept'){body=`<div class="dp-back" onclick="navigate('concept')">← 概念</div><div class="dp-h"><h1>${esc(item.title)}</h1></div>${item.definition?`<div class="dp-section"><div class="sec-title">定义</div><div class="sec-body"><p>${esc(item.definition)}</p></div></div>`:''}${item.background?`<div class="dp-section"><div class="sec-title">背景</div><div class="sec-body"><p>${esc(item.background)}</p></div></div>`:''}${relatedHtml}`}
-  else if(type==='skill'){body=`<div class="dp-back" onclick="render()">← 返回</div><div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.level||''}</span><span>${item.progress||0}%</span></div></div>${item.practices?.length?`<div class="dp-section"><div class="sec-title">练习记录</div><div class="sec-body">${item.practices.map(p=>`<p style="margin-bottom:4px">${p.d} — ${esc(p.n||'')}（${p.t||''}）</p>`).join('')}</div></div>`:''}`}
-  mc.innerHTML=body
+function renderJournal(mc){const entries=DATA.journal.slice().reverse()
+  mc.innerHTML=`<div class="tl"><div class="page-h" style="padding-bottom:16px;margin-bottom:0"><div class="left"><div class="ed-section-num">DIARY · 01</div><div class="ed-h1" style="font-size:24px">日记</div></div><span class="count">${entries.length}</span></div>${entries.map(j=>{const links=[...(j.rels?.projects||[]).map(id=>{const p=byId(id);return p?`<span onclick="event.stopPropagation();navigateToProject('${id}')">${p.title}</span>`:''}).filter(Boolean),...(j.rels?.concepts||[]).map(id=>{const c=byId(id);return c?`<span onclick="event.stopPropagation();openDetail('concept','${id}')">${c.title}</span>`:''}).filter(Boolean)];return`<div class="tl-entry" onclick="openDetail('journal','${j.id}')"><div class="tl-date">${j.date}</div><div class="tl-title">${esc(j.title)}</div><div class="tl-body">${esc(j.body||'')}</div>${links.length?`<div class="tl-links">${links.join('')}</div>`:''}</div>`}).join('')}</div>`
+}
+function renderReading(mc){mc.innerHTML=`<div class="reading-list"><div class="page-h" style="padding-bottom:16px;margin-bottom:0"><div class="left"><div class="ed-section-num">READING · 02</div><div class="ed-h1" style="font-size:24px">阅读</div></div><span class="count">${DATA.reading.length}</span></div>${DATA.reading.map(r=>`<div class="rl-item" onclick="openDetail('reading','${r.id}')"><div class="rl-type">${r.type}</div><div class="rl-title">${esc(r.title)}</div><div class="rl-meta">${esc(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div>${r.notes?`<div class="rl-excerpt">${esc(r.notes).slice(0,120)}</div>`:''}</div>`).join('')}</div>`
+}
+function renderProjectList(mc){mc.innerHTML=`<div class="project-list"><div class="page-h" style="padding-bottom:16px;margin-bottom:0"><div class="left"><div class="ed-section-num">PROJECT · 03</div><div class="ed-h1" style="font-size:24px">课题</div></div><span class="count">${DATA.project.length}</span></div>${DATA.project.map(p=>`<div class="pl-item" onclick="navigateToProject('${p.id}')"><div class="pl-icon">${p.icon||'◇'} 课题</div><div class="pl-title">${esc(p.title)}</div><div class="pl-desc">${esc(p.desc||'').slice(0,100)}</div></div>`).join('')}</div>`
+}
+function navigateToProject(id){PAGE='project';CURRENT_PROJECT=id;renderProjectDetail()}
+function renderProjectDetail(){const p=byId(CURRENT_PROJECT);if(!p){navigate('project');return}
+  const mc=document.getElementById('main'),rs=(p.readings||[]).map(id=>byId(id)).filter(Boolean),js=(p.journal||[]).map(id=>byId(id)).filter(Boolean)
+  mc.innerHTML=`<div class="reading-wide"><div class="dp-back" onclick="navigate('project')">← 课题</div><div class="dp-h"><div class="ed-h1" style="font-size:22px;margin-bottom:2px">${p.icon||'◇'} ${esc(p.title)}</div><div class="dp-meta">${esc(p.desc||'')}</div></div>
+  <hr class="ed-rule-light">
+  <div class="pd-section"><div class="pd-title">概述</div><div class="pd-body"><p>${esc(p.desc||'')}</p></div></div>
+  <div class="pd-section"><div class="pd-title">知识树</div>${buildTree(p.tree||[])}</div>
+  ${rs.length?`<div class="pd-section"><div class="pd-title">相关阅读</div><div class="pd-body">${rs.map(r=>`<p style="cursor:pointer;color:var(--ink);margin-bottom:4px" onclick="openDetail('reading','${r.id}')">${esc(r.title)} <span style="color:var(--ink-light)">— ${esc(r.creator||'')}</span></p>`).join('')}</div></div>`:''}
+  ${js.length?`<div class="pd-section"><div class="pd-title">相关日记</div><div class="pd-body">${js.map(j=>`<p style="cursor:pointer;margin-bottom:4px" onclick="openDetail('journal','${j.id}')">${esc(j.title)} <span style="color:var(--ink-light)">— ${j.date}</span></p>`).join('')}</div></div>`:''}
+  </div>`
+}
+function buildTree(nodes){if(!nodes||!nodes.length)return'<div style="color:var(--ink-light);font-size:12px">暂无结构</div>';return`<ul class="tree">${nodes.map(n=>`<li><div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('exp');this.nextElementSibling.classList.toggle('open')"`:''}>${n.c?.length?`<span class="toggle">▶</span>`:'<span style="width:10px"></span>'}<span class="tt">${esc(n.n||'')}</span>${n.c?.length?`<span style="font-size:9px;color:var(--ink-dim)">${n.c.length}</span>`:''}</div>${n.c?.length?`<ul class="tree-children">${buildTree(n.c)}</ul>`:''}</li>`).join('')}</ul>`}
+function renderConceptList(mc){mc.innerHTML=`<div class="concept-list"><div class="page-h" style="padding-bottom:16px;margin-bottom:0"><div class="left"><div class="ed-section-num">CONCEPT · 04</div><div class="ed-h1" style="font-size:24px">概念</div></div><span class="count">${DATA.concept.length}</span></div>${DATA.concept.map(c=>`<div class="cl-item" onclick="openDetail('concept','${c.id}')"><div class="cl-title">${esc(c.title)}</div><div class="cl-def">${esc(c.definition||'').slice(0,120)}</div>${c.tags?.length?`<div class="cl-tags">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`
+}
+function openDetail(type,id){const item=byId(id);if(!item)return;const mc=document.getElementById('main')
+  if(type==='journal'){const rels=item.rels||{};let links='';if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)links+=`<span style="cursor:pointer;color:var(--accent);font-size:12px" onclick="navigateToProject('${pid}')">${p.title}</span> · `});if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)links+=`<span style="cursor:pointer;color:var(--accent);font-size:12px" onclick="openDetail('concept','${cid}')">${c.title}</span> · `})
+    mc.innerHTML=`<div class="detail-page"><div class="dp-back" onclick="render()">← 日记</div><div class="dp-h"><div class="ed-h1">${esc(item.title)}</div><div class="dp-meta">${item.date}${item.tags?` · ${item.tags.join(' · ')}`:''}</div></div><hr class="ed-rule-light"><div class="ed-body" style="margin-top:16px"><p>${esc(item.body||'')}</p></div>${links?`<hr class="ed-rule-light"><div style="font-size:12px;color:var(--ink-light)">关联：${links}</div>`:''}</div>`
+  }else if(type==='reading'){const rels=item.rels||{};let related='';if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)related+=`<span style="cursor:pointer;color:var(--accent);font-size:12px" onclick="openDetail('concept','${cid}')">${c.title}</span> · `});if(item.projects)item.projects.forEach(pid=>{const p=byId(pid);if(p)related+=`<span style="cursor:pointer;color:var(--accent);font-size:12px" onclick="navigateToProject('${pid}')">${p.title}</span> · `})
+    mc.innerHTML=`<div class="detail-page"><div class="dp-back" onclick="render()">← 阅读</div><div class="dp-h"><div class="ed-h1">${esc(item.title)}</div><div class="dp-meta">${item.type} · ${esc(item.creator||'')}${item.rating?` · <span class="stars">${sr(item.rating)}</span>`:''}</div></div>${item.notes?`<hr class="ed-rule-light"><div class="ed-body" style="margin-top:16px"><p>${esc(item.notes)}</p></div>`:''}${item.highlights?.length?`<hr class="ed-rule-light">${item.highlights.map(h=>`<div class="ed-blockquote">${esc(h)}</div>`).join('')}`:''}${related?`<hr class="ed-rule-light"><div style="font-size:12px;color:var(--ink-light)">关联：${related}</div>`:''}</div>`
+  }else if(type==='concept'){const rels=item.rels||{};let relatedRead='',relatedProj='',relatedConc='';if(rels.reading)rels.reading.forEach(rid=>{const r=byId(rid);if(r)relatedRead+=`<div class="cdw-item" onclick="openDetail('reading','${rid}')">${r.title}</div>`});if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)relatedProj+=`<div class="cdw-item" onclick="navigateToProject('${pid}')">${p.title}</div>`});if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)relatedConc+=`<div class="cdw-item" onclick="openDetail('concept','${cid}')">${c.title}</div>`})
+    mc.innerHTML=`<div class="cd-grid"><div class="cd-main"><div class="dp-back" onclick="render()">← 概念</div><div class="ed-h1" style="margin-top:16px">${esc(item.title)}</div><hr class="ed-rule-light" style="margin:16px 0">${item.definition?`<div style="margin-bottom:20px"><div class="ed-label">定义</div><div class="ed-body"><p>${esc(item.definition)}</p></div></div>`:''}${item.background?`<div style="margin-bottom:20px"><div class="ed-label">背景</div><div class="ed-body"><p>${esc(item.background)}</p></div></div>`:''}</div><div class="cd-side">${relatedRead?`<div class="cd-widget"><div class="cdw-title">相关阅读</div>${relatedRead}</div>`:''}${relatedProj?`<div class="cd-widget"><div class="cdw-title">相关课题</div>${relatedProj}</div>`:''}${relatedConc?`<div class="cd-widget"><div class="cdw-title">相关概念</div>${relatedConc}</div>`:''}</div></div>`
+  }
 }
 function renderGraph(mc){const all=[...DATA.project,...DATA.concept,...DATA.reading.filter(r=>r.rating>=4)];const cx=350,cy=220,r=170
-  mc.innerHTML=`<div class="page-h"><h1>知识图谱</h1></div><div class="graph-container" id="gc"><svg viewBox="0 0 700 440" id="gsvg"></svg><div class="graph-info" id="ginfo"></div></div>`
-  setTimeout(()=>{const svg=document.getElementById('gsvg');const colors={project:'var(--accent)',concept:'var(--primary)',reading:'var(--border)'};const angles=all.map((_,i)=>2*Math.PI*i/all.length-Math.PI/2);const pos=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}));let l='',c='',t='';for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){if(Math.random()>.7)l+=`<line x1="${pos[i].x}" y1="${pos[i].y}" x2="${pos[j].x}" y2="${pos[j].y}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>`}all.forEach((n,i)=>{const col=n.type==='project'?colors.project:n.type==='concept'?colors.concept:colors.reading;const sz=n.type==='project'?10:n.type==='concept'?7:5;c+=`<g class="kg-node" style="cursor:pointer" onclick="showGraphInfo('${n.id}')"><circle cx="${pos[i].x}" cy="${pos[i].y}" r="${sz}" fill="${col}" stroke="#fff" stroke-width="1.5" opacity=".85"/></g>`;t+=`<text x="${pos[i].x}" y="${pos[i].y+16}" text-anchor="middle" font-size="9" fill="var(--secondary)">${esc(n.title||'').slice(0,10)}</text>`});svg.innerHTML=l+c+t},50)
+  mc.innerHTML=`<div class="graph-wrap"><div class="page-h" style="padding-bottom:16px;margin-bottom:0"><div class="left"><div class="ed-section-num">GRAPH · 05</div><div class="ed-h1" style="font-size:24px">知识图谱</div></div></div><div class="graph-container" id="gc"><svg viewBox="0 0 700 440" id="gsvg"></svg><div class="graph-info" id="ginfo"></div></div></div>`
+  setTimeout(()=>{const svg=document.getElementById('gsvg');const colors={project:'var(--ink)',concept:'var(--accent)',reading:'var(--ink-dim)'};const angles=all.map((_,i)=>2*Math.PI*i/all.length-Math.PI/2);const pos=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}));let l='',c='',t='';for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++){if(Math.random()>.7)l+=`<line x1="${pos[i].x}" y1="${pos[i].y}" x2="${pos[j].x}" y2="${pos[j].y}" stroke="var(--rule)" stroke-width="1"/>`}all.forEach((n,i)=>{const col=n.type==='project'?colors.project:n.type==='concept'?colors.concept:colors.reading;const sz=n.type==='project'?8:n.type==='concept'?6:4;c+=`<g style="cursor:pointer" onclick="showGraphInfo('${n.id}')"><circle cx="${pos[i].x}" cy="${pos[i].y}" r="${sz}" fill="${col}" opacity=".85"/></g>`;t+=`<text x="${pos[i].x}" y="${pos[i].y+14}" text-anchor="middle" font-size="8" fill="var(--ink-light)" font-family="var(--font-sans)">${esc(n.title||'').slice(0,8)}</text>`});svg.innerHTML=l+c+t},50)
 }
-function showGraphInfo(id){const d=byId(id);if(!d)return;const el=document.getElementById('ginfo');let rels=[];if(d.rels?.reading)rels.push(...d.rels.reading.map(rid=>{const r=byId(rid);return r?esc(r.title):''}).filter(Boolean));if(d.rels?.projects)rels.push(...d.rels.projects.map(pid=>{const p=byId(pid);return p?esc(p.title):''}).filter(Boolean));if(d.rels?.journal)rels.push(...d.rels.journal.map(jid=>{const j=byId(jid);return j?esc(j.title):''}).filter(Boolean));if(d.rels?.concepts)rels.push(...d.rels.concepts.map(cid=>{const c=byId(cid);return c?esc(c.title):''}).filter(Boolean));el.innerHTML=`<div class="gi-title">${esc(d.title)}</div><div class="gi-type">${d.type||'条目'}</div>${d.definition?`<div class="gi-body">${esc(d.definition).slice(0,100)}</div>`:d.desc?`<div class="gi-body">${esc(d.desc).slice(0,100)}</div>`:d.notes?`<div class="gi-body">${esc(d.notes).slice(0,100)}</div>`:''}${rels.length?`<div class="gi-links">${rels.slice(0,5).map(r=>`<span onclick="openDetail('reading','${d.id}')">${r}</span>`).join('')}</div>`:''}`;el.classList.add('show')}
-document.addEventListener('click',e=>{if(!e.target.closest('.kg-node')&&!e.target.closest('.graph-info'))document.getElementById('ginfo')?.classList.remove('show')})
+function showGraphInfo(id){const d=byId(id);if(!d)return;const el=document.getElementById('ginfo');let rels=[];if(d.rels?.reading)rels.push(...d.rels.reading.map(rid=>{const r=byId(rid);return r?r.title:''}).filter(Boolean));if(d.rels?.projects)rels.push(...d.rels.projects.map(pid=>{const p=byId(pid);return p?p.title:''}).filter(Boolean));if(d.journal)rels.push(...d.journal.map(jid=>{const j=byId(jid);return j?j.title:''}).filter(Boolean));el.innerHTML=`<div class="gi-title">${d.title}</div><div class="gi-type">${d.type||'条目'}</div>${d.definition?`<div class="gi-body">${d.definition.slice(0,80)}</div>`:d.desc?`<div class="gi-body">${d.desc.slice(0,80)}</div>`:''}${rels.length?`<div class="gi-links">${rels.slice(0,4).map(r=>`<span>${r}</span>`).join('')}</div>`:''}`;el.classList.add('show')}
+document.addEventListener('click',e=>{if(!e.target.closest('.graph-container')||(e.target.closest('.graph-info')===null&&!e.target.closest('g')))document.getElementById('ginfo')?.classList.remove('show')})
 function showSearch(){document.getElementById('searchModal').classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('searchInput')?.focus(),100)}
 function closeSearch(){document.getElementById('searchModal').classList.remove('show');document.body.style.overflow=''}
-function doSearch(){const q=document.getElementById('searchInput').value.toLowerCase().trim();const res=document.getElementById('searchResults');if(!q){res.innerHTML='<div style="padding:16px 0;font-size:12px;color:var(--secondary)">输入关键词搜索…</div>';return}let results=[];Object.entries(DATA).forEach(([type,items])=>{items.forEach(item=>{if((item.title||'').toLowerCase().includes(q)||(item.body||'').toLowerCase().includes(q)||(item.notes||'').toLowerCase().includes(q)||(item.definition||'').toLowerCase().includes(q)||(item.tags||[]).join(' ').toLowerCase().includes(q))results.push({type,id:item.id,title:item.title})})});results=results.slice(0,12);res.innerHTML=results.length?results.map(r=>{const navMap={journal:'journal',reading:'reading',project:'project',concept:'concept'};const nt=navMap[r.type]||'home';return`<div class="card" style="margin-bottom:4px;padding:10px 14px" onclick="closeSearch();${nt==='project'?`navigateToProject('${r.id}')`:`openDetail('${nt}','${r.id}')`}"><div style="display:flex;align-items:center;justify-content:space-between"><h3 style="font-family:var(--font-sans);font-size:13px">${esc(r.title)}</h3><span style="font-size:9px;color:var(--secondary)">${r.type}</span></div></div>`}).join(''):'<div style="padding:16px 0;font-size:12px;color:var(--secondary)">无结果</div>'}
+function doSearch(){const q=document.getElementById('searchInput').value.toLowerCase().trim();const res=document.getElementById('searchResults');if(!q){res.innerHTML='<div style="padding:16px 0;font-size:12px;color:var(--ink-light)">输入关键词搜索…</div>';return}let results=[];Object.entries(DATA).forEach(([type,items])=>{items.forEach(item=>{if((item.title||'').toLowerCase().includes(q)||(item.body||'').toLowerCase().includes(q)||(item.notes||'').toLowerCase().includes(q)||(item.definition||'').toLowerCase().includes(q)||(item.tags||[]).join(' ').toLowerCase().includes(q))results.push({type,id:item.id,title:item.title})})});results=results.slice(0,12);res.innerHTML=results.length?results.map(r=>{const nt={journal:'journal',reading:'reading',project:'project',concept:'concept'}[r.type]||'home';const action=nt==='project'?`navigateToProject('${r.id}')`:`openDetail('${nt}','${r.id}')`;return`<div style="padding:8px 0;border-bottom:1px solid var(--rule-light);cursor:pointer" onclick="closeSearch();${action}"><div style="font-size:13px">${esc(r.title)}</div><div style="font-size:9px;color:var(--ink-dim)">${r.type}</div></div>`}).join(''):'<div style="padding:16px 0;font-size:12px;color:var(--ink-light)">无结果</div>'}
 document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();showSearch()}if(e.key==='Escape'){['searchModal','importModal','addModal'].forEach(m=>{const el=document.getElementById(m);if(el&&el.classList.contains('show'))el.classList.remove('show')});document.body.style.overflow=''}})
 function showImport(){document.getElementById('importModal').classList.add('show');document.body.style.overflow='hidden'}
 function closeImport(){document.getElementById('importModal').classList.remove('show');document.body.style.overflow=''}
-function doImport(){const url=document.getElementById('importUrl').value.trim();if(!url)return;document.getElementById('importResult').style.display='block';document.getElementById('importResult').innerHTML='<div style="padding:8px;background:var(--bg);border-radius:var(--radius-sm);font-size:12px;color:var(--secondary)">正在分析… 此处将连接 AI 服务提取标题、作者、摘要、实体，并建议关联。</div>'}
+function doImport(){const url=document.getElementById('importUrl').value.trim();if(!url)return;document.getElementById('importResult').style.display='block';document.getElementById('importResult').innerHTML='<div style="padding:8px;background:var(--bg);border-radius:var(--radius-sm);font-size:12px;color:var(--ink-light)">正在分析… 此处将连接 AI 服务提取标题、作者、摘要、实体，并建议关联。</div>'}
 function showAdd(){document.getElementById('addModal').classList.add('show');document.body.style.overflow='hidden';buildAddForm()}
 function closeAdd(){document.getElementById('addModal').classList.remove('show');document.body.style.overflow=''}
 function buildAddForm(){const tp=document.getElementById('aType').value
