@@ -1,0 +1,12 @@
+{
+  "name": "reading-collection",
+  "version": "1.0.0",
+  "description": "📖 个人读书合集 - 精美静态 HTML 页面",
+  "scripts": {
+    "start": "npx serve reading-collection -p 8080",
+    "open": "start reading-collection/index.html",
+    "dev": "npx serve reading-collection -p 8080 --no-clipboard"
+  },
+  "keywords": ["reading", "books", "collection"],
+  "license": "MIT"
+}

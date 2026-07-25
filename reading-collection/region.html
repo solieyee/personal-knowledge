@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>地区 · 知识仓库</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans SC',sans-serif;background:#fff;color:#1a1a1e;font-size:14px;line-height:1.6;-webkit-font-smoothing:antialiased}
+
+.top-nav{display:flex;align-items:center;gap:3px;padding:6px 16px;border-bottom:1px solid #eee;position:sticky;top:0;background:#fff;z-index:50;font-size:.8rem}
+.top-nav a{color:#888;text-decoration:none;padding:3px 6px;border-radius:4px}
+.top-nav a:hover{background:#f5f5f5;color:#1a1a1e}
+.top-nav .sp{color:#ddd;font-size:.6rem;padding:0 2px}
+.top-nav .cr{color:#1a1a1e;font-weight:500}
+
+.page{max-width:700px;margin:0 auto;padding:36px 24px 80px}
+.p-icon{font-size:2.6rem;margin-bottom:6px;line-height:1}
+.p-title{font-family:'Noto Serif SC',serif;font-size:1.8rem;font-weight:700;letter-spacing:-.5px;margin-bottom:2px;color:#1a1a1e}
+.p-sub{font-size:.85rem;color:#888;margin-bottom:24px}
+
+hr{border:none;border-top:1px solid #eee;margin:24px 0}
+
+.sec{margin-bottom:28px}
+.sec h2{font-size:1rem;font-weight:600;color:#1a1a1e;margin-bottom:10px;padding-bottom:3px;border-bottom:1px solid #f0f0f0;display:flex;align-items:center;gap:8px}
+.sec h2 .cnt{font-size:.8rem;color:#888;font-weight:400}
+
+.callout{background:#f7f6f3;border-radius:4px;padding:14px 18px;margin-bottom:20px;display:flex;gap:10px;align-items:flex-start}
+.callout .ci{font-size:1.1rem;flex-shrink:0;margin-top:1px}
+.callout .ct{font-size:.85rem;line-height:1.7;color:#1a1a1e}
+
+.mc{background:#f0f3f7;border-radius:4px;padding:14px 18px;margin-bottom:10px;display:flex;gap:10px;align-items:flex-start}
+.mc .mi{font-size:1.1rem;flex-shrink:0}
+.mc .mt{flex:1}
+.mc .mt .mn{font-weight:600;font-size:.9rem;margin-bottom:2px}
+.mc .mt .md{font-size:.82rem;color:#555;line-height:1.6}
+.mc .mt .mr{display:flex;gap:4px;flex-wrap:wrap;margin-top:5px}
+.mc .mt .mr a{padding:2px 9px;border-radius:4px;font-size:.74rem;color:#1a1a1e;background:#e2e1dd;text-decoration:none;transition:background .12s}
+.mc .mt .mr a:hover{background:#d4d2ce}
+
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:6px}
+.gi{padding:9px 11px;border:1px solid #eee;border-radius:4px;cursor:pointer;transition:all .12s;background:#fff}
+.gi:hover{background:#f7f6f3;border-color:#ddd}
+.gi .gii{font-size:.7rem;color:#888;margin-bottom:1px}
+.gi .git{font-size:.82rem;font-weight:500;color:#1a1a1e;margin-bottom:1px}
+.gi .gia{font-size:.7rem;color:#888}
+.gi .gst{display:inline-block;font-size:.58rem;padding:1px 6px;border-radius:3px;margin-top:3px}
+.gi .gst.sd{background:#ecf7ee;color:#3a7a4a}
+.gi .gst.si2{background:#eef1f8;color:#3a5a8c}
+.gi .gst.sw{background:#f5f5f5;color:#888}
+.gi .gst.sa{background:#fcf5e8;color:#b88a2a}
+
+@media(max-width:600px){.page{padding:24px 16px 60px}.p-title{font-size:1.3rem}.gal{grid-template-columns:1fr 1fr}}
+
+.empty{text-align:center;padding:40px 0;color:#888;font-size:.85rem}
+</style>
+</head>
+<body>
+<div class="top-nav">
+  <a href="index.html">🏠 知识仓库</a><span class="sp">/</span>
+  <a href="index.html" id="bc">地区</a><span class="sp">/</span>
+  <span class="cr" id="bcc"></span>
+</div>
+<div class="page" id="page">
+  <div class="p-icon" id="regIcon">🌎</div>
+  <div class="p-title" id="regTitle">加载中...</div>
+  <div class="p-sub" id="regDesc"></div>
+  <hr>
+  <div class="sec" id="artSec" style="display:none">
+    <h2>🎨 艺术特色</h2>
+    <div class="callout"><span class="ci">💡</span><span class="ct" id="artCtx"></span></div>
+  </div>
+  <div class="sec" id="mvSec" style="display:none">
+    <h2>🔄 跨地区影响</h2>
+    <div id="mvCtx"></div>
+  </div>
+  <div class="sec" id="itemsSec">
+    <h2>📚 作品 <span class="cnt" id="itemCnt"></span></h2>
+    <div id="itemGps"></div>
+  </div>
+</div>
+<script>
+const REGS={'拉美':{icon:'🌎',desc:'拉丁美洲',art:'融合了印第安、欧洲和非洲文化，魔幻与现实交织，情感浓烈，色彩鲜明。文学上以魔幻现实主义闻名，作品充满神话色彩和政治隐喻。'},'中国':{icon:'🇨🇳',desc:'中国',art:'五千年文明积淀，讲究意境与留白，语言精炼而富有哲思。文学上现实主义传统深厚，社会关怀是核心主题。'},'日本':{icon:'🇯🇵',desc:'日本',art:'物哀美学、幽玄、侘寂——以极简和含蓄见长。文学细腻敏感，擅长刻画孤独与人性幽微。'},'法国':{icon:'🇫🇷',desc:'法国',art:'浪漫与理性并存，哲学思辨贯穿各类艺术。文学上从存在主义到新浪潮，始终站在思想前沿。'},'英国':{icon:'🇬🇧',desc:'英国',art:'讽刺传统深厚，黑色幽默独树一帜。文学从莎士比亚到奥威尔，既有古典典雅也有现代犀利。'},'美国':{icon:'🇺🇸',desc:'美国',art:'多元文化熔炉，个人主义和实验精神突出。好莱坞主导全球电影工业，文学上通俗与精英并存。'},'欧美':{icon:'🌍',desc:'欧美',art:'西方文明的交汇地带，理性传统与浪漫主义并重，思想开放多元。'},'全球':{icon:'🌏',desc:'全球视野',art:'跨越地域边界，融合多元文化视角，关注人类共同议题。'},'通用':{icon:'⚙️',desc:'通用',art:'不限于特定地区的通用知识和方法论。'}};
+const MOVS={'魔幻现实主义':{desc:'将神话、传说与日常现实无缝融合的文学流派。起源于拉美，深刻影响了全球文学。代表作：《百年孤独》。',regions:['拉美','全球']}};
+const TI={book:{i:'📚',l:'书'},movie:{i:'🎬',l:'影'},article:{i:'📝',l:'文'},podcast:{i:'🎙️',l:'播'},english:{i:'🇬🇧',l:'英'},idea:{i:'💡',l:'灵感'},project:{i:'🏆',l:'项目'},review:{i:'🔄',l:'复盘'},sop:{i:'📋',l:'SOP'},tool:{i:'🔧',l:'工具'}};
+function sl(s){return{read:'已读',reading:'在读',want:'想读',done:'完成',watching:'在看',saved:'已存',listening:'在听',learning:'学习中',learned:'已掌握',todo:'待学',active:'启用',archived:'归档',draft:'草稿',ongoing:'进行中',paused:'暂停',using:'在用',tried:'试过'}[s]||s}
+function sc(s){return{read:'sd',reading:'si2',want:'sw',done:'sd',watching:'si2',saved:'sw',listening:'si2',learning:'si2',learned:'sd',todo:'sw',active:'sa',archived:'sw',draft:'sw',ongoing:'sa',paused:'sp',using:'sa',tried:'sw'}[s]||''}
+function es(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+let ITEMS=[],region='';
+function load(){try{const s=localStorage.getItem('k_data');if(s)ITEMS=JSON.parse(s)}catch(e){}try{region=localStorage.getItem('kc_region')||''}catch(e){}return ITEMS.length>0}
+function render(){
+  const ri=REGS[region]||{icon:'🌍',desc:region,art:''},items=ITEMS.filter(i=>i.region===region);
+  document.getElementById('regIcon').textContent=ri.icon;
+  document.getElementById('regTitle').textContent=region;
+  document.getElementById('bcc').textContent=region;
+  document.getElementById('regDesc').textContent=`${ri.desc} · ${items.length} 件作品`;
+  if(ri.art){document.getElementById('artSec').style.display='block';document.getElementById('artCtx').textContent=ri.art}
+  const movements=Object.entries(MOVS).filter(([k,v])=>v.regions.includes(region));
+  const mc=document.getElementById('mvCtx');
+  if(movements.length){document.getElementById('mvSec').style.display='block';mc.innerHTML=movements.map(([n,m])=>`<div class="mc"><span class="mi">🔄</span><div class="mt"><div class="mn">${n}</div><div class="md">${m.desc}</div><div class="mr">${m.regions.filter(r=>r!==region).map(r=>`<a href="#" onclick="jump('${r}')">${REGS[r]?.icon||'🌍'} ${r}</a>`).join('')}</div></div></div>`).join('')}
+  const groups={};items.forEach(i=>{const t=i.type;if(!groups[t])groups[t]=[];groups[t].push(i)});
+  const order=['book','movie','article','podcast','english','project','sop','review','idea','tool'];
+  const ig=document.getElementById('itemGps');
+  if(!items.length){ig.innerHTML='<div class="empty">📭 暂无作品</div>';document.getElementById('itemCnt').textContent='(0)';return}
+  document.getElementById('itemCnt').textContent=`(${items.length})`;
+  ig.innerHTML=order.filter(t=>groups[t]).map(t=>{const ti=TI[t]||{i:'📌',l:t};return`<div style="margin-bottom:16px"><h3 style="font-size:.85rem;font-weight:500;color:#888;margin-bottom:5px">${ti.i} ${ti.l} · ${groups[t].length}</h3><div class="gal">${groups[t].map(i=>{const iid=ITEMS.indexOf(i);return`<div class="gi" onclick="openItem(${iid})"><div class="gii">${ti.i}</div><div class="git">${es(i.title)}</div><div class="gia">${i.creator||''}</div><span class="gst ${sc(i.status)}">${sl(i.status)}</span>${i.movement?`<span style="font-size:.58rem;color:var(--accent);margin-left:3px">${i.movement}</span>`:''}</div>`}).join('')}</div></div>`}).join('')
+}
+function openItem(i){localStorage.setItem('kc_idx',JSON.stringify(i));localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='detail.html'}
+function jump(r){localStorage.setItem('kc_region',r);localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='region.html'}
+if(load())render();else document.getElementById('page').innerHTML='<div class="empty">📭 无数据</div>';
+</script>
+</body>
+</html>

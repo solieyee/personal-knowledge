@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>详情 · 知识仓库</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{--bg:#f8f7f4;--card:#fff;--text:#1a1a1e;--t2:#6b6b6b;--accent:#8b6f47;--al:#f2ede4;--border:#e6e4df;--radius:8px;--shadow:0 1px 3px rgba(0,0,0,.04);--star:#d4a043;--ck:#3a7a4a;--ckb:#ecf7ee;--tb1:#eef1f8;--tc1:#3a5a8c;--tb2:#fceeec;--tc2:#b84a3a}
+body{font-family:'Noto Sans SC',sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
+
+.top-bar{display:flex;align-items:center;justify-content:space-between;padding:8px 16px;background:var(--card);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+.top-bar .back{background:none;border:none;font-size:.78rem;color:var(--t2);cursor:pointer;padding:4px 8px;border-radius:4px;font-family:inherit}
+.top-bar .back:hover{background:var(--bg);color:var(--text)}
+.top-bar .acts{display:flex;gap:4px}
+.top-bar .acts button{padding:4px 12px;border-radius:4px;border:none;font-size:.72rem;cursor:pointer;font-weight:500;font-family:inherit;transition:all .12s}
+.sb{background:#1a1a1e;color:#fff}.sb:hover{background:#333}
+.db{background:transparent;color:#b84a3a;border:1px solid #e8d6d4!important}
+.db:hover{background:#fceeec}
+
+.hero{height:130px;display:flex;align-items:center;justify-content:center;font-family:'Noto Serif SC',serif;font-size:1.15rem;color:#fff;position:relative;text-align:center;padding:0 20px;flex-direction:column;gap:2px}
+.hero .ht{font-size:.6rem;opacity:.65;font-weight:300;font-family:'Noto Sans SC',sans-serif}
+.hero .hb{position:absolute;top:8px;right:14px;padding:2px 8px;border-radius:4px;font-size:.6rem;color:#fff}
+.sd{background:#6a9a6a}.si2{background:#6a8aba}.sw{background:#b0b0b0}.sa{background:#c9a84a}.sp{background:#b09070}
+
+.container{max-width:640px;margin:0 auto;padding:16px 16px 60px}
+.sec{background:var(--card);border-radius:6px;box-shadow:var(--shadow);padding:14px;margin-bottom:10px}
+.sec h3{font-size:.68rem;color:var(--accent);margin-bottom:8px;padding-bottom:3px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px}
+
+.fg{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-bottom:4px}
+.fg .fu{grid-column:1/-1}
+.fd label{font-size:.6rem;color:var(--t2);display:block;margin-bottom:1px;font-weight:500}
+.fd input,.fd select,.fd textarea{width:100%;padding:6px 9px;border:1px solid var(--border);border-radius:5px;font-size:.78rem;font-family:inherit;background:#fafaf8;transition:border .12s}
+.fd input:focus,.fd select:focus,.fd textarea:focus{outline:none;border-color:var(--accent);background:#fff}
+.fd textarea{resize:vertical;min-height:38px}
+.fd input[readonly]{background:var(--bg);color:var(--t2);cursor:default}
+.rf{color:var(--accent)!important;font-weight:500!important;cursor:pointer!important}
+
+.ss{display:flex;gap:2px;margin-top:2px}
+.ss .s{font-size:1.1rem;cursor:pointer;color:#e0ddd5;transition:color .1s}
+.ss .s:hover{transform:scale(1.06)}
+.ss .s.f{color:var(--star)}
+
+.te{display:flex;flex-wrap:wrap;gap:3px;margin-top:2px;min-height:22px;align-items:center}
+.te .tag{font-size:.64rem;padding:1px 7px;border-radius:4px;display:inline-flex;align-items:center;gap:3px}
+.te .tag .del{cursor:pointer;font-size:.7rem;opacity:.5}
+.te .tag .del:hover{opacity:1}
+.tc0{background:var(--tb1);color:var(--tc1)}.tc1{background:var(--tb2);color:var(--tc2)}
+.te .ti{border:none;outline:none;font-size:.74rem;font-family:inherit;min-width:45px;background:transparent;padding:2px 0;color:var(--text)}
+
+.sl{margin-top:2px}
+.si2{display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:4px;margin-bottom:2px;cursor:pointer}
+.si2:hover{background:var(--bg)}
+.si2 .cb{width:14px;height:14px;border-radius:50%;border:2px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:.45rem;color:transparent;flex-shrink:0;transition:all .12s}
+.si2 .cb.d{border-color:var(--ck);background:var(--ck);color:#fff}
+.si2 .st{font-size:.76rem;flex:1}
+.si2 .st.d{text-decoration:line-through;color:#bbb}
+
+.pl{margin-top:2px}
+.pi{padding:7px 10px;background:var(--bg);border-radius:4px;margin-bottom:4px}
+.pi .pq{font-size:.76rem;font-weight:500;color:var(--accent);margin-bottom:2px}
+.pi .pa{font-size:.76rem;color:var(--text);width:100%;border:none;background:transparent;resize:vertical;min-height:30px;font-family:inherit;padding:3px 5px;border-radius:3px}
+.pi .pa:focus{outline:none;background:#fff;box-shadow:0 0 0 2px rgba(139,111,71,.1)}
+
+.ls{display:flex;flex-wrap:wrap;gap:5px;margin-top:2px}
+.lc{display:flex;align-items:center;gap:4px;padding:4px 9px;border:1px solid var(--border);border-radius:4px;cursor:pointer;font-size:.7rem;background:var(--bg);transition:all .12s}
+.lc:hover{border-color:var(--accent);background:var(--al)}
+.alb{padding:4px 9px;border:1px dashed #ddd;border-radius:4px;cursor:pointer;font-size:.66rem;color:#888;background:transparent;font-family:inherit;transition:all .12s}
+.alb:hover{border-color:var(--accent);color:var(--accent)}
+.lsel{display:none;margin-top:3px}.lsel.s{display:flex;gap:3px}
+.lsel select{flex:1;padding:3px 6px;border:1px solid var(--border);border-radius:4px;font-size:.7rem;font-family:inherit;background:#fafaf8}
+.pe{display:flex;align-items:center;gap:4px}
+.pe input[type=range]{flex:1;accent-color:var(--accent);height:3px}
+.pe .pv{font-size:.7rem;color:var(--t2);min-width:28px;text-align:right}
+
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%) translateY(70px);background:#1a1a1e;color:#fff;padding:6px 16px;border-radius:5px;font-size:.74rem;opacity:0;transition:all .3s;z-index:100;pointer-events:none}
+.toast.s{opacity:1;transform:translateX(-50%) translateY(0)}
+
+@media(max-width:600px){.fg{grid-template-columns:1fr}.hero{height:110px;font-size:1rem}.sec{padding:10px 10px}}
+
+.h0{background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460)}
+.h1{background:linear-gradient(135deg,#3e1f47,#5c2e5e,#7a4a6e)}
+.h2{background:linear-gradient(135deg,#1d3b3b,#2d5a5a,#3d7a7a)}
+.h3{background:linear-gradient(135deg,#4a2c2c,#6b3a3a,#8b4a4a)}
+.h4{background:linear-gradient(135deg,#2c3e2c,#3d5a3d,#4e7a4e)}
+.h5{background:linear-gradient(135deg,#2c2c4a,#3a3a6b,#4a4a8b)}
+.h6{background:linear-gradient(135deg,#4a3c2c,#6b553a,#8b704a)}
+.h7{background:linear-gradient(135deg,#2c1a3e,#4a2d5c,#6b3d7a)}
+.h8{background:linear-gradient(135deg,#1a2e2e,#2d4a4a,#3d6b6b)}
+.h9{background:linear-gradient(135deg,#3e2c1a,#5a4a2d,#7a6b3d)}
+</style>
+</head>
+<body>
+<div class="top-bar">
+  <button class="back" onclick="gb()">← 返回</button>
+  <div class="acts"><button class="db" onclick="del()">🗑</button><button class="sb" onclick="save()">💾 保存</button></div>
+</div>
+<div class="hero h0" id="hero"><span class="ht" id="ht"></span><span id="hti"></span><span class="hb sd" id="hba"></span></div>
+<div class="container" id="main"></div>
+<div class="toast" id="toast"></div>
+<script>
+function tc(t){let h=0;for(let i=0;i<t.length;i++)h=(h*31+t.charCodeAt(i))|0;return 'tc'+(Math.abs(h)%2)}
+function sl(s){return{read:'已读',reading:'在读',want:'想读',done:'完成',watching:'在看',saved:'已存',listening:'在听',learning:'学习中',learned:'已掌握',todo:'待学',active:'启用',archived:'归档',draft:'草稿',ongoing:'进行中',paused:'暂停',using:'在用',tried:'试过'}[s]||s}
+function sc(s){return{read:'sd',reading:'si2',want:'sw',done:'sd',watching:'si2',saved:'sw',listening:'si2',learning:'si2',learned:'sd',todo:'sw',active:'sa',archived:'sw',draft:'sw',ongoing:'sa',paused:'sp',using:'sa',tried:'sw'}[s]||''}
+const TI={book:{i:'📚',l:'书',nl:'笔记',cl:'作者'},movie:{i:'🎬',l:'影',nl:'影评',cl:'导演'},article:{i:'📝',l:'文',nl:'笔记',cl:'作者'},podcast:{i:'🎙️',l:'播',nl:'听后记',cl:'主播'},english:{i:'🇬🇧',l:'英',nl:'学习笔记',cl:'来源'},idea:{i:'💡',l:'灵感',nl:'思考',cl:'来源'},project:{i:'🏆',l:'项目',nl:'进展',cl:'角色'},review:{i:'🔄',l:'复盘',nl:'总结',cl:'对象'},sop:{i:'📋',l:'SOP',nl:'说明',cl:'场景'},tool:{i:'🔧',l:'工具',nl:'心得',cl:'开发者'}};
+const SCfg={book:[['read','已读'],['reading','在读'],['want','想读']],movie:[['done','已看'],['watching','在看'],['want','想看']],article:[['read','已读'],['saved','待读']],podcast:[['done','已听'],['listening','在听'],['saved','待听']],english:[['learning','学习中'],['learned','已掌握'],['todo','待学']],idea:[['active','活跃'],['archived','归档']],project:[['ongoing','进行中'],['done','完成'],['paused','暂停']],review:[['done','完成'],['draft','草稿']],sop:[['active','启用'],['archived','归档']],tool:[['using','在用'],['tried','试过'],['want','想试']]};
+const EL={book:'页数',movie:'年份',article:'来源',podcast:'平台',english:'音标',idea:'场景',project:'进度',review:'周期',sop:'步骤',tool:'平台'};
+const REG={'拉美':'🌎','中国':'🇨🇳','日本':'🇯🇵','法国':'🇫🇷','英国':'🇬🇧','美国':'🇺🇸','欧美':'🌍','全球':'🌏','通用':'⚙️'};
+function es(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
+let ITEMS=[],idx=-1,item=null;
+function load(){
+  try{const s=localStorage.getItem('k_data');if(s)ITEMS=JSON.parse(s)}catch(e){}
+  if(!ITEMS||!ITEMS.length){document.getElementById('main').innerHTML='<div style="padding:60px;text-align:center;color:#888">无数据</div>';return false}
+  try{idx=parseInt(localStorage.getItem('k_idx'))}catch(e){}
+  if(idx<0||idx>=ITEMS.length){document.getElementById('main').innerHTML='<div style="padding:60px;text-align:center;color:#888">条目不存在</div>';return false}
+  item=ITEMS[idx];return true
+}
+function render(){
+  if(!item)return;const ci=idx%10,info=TI[item.type]||{i:'📌',l:item.type,nl:'笔记',cl:''};
+  document.getElementById('hero').className=`hero h${ci}`;
+  document.getElementById('ht').textContent=`${info.i} ${info.l}`;
+  document.getElementById('hti').textContent=item.title;
+  const b=document.getElementById('hba');b.className=`hb ${sc(item.status)}`;b.textContent=sl(item.status);
+  const st=SCfg[item.type]||[['done','完成'],['todo','待做']],el=EL[item.type]||'备注';
+  let ph='';
+  if(item.type==='project'){const p=parseInt(item.extra)||0;ph=`<div class="fd fu"><label>进度</label><div class="pe"><input type="range" min="0" max="100" value="${Math.min(p,100)}" oninput="document.getElementById('pv').textContent=this.value+'%';document.getElementById('fExtra').value=this.value+'%'"><span class="pv" id="pv">${Math.min(p,100)}%</span></div></div>`}
+  const dm=(item.domain||[]).join(' · '),ri=REG[item.region]||'',rh=item.region?`<div class="fd fu"><label>地区</label><input class="rf" value="${ri} ${item.region}" readonly onclick="openR('${item.region}')"></div>`:'';
+  let html=`<div class="sec"><h3>📋 基本信息</h3><div class="fg">
+    <div class="fd"><label>标题</label><input readonly value="${es(item.title)}" id="fT"></div>
+    <div class="fd"><label>${info.cl}</label><input value="${es(item.creator||'')}" id="fC"></div>
+    <div class="fd"><label>状态</label><select id="fS" onchange="uc()">${st.map(([v,l])=>`<option value="${v}"${v===item.status?' selected':''}>${l}</option>`).join('')}</select></div>
+    <div class="fd"><label>评分</label><div class="ss" id="ss"></div></div>
+    <div class="fd"><label>分类</label><input value="${es(item.sub||'')}" id="fSub"></div>
+    <div class="fd"><label>${el}</label><input value="${es(item.extra||'')}" id="fExtra"></div>
+    ${rh}
+    ${dm?`<div class="fd fu"><label>知识域</label><input value="${es(dm)}" id="fDm"></div>`:''}
+    ${ph}</div></div>
+    <div class="sec"><h3>🏷️ 标签</h3><div class="te" id="tagsC"></div></div>`;
+  if(item.type==='sop'&&item.steps){const t=item.steps.length,d=item.steps.filter(s=>s.done).length;html+=`<div class="sec"><h3>✅ 步骤 (${d}/${t})</h3><div class="sl">${item.steps.map((s,i)=>`<div class="si2" onclick="ts(${i})"><span class="cb${s.done?' d':''}">${s.done?'✓':''}</span><span class="st${s.done?' d':''}">${es(s.text)}</span></div>`).join('')}</div></div>`}
+  if(item.type==='review'&&item.prompts){html+=`<div class="sec"><h3>💭 引导复盘</h3><div class="pl">${item.prompts.map((p,i)=>`<div class="pi"><div class="pq">${es(p.q)}</div><textarea class="pa" oninput="item.prompts[${i}].a=this.value">${es(p.a||'')}</textarea></div>`).join('')}</div></div>`}
+  html+=`<div class="sec"><h3>📝 ${info.nl}</h3><div class="fg">
+    <div class="fd fu"><label>简介</label><textarea rows="1" id="fEx">${es(item.excerpt||'')}</textarea></div>
+    <div class="fd fu"><label>详细笔记</label><textarea rows="3" style="min-height:70px" id="fN">${es(item.notes||'')}</textarea></div>
+    <div class="fd fu"><label>金句</label><textarea rows="1" id="fQ">${es(item.quote||'')}</textarea></div></div></div>
+    <div class="sec"><h3>🔗 链接</h3><div class="ls" id="linksS"></div></div>`;
+  document.getElementById('main').innerHTML=html;
+  renderStars(item.rating||0);renderTags();renderLinks();
+}
+function renderStars(r){const c=document.getElementById('ss');if(!c)return;c.innerHTML='';for(let i=1;i<=5;i++){const s=document.createElement('span');s.className=`s${i<=r?' f':''}`;s.textContent='★';s.onclick=()=>{c.querySelectorAll('.s').forEach((e,j)=>{e.className=j<i?'s f':'s'})};c.appendChild(s)}}
+function renderTags(){const c=document.getElementById('tagsC');if(!c)return;const t=item.tags||[];c.innerHTML=t.map(x=>`<span class="tag ${tc(x)}">${es(x)}<span class="del" onclick="rt('${es(x)}')">×</span></span>`).join('');const i=document.createElement('input');i.className='ti';i.placeholder=t.length?'+':'+';i.onkeydown=e=>{if(e.key==='Enter'||e.key===','){e.preventDefault();const v=i.value.trim();if(v)at(v);i.value=''}};i.onblur=()=>{const v=i.value.trim();if(v){at(v);i.value=''}};c.appendChild(i)}
+function at(t){if(!item.tags)item.tags=[];if(!item.tags.includes(t)){item.tags.push(t);renderTags()}}
+function rt(t){if(item.tags){item.tags=item.tags.filter(x=>x!==t);renderTags()}}
+function uc(){const s=document.getElementById('fS').value;const b=document.getElementById('hba');b.className=`hb ${sc(s)}`;b.textContent=sl(s)}
+function ts(i){if(!item.steps||!item.steps[i])return;item.steps[i].done=!item.steps[i].done;const t=item.steps.length,d=item.steps.filter(s=>s.done).length;const h3=document.querySelector('.sl')?.previousElementSibling;if(h3)h3.innerHTML=`✅ 步骤 (${d}/${t})`;const l=document.querySelector('.sl');if(l)l.innerHTML=item.steps.map((s,j)=>`<div class="si2" onclick="ts(${j})"><span class="cb${s.done?' d':''}">${s.done?'✓':''}</span><span class="st${s.done?' d':''}">${es(s.text)}</span></div>`).join('');ss()}
+function renderLinks(){const c=document.getElementById('linksS');if(!c)return;const lk=item.links||[];c.innerHTML=lk.filter(t=>typeof t==='string').map(t=>{const f=ITEMS.findIndex(i=>i.title===t);if(f<0)return'';const fi=ITEMS[f],ii=TI[fi.type]?.i||'📌';return`<div class="lc" onclick="nav(${f})"><span>${ii}</span>${es(fi.title)} ↗</div>`}).join('')+`<button class="alb" onclick="document.getElementById('lSel').classList.toggle('s')">＋链接</button><div class="lsel" id="lSel"><select id="lT"><option value="">选择...</option>${ITEMS.map((i,j)=>{if(j===idx||lk.includes(i.title))return'';const ii=TI[i.type]?.i||'📌';return`<option value="${j}">${ii} ${es(i.title)}</option>`}).filter(Boolean).join('')}</select><button class="sb" style="padding:3px 8px;font-size:.66rem" onclick="al()">添加</button></div>`}
+function al(){const s=document.getElementById('lT');if(!s||!s.value)return;const t=ITEMS[parseInt(s.value)];if(!t)return;if(!item.links)item.links=[];if(!item.links.includes(t.title)){item.links.push(t.title);renderLinks();ss()}}
+function nav(i){collect();let st=JSON.parse(localStorage.getItem('k_ns')||'[]');st.push(idx);localStorage.setItem('k_ns',JSON.stringify(st));localStorage.setItem('k_idx',JSON.stringify(i));localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='detail.html'}
+function openR(r){collect();localStorage.setItem('k_region',r);localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='region.html'}
+function collect(){if(!item)return;item.status=(document.getElementById('fS')?.value)||item.status;item.creator=document.getElementById('fC')?.value.trim()||item.creator;item.sub=document.getElementById('fSub')?.value.trim()||item.sub;item.extra=document.getElementById('fExtra')?.value.trim()||item.extra;const dm=document.getElementById('fDm')?.value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean);if(dm&&dm.length)item.domain=dm;item.excerpt=document.getElementById('fEx')?.value.trim()||'';item.notes=document.getElementById('fN')?.value.trim()||'';item.quote=document.getElementById('fQ')?.value.trim()||'';const ss=document.querySelectorAll('#ss .s.f');if(ss)item.rating=ss.length}
+function save(){collect();sto();show('✅ 已保存')}
+function ss(){sto()}
+function sto(){try{localStorage.setItem('k_data',JSON.stringify(ITEMS))}catch(e){}}
+function del(){if(!confirm(`删除「${item.title}」?`))return;ITEMS.splice(idx,1);sto();show('🗑 已删');setTimeout(()=>gb(),300)}
+function gb(){const st=JSON.parse(localStorage.getItem('k_ns')||'[]');if(st.length>0){const p=st.pop();localStorage.setItem('k_ns',JSON.stringify(st));collect();localStorage.setItem('k_idx',JSON.stringify(p));localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.replace('detail.html')}else{localStorage.removeItem('k_ns');window.location.href='index.html'}}
+function show(m){const e=document.getElementById('toast');e.textContent=m;e.classList.add('s');clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove('s'),1500)}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')gb();if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();save()}});
+if(load())render();
+</script>
+</body>
+</html>
