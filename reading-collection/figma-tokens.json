@@ -1,0 +1,71 @@
+{
+  "研究工作室 · Design Tokens": "Direction D — Newsprint / 旧报纸风格",
+  "import_hint": "在 Figma 中安装 Design Tokens 插件，粘贴此文件导入",
+
+  "global": {
+    "color": {
+      "paper": { "value": "#F0ECE4", "type": "color", "description": "新闻纸底色" },
+      "surface": { "value": "#F8F5EE", "type": "color", "description": "表面/卡片" },
+      "ink": { "value": "#1C1A16", "type": "color", "description": "正文黑" },
+      "ink-mid": { "value": "#4A443C", "type": "color", "description": "次级文字" },
+      "ink-dim": { "value": "#8C857A", "type": "color", "description": "淡色文字" },
+      "accent": { "value": "#C43929", "type": "color", "description": "强调色/信号红" },
+      "rule": { "value": "#D8D2C8", "type": "color", "description": "分割线" },
+      "rule-thin": { "value": "#E8E4DC", "type": "color", "description": "细分割线" }
+    },
+    "typography": {
+      "font-headline": { "value": "Georgia Black", "type": "fontFamily" },
+      "font-serif": { "value": "Georgia, Times New Roman", "type": "fontFamily" },
+      "font-sans": { "value": "Inter, -apple-system", "type": "fontFamily" },
+      "h1": { "value": { "fontSize": 32, "fontWeight": 700, "lineHeight": 1.1, "fontFamily": "Georgia Black" }, "type": "typography" },
+      "h2": { "value": { "fontSize": 20, "fontWeight": 700, "lineHeight": 1.2, "fontFamily": "Georgia Black" }, "type": "typography" },
+      "body": { "value": { "fontSize": 14.5, "fontWeight": 400, "lineHeight": 1.75, "fontFamily": "Georgia" }, "type": "typography" },
+      "label": { "value": { "fontSize": 8, "fontWeight": 500, "letterSpacing": 1.5, "fontFamily": "Inter" }, "type": "typography" },
+      "caption": { "value": { "fontSize": 11, "fontWeight": 400, "fontStyle": "italic", "fontFamily": "Georgia" }, "type": "typography" }
+    },
+    "spacing": {
+      "xs": { "value": 4 },
+      "sm": { "value": 8 },
+      "md": { "value": 16 },
+      "lg": { "value": 24 },
+      "xl": { "value": 36 },
+      "reading-width": { "value": 680, "unit": "px" }
+    },
+    "borderRadius": { "value": 0, "description": "全部直角" },
+    "boxShadow": { "value": "none", "description": "无投影" }
+  },
+
+  "components": {
+    "navigation": {
+      "height": 44,
+      "borderBottom": "2px solid #1C1A16",
+      "linkPadding": "0 12px",
+      "activeIndicator": "2px #C43929 bottom",
+      "actionButton": { "fontSize": 10, "color": "#8C857A", "hoverColor": "#1C1A16" }
+    },
+    "entryList": {
+      "borderBottom": "1px dotted #E8E4DC",
+      "hoverColor": "#C43929",
+      "titleFont": "Georgia Black 17px",
+      "metaFont": "Georgia italic 11px #8C857A"
+    },
+    "detailPage": {
+      "maxWidth": 680,
+      "backLink": "Inter 9px uppercase #8C857A",
+      "bodyFont": "Georgia 14.5px #4A443C",
+      "blockquote": "2px solid #C43929 left border"
+    },
+    "modal": {
+      "background": "rgba(28,26,22,.15)",
+      "surface": "#F8F5EE",
+      "border": "1px solid #1C1A16",
+      "button": "1px solid #1C1A16, hover fills black"
+    },
+    "graph": {
+      "nodeProject": "#1C1A16",
+      "nodeConcept": "#C43929",
+      "nodeReading": "#8C857A",
+      "nodeSize": { "project": 8, "concept": 6, "reading": 4 }
+    }
+  }
+}

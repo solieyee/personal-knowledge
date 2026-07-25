@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Style Guide · 自然志</title>
+<style>
+/* ═══════════════════════════════════════════
+   RESEARCH STUDIO · STYLE GUIDE
+   Direction: Antiquarian Natural History
+   Copperplate · Engraving · Herbarium · Atlas
+   ═══════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Libre+Baskerville:ital@0;1&family=Inter:wght@300;400&family=UnifrakturMaguntia&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+/* ── Aged paper texture ── */
+body{
+  background-color:#E8DECA;
+  background-image:
+    radial-gradient(ellipse at 15% 25%, rgba(180,150,110,.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 75% 65%, rgba(140,110,80,.06) 0%, transparent 40%),
+    radial-gradient(ellipse at 50% 50%, rgba(200,180,150,.04) 0%, transparent 70%),
+    repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(180,160,130,.015) 2px, rgba(180,160,130,.015) 4px);
+  color:#2A2018;
+  font-family:'Cormorant Garamond','Noto Serif SC',Georgia,serif;
+  font-size:17px;
+  line-height:1.65;
+  padding:0;
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ── Foxing / age spots overlay ── */
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:9999;
+  background-image:
+    radial-gradient(ellipse at 23% 45%, rgba(160,130,100,.12) 0%, transparent 30%),
+    radial-gradient(ellipse at 72% 28%, rgba(150,120,90,.08) 0%, transparent 25%),
+    radial-gradient(ellipse at 55% 72%, rgba(170,140,110,.06) 0%, transparent 35%),
+    radial-gradient(ellipse at 88% 60%, rgba(140,110,80,.1) 0%, transparent 20%),
+    radial-gradient(ellipse at 10% 80%, rgba(160,130,100,.07) 0%, transparent 30%);
+  mix-blend-mode:multiply;
+}
+
+/* ── Page layout ── */
+.page{
+  max-width:800px;
+  margin:0 auto;
+  padding:64px 48px 80px;
+  position:relative;
+  background:linear-gradient(180deg, rgba(248,240,225,.95) 0%, rgba(240,228,210,.95) 100%);
+  box-shadow:0 0 0 1px rgba(180,160,130,.3), 0 8px 40px rgba(80,60,40,.08);
+}
+
+/* ── Decorative title ── */
+.page-title{
+  text-align:center;
+  padding-bottom:32px;
+  margin-bottom:32px;
+  border-bottom:1px solid rgba(160,135,110,.3);
+  position:relative;
+}
+.page-title::after{
+  content:'✻ ✻ ✻';
+  position:absolute;
+  bottom:-10px;
+  left:50%;
+  transform:translateX(-50%);
+  font-size:12px;
+  color:#B09880;
+  letter-spacing:8px;
+  background:#F0E4D0;
+  padding:0 16px;
+}
+.title-main{
+  font-family:'UnifrakturMaguntia','Libre Baskerville',serif;
+  font-size:42px;
+  font-weight:400;
+  color:#1A1510;
+  letter-spacing:3px;
+  margin-bottom:4px;
+}
+.title-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;
+  font-style:italic;
+  color:#8A7A6A;
+  letter-spacing:2px;
+}
+.title-date{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;
+  color:#B09880;
+  letter-spacing:1px;
+  margin-top:4px;
+}
+
+/* ── Section ── */
+.section{
+  margin-bottom:44px;
+  position:relative;
+}
+.section-number{
+  font-family:'Inter',sans-serif;
+  font-size:9px;
+  color:#B09880;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  margin-bottom:4px;
+}
+.section-title{
+  font-family:'UnifrakturMaguntia',serif;
+  font-size:24px;
+  font-weight:400;
+  color:#2A2018;
+  letter-spacing:1.5px;
+  margin-bottom:6px;
+}
+.section-title .alt{
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;
+  font-weight:400;
+  letter-spacing:1px;
+  font-style:italic;
+  color:#6A5A4A;
+}
+.section-desc{
+  font-size:14px;
+  color:#8A7A6A;
+  font-style:italic;
+  margin-bottom:20px;
+  max-width:480px;
+  line-height:1.5;
+}
+
+/* ── Palette ── */
+.palette{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0;border:1px solid rgba(160,135,110,.2);padding:20px;background:rgba(248,240,225,.6)}
+.swatch{display:flex;align-items:center;gap:10px;width:180px}
+.swatch .color{width:28px;height:28px;border:1px solid rgba(160,135,110,.3);flex-shrink:0}
+.swatch .info{}
+.swatch .name{font-size:12px;color:#2A2018;font-weight:600}
+.swatch .hex{font-size:10px;color:#8A7A6A;font-family:'Inter',sans-serif}
+
+/* ── Typography ── */
+.type-block{margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid rgba(180,160,130,.15)}
+.type-label{font-size:9px;color:#B09880;letter-spacing:2px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:4px}
+.display-sample{font-family:'UnifrakturMaguntia',serif;font-size:56px;line-height:1;color:#1A1510;letter-spacing:4px;margin-bottom:2px}
+.h1-sample{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:700;color:#2A2018;letter-spacing:-.3px;line-height:1.15}
+.h2-sample{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:400;font-style:italic;color:#3A3028;letter-spacing:.5px}
+.body-sample{font-family:'Cormorant Garamond','Noto Serif SC',serif;font-size:17px;font-weight:300;color:#3A3028;line-height:1.7;max-width:560px}
+.caption-sample{font-family:'Cormorant Garamond',serif;font-size:12px;font-style:italic;color:#8A7A6A}
+.label-sample{font-family:'Inter',sans-serif;font-size:9px;color:#8A7A6A;letter-spacing:2px;text-transform:uppercase}
+.small-sample{font-family:'Libre Baskerville',serif;font-size:10px;color:#8A7A6A;letter-spacing:.5px}
+
+/* ── Engraving Illustration ── */
+.engraving{
+  background:#F4EAD8;
+  border:1px solid rgba(160,135,110,.3);
+  padding:40px 32px 32px;
+  margin:16px 0;
+  position:relative;
+  overflow:hidden;
+}
+.engraving::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background-image:
+    radial-gradient(ellipse at 30% 40%, transparent 0%, rgba(180,155,130,.06) 100%);
+  pointer-events:none;
+}
+.engraving svg{width:100%;height:auto;display:block}
+.engraving .fig{
+  font-family:'Inter',sans-serif;
+  font-size:8px;
+  color:#8A7A6A;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  margin-top:8px;
+  text-align:center;
+}
+
+/* ── Navigation ── */
+.nav-sample{
+  border:1px solid rgba(160,135,110,.25);
+  padding:0 16px;
+  margin:8px 0;
+  display:flex;
+  align-items:center;
+  background:rgba(248,240,225,.5);
+}
+.nav-sample a{
+  padding:10px 14px;
+  font-size:12px;
+  color:#8A7A6A;
+  text-decoration:none;
+  letter-spacing:.8px;
+  font-family:'Inter',sans-serif;
+  position:relative;
+  text-transform:uppercase;
+  cursor:default;
+}
+.nav-sample a.active{color:#2A2018}
+.nav-sample a.active::after{
+  content:'';
+  position:absolute;
+  bottom:-1px;
+  left:14px;
+  right:14px;
+  height:1px;
+  background:#2A2018;
+}
+.nav-sample .nav-icon{width:16px;height:16px;margin:0 12px;border-radius:50%;border:1px solid #B09880;flex-shrink:0}
+
+/* ── Entry List ── */
+.entry-list{margin:8px 0}
+.entry-list .entry{
+  display:flex;
+  align-items:baseline;
+  padding:7px 0;
+  border-bottom:1px solid rgba(180,160,130,.15);
+  cursor:default;
+  transition:all .15s;
+}
+.entry-list .entry:hover{border-bottom-color:#8A7A6A}
+.entry-list .entry:last-child{border-bottom:none}
+.entry-list .entry .e-date{
+  font-family:'Libre Baskerville',serif;
+  font-size:10px;
+  color:#B09880;
+  width:80px;
+  flex-shrink:0;
+  letter-spacing:.3px;
+}
+.entry-list .entry .e-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  color:#3A3028;
+  flex:1;
+}
+.entry-list .entry .e-type{
+  font-family:'Inter',sans-serif;
+  font-size:8px;
+  color:#B09880;
+  letter-spacing:1px;
+  text-transform:uppercase;
+}
+
+/* ── Tags ── */
+.tag-group{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0}
+.tag-group span{
+  padding:1px 10px;
+  border:1px solid rgba(160,135,110,.3);
+  font-family:'Libre Baskerville',serif;
+  font-size:10px;
+  color:#6A5A4A;
+  letter-spacing:.3px;
+}
+
+/* ── Blockquote ── */
+.quotation{
+  margin:12px 0;
+  padding:8px 20px;
+  border-left:1px solid #B09880;
+  font-style:italic;
+  color:#3A3028;
+  font-size:15px;
+  line-height:1.6;
+  max-width:520px;
+}
+.quotation .attr{font-size:11px;color:#8A7A6A;margin-top:4px;font-style:normal}
+
+/* ── Buttons ── */
+.btn-group{display:flex;gap:20px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.btn-text{
+  border:none;background:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:15px;font-style:italic;
+  color:#6A5A4A;cursor:pointer;
+  padding:2px 0;transition:color .2s;
+  letter-spacing:.3px;
+}
+.btn-text:hover{color:#2A2018}
+
+.btn-line{
+  border:1px solid rgba(160,135,110,.35);
+  background:transparent;
+  padding:5px 14px;
+  font-family:'Inter',sans-serif;
+  font-size:10px;letter-spacing:.5px;
+  color:#6A5A4A;cursor:pointer;
+  text-transform:uppercase;
+  transition:all .2s;
+}
+.btn-line:hover{background:rgba(160,135,110,.1);border-color:#8A7A6A}
+
+/* ── Input ── */
+.input-field{
+  border:1px solid rgba(160,135,110,.3);
+  padding:8px 12px;
+  background:rgba(248,240,225,.7);
+  font-family:'Cormorant Garamond',serif;
+  font-size:16px;
+  color:#2A2018;
+  width:300px;max-width:100%;
+  transition:all .2s;
+}
+.input-field:focus{outline:none;border-color:#8A7A6A;background:rgba(252,248,240,.9)}
+.input-field::placeholder{color:#B09880;font-style:italic}
+
+/* ── Ornamental Dividers ── */
+.divider-group{margin:8px 0;display:flex;flex-direction:column;gap:12px}
+.divider-line{height:1px;background:rgba(160,135,110,.3)}
+.divider-ornament{text-align:center;font-size:14px;color:#B09880;letter-spacing:10px}
+.divider-double{border-bottom:3px double rgba(160,135,110,.25);padding-bottom:2px}
+.divider-fleur{text-align:center;font-family:'UnifrakturMaguntia',serif;font-size:20px;color:#B09880;letter-spacing:6px;opacity:.6}
+
+/* ── Footnote ── */
+.footnote{
+  border-top:1px solid rgba(160,135,110,.2);
+  padding-top:6px;margin-top:12px;
+  font-size:11px;color:#8A7A6A;
+  font-style:italic;max-width:400px;
+  font-family:'Libre Baskerville',serif;
+}
+
+/* ── Drop Cap ── */
+.dropcap{font-family:'UnifrakturMaguntia',serif;font-size:52px;float:left;line-height:.8;margin:4px 12px 0 0;color:#1A1510;padding:2px 0}
+
+/* ── Two column layout ── */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.col-left,.col-right{}
+.col-right .sidebar-item{padding:6px 0;border-bottom:1px solid rgba(180,160,130,.12)}
+.col-right .sidebar-item:last-child{border-bottom:none}
+.col-right .si-label{font-size:9px;color:#B09880;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px}
+.col-right .si-title{font-size:14px;color:#3A3028;cursor:default;transition:color .2s}
+.col-right .si-title:hover{color:#2A2018}
+
+/* ── Page number ── */
+.page-num{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid rgba(160,135,110,.2);font-family:'Libre Baskerville',serif;font-size:10px;color:#B09880;letter-spacing:1px}
+
+/* ── Responsive ── */
+@media(max-width:680px){
+  .page{padding:32px 20px 60px}
+  .title-main{font-size:32px}
+  .two-col{grid-template-columns:1fr}
+  .palette .swatch{width:140px}
+}
+
+@media(prefers-color-scheme:dark){
+  body{background-color:#1A1510;background-image:none}
+  body::before{opacity:.3}
+  .page{background:linear-gradient(180deg, rgba(30,24,18,.97) 0%, rgba(26,20,14,.97) 100%);box-shadow:0 0 0 1px rgba(90,70,50,.3)}
+  .page-title{border-bottom-color:rgba(90,70,50,.4)}
+  .page-title::after{background:rgba(30,24,18,.97);color:#6A5A4A}
+  .title-main,.title-sub,.title-date{color:#C8B8A8}
+  .section-title{color:#C8B8A8}
+  .h1-sample{color:#C8B8A8}.h2-sample{color:#A89888}.body-sample{color:#A89888}
+  .entry-list .entry .e-title{color:#C8B8A8}
+  .engraving{background:#2A2018;border-color:rgba(90,70,50,.4)}
+  .engraving svg{filter:invert(.85) hue-rotate(10deg)}
+  .nav-sample{background:rgba(40,32,24,.5);border-color:rgba(90,70,50,.3)}
+  .nav-sample a{color:#A89888}.nav-sample a.active{color:#C8B8A8}
+  .nav-sample a.active::after{background:#C8B8A8}
+  .swatch .name{color:#C8B8A8}
+  .input-field{background:rgba(40,32,24,.5);border-color:rgba(90,70,50,.3);color:#C8B8A8}
+  .input-field:focus{background:rgba(50,40,30,.5);border-color:#8A7A6A}
+  .tag-group span{border-color:rgba(90,70,50,.3);color:#A89888}
+  .quotation{color:#A89888}
+  .btn-text{color:#A89888}.btn-text:hover{color:#C8B8A8}
+  .btn-line{border-color:rgba(90,70,50,.3);color:#A89888}.btn-line:hover{background:rgba(60,50,40,.5)}
+  .col-right .si-title{color:#A89888}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══ TITLE ═══ -->
+  <div class="page-title">
+    <div class="title-main">NATURALIS HISTORIA</div>
+    <div class="title-sub">Research Studio · Style Guide</div>
+    <div class="title-date">Anno Domini MMXXVI</div>
+  </div>
+
+  <!-- ═══ 01 COLOR ═══ -->
+  <div class="section">
+    <div class="section-number">I</div>
+    <div class="section-title">De Coloribus <span class="alt">· 色板</span></div>
+    <div class="section-desc">十二种颜色，全部取自自然界：旧纸本、矿物颜料、植物染色、铜版画油墨。无工业感、无荧光色。</div>
+    <div class="palette">
+      <div class="swatch"><div class="color" style="background:#F0E4D0"></div><div class="info"><div class="name">Vellum</div><div class="hex">#F0E4D0</div></div></div>
+      <div class="swatch"><div class="color" style="background:#E8DECA"></div><div class="info"><div class="name">Aged Paper</div><div class="hex">#E8DECA</div></div></div>
+      <div class="swatch"><div class="color" style="background:#FAF4E8"></div><div class="info"><div class="name">Light Sheet</div><div class="hex">#FAF4E8</div></div></div>
+      <div class="swatch"><div class="color" style="background:#1A1510"></div><div class="info"><div class="name">Printer's Ink</div><div class="hex">#1A1510</div></div></div>
+      <div class="swatch"><div class="color" style="background:#2A2018"></div><div class="info"><div class="name">Body Type</div><div class="hex">#2A2018</div></div></div>
+      <div class="swatch"><div class="color" style="background:#3A3028"></div><div class="info"><div class="name">Text</div><div class="hex">#3A3028</div></div></div>
+      <div class="swatch"><div class="color" style="background:#6A5A4A"></div><div class="info"><div class="name">Meta</div><div class="hex">#6A5A4A</div></div></div>
+      <div class="swatch"><div class="color" style="background:#8A7A6A"></div><div class="info"><div class="name">Dim</div><div class="hex">#8A7A6A</div></div></div>
+      <div class="swatch"><div class="color" style="background:#B09880"></div><div class="info"><div class="name">Faded</div><div class="hex">#B09880</div></div></div>
+      <div class="swatch"><div class="color" style="background:rgba(160,135,110,.25)"></div><div class="info"><div class="name">Rule</div><div class="hex">rgba(160,135,110,.25)</div></div></div>
+      <div class="swatch"><div class="color" style="background:#C4A882;border:1px solid rgba(160,135,110,.2)"></div><div class="info"><div class="name">Accent</div><div class="hex">#C4A882</div></div></div>
+      <div class="swatch"><div class="color" style="background:#8A705A"></div><div class="info"><div class="name">Sepia</div><div class="hex">#8A705A</div></div></div>
+    </div>
+  </div>
+
+  <!-- ═══ 02 TYPOGRAPHY ═══ -->
+  <div class="section">
+    <div class="section-number">II</div>
+    <div class="section-title">De Typographia <span class="alt">· 字体</span></div>
+    <div class="section-desc">标题使用哥特体与旧风格衬线体，正文使用古籍衬线。中文搭配宋体风骨的衬线体。字距宽松，有 18 世纪印刷品的气息。</div>
+
+    <div class="type-block">
+      <div class="type-label">Display · Titling</div>
+      <div class="display-sample">THE SEASONS</div>
+      <div class="type-label" style="margin-top:2px">UnifrakturMaguntia 56px · letter-spacing 4px</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label">Heading 1 · 页面标题</div>
+      <div class="h1-sample">文化地理学</div>
+      <div class="type-label" style="margin-top:2px">Cormorant Garamond 700 34px · letter-spacing -0.3px</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label">Heading 2 · 章节标题</div>
+      <div class="h2-sample">空间与地方 · 景观 · 文化转向</div>
+      <div class="type-label" style="margin-top:2px">Cormorant Garamond 400 italic 22px · letter-spacing 0.5px</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label">Body · 正文</div>
+      <div class="body-sample"><span class="dropcap">空</span>间是抽象的、几何的、可以被测量的。地方是被经验的、被赋予意义的。每一处景观都承载着塑造它的文化痕迹——正如卡尔·索尔所言，文化景观是"自然景观被文化群体改造的结果"（The Morphology of Landscape, 1925）。这一区分构成了文化地理学的基础。</div>
+      <div class="type-label" style="margin-top:2px">Cormorant Garamond 300 17px · line-height 1.7 · Noto Serif SC for CJK</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label">Caption · 图片说明</div>
+      <div class="caption-sample">Fig. III. 文化地理学中的"地方"概念示意，根据 Tuan (1977) 改绘</div>
+    </div>
+
+    <div class="type-block">
+      <div class="type-label">Small · 标签 / 元数据</div>
+      <div class="label-sample">JOURNAL · 2026.07.25 · DIARY I</div>
+    </div>
+
+    <div class="type-block" style="border:none">
+      <div class="type-label">Footnote · 脚注</div>
+      <div class="small-sample">① 此处指段义孚（Yi-Fu Tuan）在 Space and Place (1977) 中提出的核心区分。</div>
+    </div>
+  </div>
+
+  <!-- ═══ 03 ENGRAVING ═══ -->
+  <div class="section">
+    <div class="section-number">III</div>
+    <div class="section-title">De Iconographia <span class="alt">· 插画</span></div>
+    <div class="section-desc">铜版画风格线描——细线条、剖面图、天文仪器、植物图鉴。所有视觉元素替代 emoji 与现代图标。</div>
+
+    <div class="engraving">
+      <svg viewBox="0 0 600 260" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Celestial sphere / orrery -->
+        <circle cx="300" cy="135" r="95" stroke="#6A5A4A" stroke-width=".6" fill="none"/>
+        <circle cx="300" cy="135" r="75" stroke="#8A7A6A" stroke-width=".4" stroke-dasharray="3 3" fill="none"/>
+        <ellipse cx="300" cy="135" rx="60" ry="35" stroke="#8A7A6A" stroke-width=".5" fill="none" transform="rotate(-20 300 135)"/>
+        <circle cx="300" cy="135" r="8" fill="#2A2018" opacity=".3"/>
+        <!-- Orbital paths -->
+        <ellipse cx="355" cy="105" rx="6" ry="6" fill="#2A2018" opacity=".5"/>
+        <ellipse cx="238" cy="115" rx="4" ry="4" fill="#8A7A6A" opacity=".3"/>
+        <ellipse cx="340" cy="186" rx="3.5" ry="3.5" fill="#2A2018" opacity=".4"/>
+        <ellipse cx="260" cy="175" rx="3" ry="3" fill="#8A7A6A" opacity=".25"/>
+        <!-- Axis line -->
+        <line x1="300" y1="38" x2="300" y2="232" stroke="#B09880" stroke-width=".3" stroke-dasharray="6 4"/>
+        <!-- Compass / directional marks -->
+        <polyline points="300,30 296,40 300,38 304,40" fill="none" stroke="#6A5A4A" stroke-width=".5"/>
+        <polyline points="300,240 296,230 300,232 304,230" fill="none" stroke="#6A5A4A" stroke-width=".5"/>
+        <!-- Decorative corners -->
+        <path d="M60 220 Q65 215 70 220" stroke="#B09880" stroke-width=".4" fill="none"/>
+        <path d="M530 220 Q535 215 540 220" stroke="#B09880" stroke-width=".4" fill="none"/>
+        <path d="M60 50 Q65 55 70 50" stroke="#B09880" stroke-width=".4" fill="none"/>
+        <path d="M530 50 Q535 55 540 50" stroke="#B09880" stroke-width=".4" fill="none"/>
+        <!-- Small decorative stars -->
+        <circle cx="145" cy="60" r="1" fill="#B09880"/>
+        <circle cx="455" cy="70" r="1.2" fill="#B09880"/>
+        <circle cx="440" cy="200" r="1" fill="#B09880"/>
+        <circle cx="160" cy="210" r=".8" fill="#B09880"/>
+        <text x="300" y="252" text-anchor="middle" font-size="8" fill="#8A7A6A" font-family="'Inter',sans-serif" letter-spacing="1.5">FIG. IV — CELESTIAL ORRERY</text>
+      </svg>
+    </div>
+
+    <div class="engraving" style="padding:24px 32px">
+      <svg viewBox="0 0 600 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- Botanical specimen I -->
+        <path d="M120 120 C125 90 140 60 160 45 C170 38 180 35 188 40" stroke="#2A2018" stroke-width=".7" fill="none"/>
+        <path d="M145 85 C152 70 165 60 175 55" stroke="#6A5A4A" stroke-width=".4" fill="none"/>
+        <path d="M155 100 C160 90 170 80 178 75" stroke="#6A5A4A" stroke-width=".4" fill="none"/>
+        <ellipse cx="188" cy="38" rx="7" ry="5" stroke="#2A2018" stroke-width=".5" fill="none"/>
+        <ellipse cx="186" cy="35" rx="3.5" ry="2.5" stroke="#2A2018" stroke-width=".3" fill="none"/>
+        <!-- Botanical specimen II -->
+        <path d="M400 118 C408 88 425 60 448 42 C456 35 465 32 472 36" stroke="#2A2018" stroke-width=".7" fill="none"/>
+        <path d="M425 82 C432 68 443 58 453 54" stroke="#6A5A4A" stroke-width=".4" fill="none"/>
+        <path d="M438 100 C443 88 452 78 460 74" stroke="#6A5A4A" stroke-width=".4" fill="none"/>
+        <ellipse cx="472" cy="34" rx="6" ry="4" stroke="#2A2018" stroke-width=".5" fill="none"/>
+        <!-- Labels -->
+        <text x="158" y="130" font-size="7" fill="#6A5A4A" font-family="'Inter',sans-serif" letter-spacing="1">FIG. I</text>
+        <text x="452" y="130" font-size="7" fill="#6A5A4A" font-family="'Inter',sans-serif" letter-spacing="1">FIG. II</text>
+        <!-- Scale -->
+        <line x1="520" y1="25" x2="570" y2="25" stroke="#B09880" stroke-width=".4"/>
+        <line x1="520" y1="22.5" x2="520" y2="27.5" stroke="#B09880" stroke-width=".4"/>
+        <line x1="570" y1="22.5" x2="570" y2="27.5" stroke="#B09880" stroke-width=".4"/>
+        <text x="537" y="34" font-size="6" fill="#8A7A6A" font-family="'Inter',sans-serif">1 cm</text>
+        <!-- Decorative divider -->
+        <path d="M80 135 C100 132 130 135 150 133" stroke="#B09880" stroke-width=".3" fill="none"/>
+        <path d="M450 135 C470 132 500 135 520 133" stroke="#B09880" stroke-width=".3" fill="none"/>
+      </svg>
+      <div class="fig">FIG. V · BOTANICAL SPECIMENS · COPPERPLATE ENGRAVING</div>
+    </div>
+  </div>
+
+  <!-- ═══ 04 COMPONENTS ═══ -->
+  <div class="section">
+    <div class="section-number">IV</div>
+    <div class="section-title">De Partibus <span class="alt">· 组件</span></div>
+    <div class="section-desc">所有组件采用古籍印刷品的视觉语言：无圆角、无大面积填色、无投影。边框使用细铜版线。交互反馈仅改变透明度和边框颜色。</div>
+
+    <!-- Navigation -->
+    <div class="type-label" style="margin-bottom:6px">Navigation · 导航</div>
+    <div class="nav-sample">
+      <div class="nav-icon"></div>
+      <a class="active">首页</a>
+      <a>日记</a>
+      <a>阅读</a>
+      <a>课题</a>
+      <a>概念</a>
+      <a>图谱</a>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Entry List · 条目列表</div>
+      <div class="entry-list">
+        <div class="entry"><span class="e-date">2026.07.25</span><span class="e-title">开始搭建研究工作室</span><span class="e-type">日记</span></div>
+        <div class="entry"><span class="e-date">2026.07.22</span><span class="e-title">文化地理学·空间与地方</span><span class="e-type">日记</span></div>
+        <div class="entry"><span class="e-date">2026.07.20</span><span class="e-title">中山公园观鸟记录</span><span class="e-type">日记</span></div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Tags · 标签</div>
+      <div class="tag-group"><span>地理</span><span>文化</span><span>理论</span><span>空间</span><span>地方</span><span>景观</span></div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Blockquote · 引用</div>
+      <div class="quotation">"地方不仅是事件的背景，而是通过人们对它的体验和描述被不断创造和重塑的。"<div class="attr">— Mike Crang, <em>Cultural Geography</em> (1998)</div></div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Buttons · 按钮</div>
+      <div class="btn-group">
+        <button class="btn-text">编辑</button>
+        <button class="btn-text">引用</button>
+        <button class="btn-text">展开</button>
+        <button class="btn-line">导入链接</button>
+        <button class="btn-line">＋ 新建</button>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Input · 输入框</div>
+      <input class="input-field" placeholder="搜索自然志…" />
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Dividers · 分隔线</div>
+      <div class="divider-group">
+        <div class="divider-line"></div>
+        <div class="divider-ornament">✻ ✻ ✻</div>
+        <div class="divider-double"></div>
+        <div class="divider-fleur">&#10087; &#10087; &#10087;</div>
+      </div>
+    </div>
+
+    <div style="margin-top:20px">
+      <div class="type-label" style="margin-bottom:6px">Footnote · 脚注</div>
+      <div class="footnote">① 索尔（Carl Sauer）在 The Morphology of Landscape（1925）中首次系统提出"文化景观"概念。</div>
+    </div>
+  </div>
+
+  <!-- ═══ 05 TWO-COLUMN LAYOUT ═══ -->
+  <div class="section">
+    <div class="section-number">V</div>
+    <div class="section-title">De Dispositione <span class="alt">· 双栏布局</span></div>
+    <div class="section-desc">概念详情页采用左正文右关系的双栏布局，类似古籍中正文与注释的视觉关系。</div>
+
+    <div class="two-col" style="border:1px solid rgba(160,135,110,.15);padding:20px;background:rgba(248,240,225,.3)">
+      <div class="col-left">
+        <div class="type-label" style="margin-bottom:4px">DEFINITION</div>
+        <div class="body-sample" style="font-size:14px;max-width:none"><span class="dropcap" style="font-size:40px">地</span><strong>方</strong>（Place）是具有意义的空间片段。与抽象的"空间"不同，地方被赋予人类经验、记忆和意义。段义孚指出，当空间被赋予意义后，它就变成了地方。</div>
+        <div style="margin-top:12px"><div class="type-label" style="margin-bottom:4px">BACKGROUND</div><div class="body-sample" style="font-size:13px;max-width:none">地方概念在 1970 年代的人文地理学中获得 prominence。段义孚的 <em>Space and Place</em> (1977) 和爱德华·雷尔夫的 <em>Place and Placelessness</em> (1976) 是奠基性著作。</div></div>
+      </div>
+      <div class="col-right">
+        <div class="sidebar-item"><div class="si-label">相关阅读</div><div class="si-title">文化地理学 — 迈克·克朗</div><div class="si-title">Space and Place — Yi-Fu Tuan</div></div>
+        <div class="sidebar-item"><div class="si-label">相关课题</div><div class="si-title">文化地理学</div></div>
+        <div class="sidebar-item"><div class="si-label">相关概念</div><div class="si-title">景观 · 知识 · 栖息地</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ 06 PRINCIPLES ═══ -->
+  <div class="section">
+    <div class="section-number">VI</div>
+    <div class="section-title">De Ratione <span class="alt">· 设计原则</span></div>
+    <div class="section-desc">六条原则，约束所有视觉决策。</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px">
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">I · Papyrus</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">所有底色来自旧纸本，不出现纯白</div>
+      </div>
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">II · Incisio</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">边框与分割线统一采用铜版画细线风格</div>
+      </div>
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">III · Typographia</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">信息层级靠字体和留白，不靠颜色块</div>
+      </div>
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">IV · Paupertas</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">全站不超过十种颜色，克制用色</div>
+      </div>
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">V · Quadratum</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">无圆角，呼应铜版画与古籍装帧</div>
+      </div>
+      <div style="border:1px solid rgba(160,135,110,.12);padding:14px;background:rgba(248,240,225,.3)">
+        <div style="font-size:9px;color:#6A5A4A;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">VI · Tarditas</div>
+        <div style="font-size:12px;color:#8A7A6A;font-style:italic">过渡动画 200ms ease-out，仅改变透明度和边框</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-num">— 7 —</div>
+
+</div>
+</body>
+</html>
