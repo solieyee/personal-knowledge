@@ -3,497 +3,513 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>知屿 · Knowls</title>
+<title>Personal Research Studio</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600&display=swap');
+
+/* ── Design Tokens ── */
+:root {
+  --bg: #F6F4EF;
+  --surface: #FBFAF7;
+  --border: #DDD6C8;
+  --primary: #1E1E1E;
+  --secondary: #78736A;
+  --accent: #6B7F5B;
+  --accent-light: #E8EDE4;
+  --accent-dim: #D5DDCE;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --font-serif: 'Libre Baskerville', 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, sans-serif;
+  --shadow: 0 1px 2px rgba(0,0,0,.04);
+}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#faf8f5;--surface:#fff;--cream:#f5f0eb;--sage:#d4dcd4;--sage-light:#edf2ed;--sage-dark:#7a9a7a;--text:#2c2c2c;--t2:#6b6b6b;--t3:#9a9a9a;--accent:#7a9a7a;--al:#edf2ed;--border:#e8e4de;--border2:#ddd8d0;--radius-sm:8px;--radius-md:14px;--radius-lg:20px;--shadow-sm:0 1px 4px rgba(0,0,0,.04);--shadow-md:0 4px 16px rgba(0,0,0,.06);--shadow-lg:0 8px 32px rgba(0,0,0,.08);--star:#d4a043;--font-serif:'Noto Serif SC',Georgia,serif;--font-sans:'Inter','Noto Sans SC',-apple-system,sans-serif}
-body{font-family:var(--font-sans);background:var(--bg);color:var(--text);font-size:14px;line-height:1.7;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;color-scheme:light}
-::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
+html{height:100%}
+body{font-family:var(--font-sans);background:var(--bg);color:var(--primary);font-size:14px;line-height:1.7;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent-light);color:var(--primary)}
+::-webkit-scrollbar{width:3px}::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline;color:var(--primary)}
 
-/* ── Layout ── */
-.app{display:flex;flex-direction:column;height:100vh}
+/* ── Grid pattern overlay ── */
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);background-size:40px 40px;opacity:.15}
+.app{position:relative;display:flex;flex-direction:column;height:100vh;z-index:1}
 
-/* ── Navigation ── */
-.nav{display:flex;align-items:center;padding:0 32px;height:56px;background:var(--surface);border-bottom:1px solid var(--border);flex-shrink:0;gap:4px}
-.nav .logo{font-family:var(--font-serif);font-size:17px;font-weight:700;color:var(--sage-dark);margin-right:24px;letter-spacing:-.3px;display:flex;align-items:center;gap:6px}
-.nav .logo span{font-size:20px}
-.nav a{display:flex;align-items:center;gap:6px;padding:8px 16px;border-radius:var(--radius-sm);text-decoration:none;color:var(--t2);font-size:13px;font-weight:500;cursor:pointer;transition:all .15s;font-family:inherit;border:none;background:transparent}
-.nav a:hover{background:var(--cream);color:var(--text)}
-.nav a.active{background:var(--sage-light);color:var(--sage-dark);font-weight:600}
+/* ── Icon SVG (Lucide-like) ── */
+.icon{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;color:var(--secondary)}
+.icon svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.icon-sm svg{width:14px;height:14px}
+.icon-lg svg{width:20px;height:20px}
+
+/* ── Nav ── */
+.nav{display:flex;align-items:center;padding:0 32px;height:52px;border-bottom:1px solid var(--border);background:var(--surface);flex-shrink:0;gap:2px;position:relative;z-index:10}
+.nav-logo{font-family:var(--font-serif);font-size:15px;font-weight:700;color:var(--primary);letter-spacing:-.3px;margin-right:20px;display:flex;align-items:center;gap:8px;cursor:pointer;opacity:.8}
+.nav-logo:hover{opacity:1}
+.nav a{display:flex;align-items:center;gap:6px;padding:6px 14px;border-radius:var(--radius-sm);text-decoration:none;color:var(--secondary);font-size:12px;font-weight:400;cursor:pointer;transition:all .12s;font-family:inherit;border:none;background:transparent;text-transform:lowercase;letter-spacing:.3px}
+.nav a:hover{background:var(--bg);color:var(--primary)}.nav a.active{color:var(--primary);font-weight:500}
 .nav .spacer{flex:1}
-.nav .add-btn{padding:6px 16px;border-radius:20px;border:none;background:var(--sage-dark);color:#fff;font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;transition:all .15s}
-.nav .add-btn:hover{opacity:.85}
-@media(max-width:860px){.nav{padding:0 16px;overflow-x:auto}.nav a{white-space:nowrap;padding:6px 10px;font-size:12px}.nav .logo{margin-right:12px;font-size:15px}}
+.nav .search-btn{padding:6px 12px;border-radius:20px;border:1px solid var(--border);background:transparent;color:var(--secondary);font-size:11px;font-family:inherit;cursor:pointer;display:flex;align-items:center;gap:6px;transition:all .12s}
+.nav .search-btn:hover{border-color:var(--accent);color:var(--primary)}.nav .search-btn:focus-within{border-color:var(--accent)}
 
-/* ── Main Content ── */
-.main{flex:1;overflow-y:auto;padding:28px 32px 60px;max-width:960px;margin:0 auto;width:100%}
-.main::-webkit-scrollbar{width:4px}
-.main::-webkit-scrollbar-thumb{background:var(--border2);border-radius:2px}
-@media(max-width:860px){.main{padding:20px 16px 60px}}
+/* ── Main ── */
+.main{flex:1;overflow-y:auto;padding:32px 48px 60px;max-width:1100px;margin:0 auto;width:100%}
+.main::-webkit-scrollbar{width:3px}.main::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
+@media(max-width:860px){.main{padding:20px 16px 60px}.nav{padding:0 12px;overflow-x:auto}.nav a{white-space:nowrap;padding:4px 8px;font-size:11px}.nav-logo{font-size:13px;margin-right:10px}}
 
-/* ── Home Dashboard ── */
-.home-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
-.home-grid .full{grid-column:1/-1}
-.home-card{background:var(--surface);border-radius:var(--radius-md);padding:20px;border:1px solid var(--border);transition:all .2s;cursor:pointer}
-.home-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md)}
-.home-card .hc-title{font-size:11px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:10px;display:flex;align-items:center;gap:6px}
-.home-card .hc-item{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--border);font-size:13px;cursor:pointer;transition:all .1s}
-.home-card .hc-item:last-child{border-bottom:none}
-.home-card .hc-item:hover{color:var(--sage-dark)}
-.home-card .hc-item .dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.home-card .hc-item .dot.j{background:var(--sage-dark)}.home-card .hc-item .dot.r{background:#8ab4d8}.home-card .hc-item .dot.p{background:#d4a043}.home-card .hc-item .dot.s{background:#c48ab8}
-.home-card .hc-item .sub{font-size:11px;color:var(--t3)}
-.entry-circles{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
-.entry-circle{display:flex;flex-direction:column;align-items:center;gap:4px;cursor:pointer;transition:all .15s;padding:12px 16px;border-radius:var(--radius-md);background:var(--cream);min-width:80px}
-.entry-circle:hover{background:var(--sage-light);transform:translateY(-2px)}
-.entry-circle .ec-icon{font-size:24px;line-height:1}
-.entry-circle .ec-label{font-size:11px;color:var(--t2);font-weight:500}
+/* ── Page Header ── */
+.page-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.page-h h1{font-family:var(--font-serif);font-size:24px;font-weight:700;letter-spacing:-.5px;line-height:1.2}
+.page-h .sub{font-size:12px;color:var(--secondary);margin-top:2px;font-weight:400}
+.page-h .count{font-size:11px;color:var(--secondary);border:1px solid var(--border);padding:2px 10px;border-radius:20px}
 
-/* ── Journal Timeline ── */
-.journal-tl{position:relative;padding-left:32px}
-.journal-tl::before{content:'';position:absolute;left:13px;top:8px;bottom:8px;width:2px;background:var(--sage)}
-.jt-entry{position:relative;margin-bottom:20px}
-.jt-entry::before{content:'';position:absolute;left:-24px;top:12px;width:10px;height:10px;border-radius:50%;background:var(--surface);border:2.5px solid var(--sage-dark);box-shadow:0 0 0 4px var(--sage-light)}
-.jt-date{font-size:11px;color:var(--t3);font-weight:500;margin-bottom:4px;letter-spacing:.3px}
-.jt-card{background:var(--surface);border-radius:var(--radius-md);padding:20px 22px;border:1px solid var(--border);transition:all .2s;cursor:pointer}
-.jt-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md)}
-.jt-card h3{font-family:var(--font-serif);font-size:17px;font-weight:600;margin-bottom:4px}
-.jt-card .jt-body{font-size:14px;color:var(--t2);line-height:1.8;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden}
-.jt-card .jt-links{display:flex;gap:4px;margin-top:8px;flex-wrap:wrap}
-.jt-card .jt-links span{font-size:11px;padding:2px 10px;border-radius:12px;background:var(--sage-light);color:var(--sage-dark);cursor:pointer;transition:all .1s}
-.jt-card .jt-links span:hover{background:var(--sage);color:var(--text)}
+/* ── Cards (Archive Card style) ── */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s;position:relative}
+.card:hover{border-color:var(--accent);background:#FAF9F6}
+.card:active{transform:scale(.995)}
+.card .card-type{font-size:9px;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;font-weight:500;margin-bottom:2px;display:flex;align-items:center;gap:4px}
+.card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.card .meta{font-size:11px;color:var(--secondary);margin-bottom:3px}
+.card .ex{font-size:13px;color:var(--secondary);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;font-weight:300}
+.card .tags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
+.card .tags span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--bg);color:var(--secondary);letter-spacing:.2px}
+.stars{display:inline-flex;gap:1px;font-size:10px}.stars .f{color:#B8860B}.stars .e{color:#E0DDD5}
 
-/* ── Reading Grid ── */
-.reading-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px;}
-.r-card{background:var(--surface);border-radius:var(--radius-md);padding:18px 20px;border:1px solid var(--border);transition:all .2s;cursor:pointer}
-.r-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.r-card .r-type{font-size:10px;font-weight:600;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:3px}
-.r-card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px}
-.r-card .r-meta{font-size:12px;color:var(--t2);margin-bottom:3px}
-.r-card .r-excerpt{font-size:12px;color:var(--t2);line-height:1.6;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.stars{display:inline-flex;gap:1px;font-size:11px}
-.stars .f{color:var(--star)}.stars .e{color:#e5e5ea}
-.r-card .r-tags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.r-card .r-tags span{font-size:10px;padding:1px 8px;border-radius:8px;background:var(--cream);color:var(--t2)}
-.r-card .r-links{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.r-card .r-links span{font-size:10px;padding:1px 8px;border-radius:8px;background:var(--sage-light);color:var(--sage-dark)}
+/* ── Grids ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.grid-full{grid-column:1/-1}
 
-/* ── Project Detail ── */
-.p-hero{background:var(--cream);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start}
-.p-hero .pi{font-size:36px;flex-shrink:0}
+/* ── Home ── */
+.home-section{margin-bottom:32px}
+.home-section .hs-title{font-family:var(--font-serif);font-size:13px;font-weight:600;color:var(--secondary);margin-bottom:10px;letter-spacing:.3px;display:flex;align-items:center;gap:6px;text-transform:lowercase}
+.home-section .hs-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px}
+.welcome{font-family:var(--font-serif);font-size:26px;font-weight:700;margin-bottom:4px;letter-spacing:-.5px}
+.welcome-sub{font-size:13px;color:var(--secondary);margin-bottom:24px;font-weight:300}
+
+/* ── Timeline (Journal) ── */
+.tl{position:relative;padding-left:28px}
+.tl::before{content:'';position:absolute;left:9px;top:6px;bottom:6px;width:1px;background:var(--border)}
+.tl-item{position:relative;margin-bottom:14px}
+.tl-item::before{content:'';position:absolute;left:-22px;top:10px;width:6px;height:6px;border-radius:50%;background:var(--accent);border:1.5px solid var(--surface)}
+.tl-date{font-size:10px;color:var(--secondary);letter-spacing:.3px;margin-bottom:3px;text-transform:uppercase}
+.tl-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:16px 18px;cursor:pointer;transition:all .2s}
+.tl-card:hover{border-color:var(--accent)}
+.tl-card h3{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:3px}
+.tl-card .body{font-size:13px;color:var(--secondary);line-height:1.7;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;font-weight:300}
+.tl-card .links{display:flex;gap:3px;margin-top:5px;flex-wrap:wrap}
+.tl-card .links span{font-size:9px;padding:1px 7px;border-radius:3px;background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .1s}
+.tl-card .links span:hover{background:var(--accent);color:#fff}
+
+/* ── Concept Cards ── */
+.concept-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;cursor:pointer;transition:all .2s;display:flex;gap:10px;align-items:flex-start}
+.concept-card:hover{border-color:var(--accent);background:#FAF9F6}
+.concept-card .ci{width:28px;height:28px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;color:var(--accent)}
+.concept-card .cb{flex:1}
+.concept-card .cb .cn{font-family:var(--font-serif);font-size:14px;font-weight:600;margin-bottom:1px}
+.concept-card .cb .cd{font-size:11px;color:var(--secondary);line-height:1.5;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.concept-card .cb .cr{display:flex;gap:3px;margin-top:3px;flex-wrap:wrap}
+.concept-card .cb .cr span{font-size:9px;padding:1px 6px;border-radius:3px;background:var(--bg);color:var(--secondary)}
+
+/* ── Project Hero ── */
+.p-hero{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:16px;display:flex;gap:16px;align-items:flex-start}
+.p-hero .pi{width:44px;height:44px;border-radius:50%;background:var(--accent-light);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
 .p-hero .pt{font-family:var(--font-serif);font-size:22px;font-weight:700;margin-bottom:2px}
-.p-hero .pd{font-size:13px;color:var(--t2);line-height:1.6}
-.p-tabs{display:flex;gap:2px;margin-bottom:16px;border-bottom:1px solid var(--border)}
-.p-tabs button{padding:8px 18px;border:none;background:transparent;cursor:pointer;font-size:13px;font-family:inherit;color:var(--t2);border-bottom:2px solid transparent;transition:all .15s;margin-bottom:-1px}
-.p-tabs button:hover{color:var(--text)}
-.p-tabs button.active{color:var(--sage-dark);border-bottom-color:var(--sage-dark);font-weight:500}
+.p-hero .pd{font-size:12px;color:var(--secondary);line-height:1.6;max-width:600px}
+.p-tabs{display:flex;gap:0;margin-bottom:16px;border-bottom:1px solid var(--border)}
+.p-tabs button{padding:6px 16px;border:none;background:transparent;cursor:pointer;font-size:11px;font-family:inherit;color:var(--secondary);border-bottom:1px solid transparent;transition:all .12s;margin-bottom:-1px;letter-spacing:.3px;text-transform:lowercase}
+.p-tabs button:hover{color:var(--primary)}.p-tabs button.active{color:var(--primary);border-bottom-color:var(--primary);font-weight:500}
 
-/* Tree View */
-.tree{list-style:none;padding-left:0}
-.tree li{margin:2px 0}
-.tree .tree-node{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:var(--radius-sm);cursor:pointer;transition:all .12s;font-size:13px}
-.tree .tree-node:hover{background:var(--cream)}
-.tree .tree-node .toggle{width:16px;height:16px;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--t3);cursor:pointer;flex-shrink:0;transition:transform .15s}
-.tree .tree-node .toggle.expanded{transform:rotate(90deg)}
-.tree .tree-node .t-icon{font-size:12px;width:18px;text-align:center;flex-shrink:0}
-.tree .tree-node .t-title{flex:1}
-.tree .tree-node .t-count{font-size:10px;color:var(--t3);background:var(--cream);padding:0 7px;border-radius:8px}
-.tree .children{padding-left:22px;display:none}
-.tree .children.open{display:block}
+/* ── Tree ── */
+.tree{list-style:none}.tree li{margin:1px 0}
+.tree-node{display:flex;align-items:center;gap:5px;padding:4px 8px;border-radius:var(--radius-sm);cursor:pointer;transition:all .1s;font-size:12px;color:var(--secondary)}
+.tree-node:hover{background:var(--bg);color:var(--primary)}
+.tree-node .toggle{width:12px;height:12px;display:flex;align-items:center;justify-content:center;font-size:6px;color:var(--border);cursor:pointer;transition:transform .15s}
+.tree-node .toggle.exp{transform:rotate(90deg)}
+.tree-node .tt{flex:1}.tree-children{padding-left:18px;display:none}.tree-children.open{display:block}
 
-/* ── Skills Panel ── */
-.skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
-.s-card{background:var(--surface);border-radius:var(--radius-md);padding:18px 20px;border:1px solid var(--border);transition:all .2s;cursor:pointer}
-.s-card:hover{border-color:var(--sage);box-shadow:var(--shadow-md)}
-.s-card .shd{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
-.s-card .shd .sn{font-family:var(--font-serif);font-size:15px;font-weight:600}
-.s-card .shd .slv{font-size:10px;padding:2px 10px;border-radius:12px;background:var(--sage-light);color:var(--sage-dark)}
-.s-card .sbar{height:5px;border-radius:3px;background:var(--cream);overflow:hidden;margin-top:6px}
-.s-card .sbar .fill{height:100%;border-radius:3px;background:linear-gradient(90deg,var(--sage),var(--sage-dark))}
-.s-card .smeta{display:flex;gap:12px;margin-top:4px;font-size:11px;color:var(--t2)}
-.s-card .stags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.s-card .stags span{font-size:10px;padding:1px 7px;border-radius:6px;background:var(--cream);color:var(--t2)}
+/* ── Detail Page ── */
+.detail-page{padding:0;max-width:700px}
+.detail-page .dp-back{display:inline-flex;align-items:center;gap:4px;font-size:11px;color:var(--secondary);cursor:pointer;margin-bottom:16px;border:none;background:transparent;font-family:inherit;padding:2px 0;transition:all .1s}
+.detail-page .dp-back:hover{color:var(--primary)}
+.detail-page .dp-h{margin-bottom:20px}
+.detail-page .dp-h h1{font-family:var(--font-serif);font-size:28px;font-weight:700;letter-spacing:-.5px;line-height:1.2;margin-bottom:4px}
+.detail-page .dp-h .dp-meta{font-size:11px;color:var(--secondary);display:flex;gap:12px;flex-wrap:wrap}
+.detail-page .dp-section{margin-bottom:24px}
+.detail-page .dp-section .sec-title{font-size:10px;font-weight:600;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;margin-bottom:6px;padding-bottom:3px;border-bottom:1px solid var(--border)}
+.detail-page .dp-section .sec-body{font-size:13px;color:var(--primary);line-height:1.8;font-weight:300}
+.detail-page .dp-section .sec-body p{margin-bottom:8px}
+.detail-page .dp-section .rel-items{display:flex;gap:4px;flex-wrap:wrap}
+.detail-page .dp-section .rel-items span{padding:2px 10px;border-radius:12px;font-size:11px;background:var(--accent-light);color:var(--accent);cursor:pointer;transition:all .1s}
+.detail-page .dp-section .rel-items span:hover{background:var(--accent);color:#fff}
 
-/* ── Knowledge Graph ── */
-.kg-container{position:relative;min-height:500px;background:var(--surface);border-radius:var(--radius-lg);border:1px solid var(--border);padding:24px;overflow:hidden}
-.kg-container svg{width:100%;height:100%;min-height:500px}
-.kg-node{cursor:pointer;transition:all .2s}
-.kg-node:hover .kg-label{fill:var(--sage-dark);font-weight:600}
-.kg-node:hover .kg-circle{stroke:var(--sage-dark);stroke-width:2.5}
-.kg-info{position:absolute;right:24px;top:24px;width:260px;background:var(--surface);border-radius:var(--radius-md);padding:16px 18px;border:1px solid var(--border);box-shadow:var(--shadow-md);display:none}
-.kg-info.show{display:block}
-.kg-info .ki-title{font-family:var(--font-serif);font-size:16px;font-weight:600;margin-bottom:4px}
-.kg-info .ki-type{font-size:10px;color:var(--t3);text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px}
-.kg-info .ki-links{display:flex;gap:3px;flex-wrap:wrap}
-.kg-info .ki-links span{padding:1px 8px;border-radius:8px;font-size:10px;background:var(--cream);color:var(--t2);cursor:pointer}
-.kg-info .ki-links span:hover{background:var(--sage-light);color:var(--sage-dark)}
+/* ── Filter ── */
+.fb{display:flex;gap:3px;margin-bottom:16px;flex-wrap:wrap}
+.fb button{padding:3px 12px;border-radius:20px;border:1px solid transparent;background:transparent;color:var(--secondary);cursor:pointer;font-size:11px;font-family:inherit;transition:all .12s}
+.fb button:hover{border-color:var(--border);color:var(--primary)}
+.fb button.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 
-/* ── Content Header ── */
-.page-h{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
-.page-h h2{font-family:var(--font-serif);font-size:24px;font-weight:700;letter-spacing:-.3px}
-.page-h .sub{font-size:13px;color:var(--t2);margin-top:2px}
-.page-h .count{font-size:12px;color:var(--t3);background:var(--cream);padding:2px 10px;border-radius:12px;font-weight:500}
-
-/* ── Filter Bar ── */
-.fb{display:flex;gap:4px;margin-bottom:16px;flex-wrap:wrap}
-.fb button{padding:4px 14px;border-radius:16px;border:1px solid var(--border);background:transparent;color:var(--t2);cursor:pointer;font-size:12px;font-family:inherit;transition:all .15s}
-.fb button:hover{border-color:var(--sage);color:var(--text)}
-.fb button.active{background:var(--sage-dark);color:#fff;border-color:var(--sage-dark)}
+/* ── Graph ── */
+.graph-container{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px;position:relative;min-height:400px;overflow:hidden}
+.graph-container svg{width:100%;height:100%;min-height:400px}
+.graph-info{position:absolute;right:20px;top:20px;width:240px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 16px;box-shadow:0 4px 16px rgba(0,0,0,.04);display:none}
+.graph-info.show{display:block}
+.graph-info .gi-title{font-family:var(--font-serif);font-size:15px;font-weight:600;margin-bottom:2px}
+.graph-info .gi-type{font-size:9px;color:var(--secondary);letter-spacing:.5px;text-transform:uppercase;margin-bottom:4px}
+.graph-info .gi-body{font-size:11px;color:var(--secondary);line-height:1.5;margin-bottom:4px}
+.graph-info .gi-links{display:flex;gap:3px;flex-wrap:wrap}
+.graph-info .gi-links span{padding:1px 7px;border-radius:3px;font-size:9px;background:var(--bg);color:var(--secondary);cursor:pointer}
 
 /* ── Modal ── */
-.mo{display:none;position:fixed;inset:0;background:rgba(44,44,44,.25);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+.mo{display:none;position:fixed;inset:0;background:rgba(30,30,30,.15);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
 .mo.show{display:flex}
-.mm{background:var(--surface);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:24px 28px;box-shadow:var(--shadow-lg);animation:modalIn .2s ease}
-@keyframes modalIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.mm{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);width:100%;max-width:500px;max-height:85vh;overflow-y:auto;padding:24px 28px;box-shadow:0 16px 48px rgba(0,0,0,.06);animation:mi .2s}
+@keyframes mi{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
 .mm h2{font-family:var(--font-serif);font-size:18px;font-weight:700;margin-bottom:2px}
-.mm .ms{font-size:12px;color:var(--t2);margin-bottom:14px}
-.mm .cl{float:right;background:none;border:none;font-size:22px;cursor:pointer;color:var(--t2);line-height:1}
-.f2{display:flex;gap:8px;margin-bottom:8px}
+.mm .ms{font-size:11px;color:var(--secondary);margin-bottom:14px}
+.mm .cl{float:right;background:none;border:none;font-size:20px;cursor:pointer;color:var(--secondary);line-height:1}
+.f2{display:flex;gap:8px;margin-bottom:7px}
 .f2 .fd{flex:1}
-.f2 .fd label{font-size:11px;color:var(--t2);margin-bottom:2px;display:block;font-weight:500}
-.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:8px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;background:var(--bg);transition:all .15s;color:var(--text)}
-.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--sage-dark);box-shadow:0 0 0 3px var(--sage-light);background:var(--surface)}
-.f2 .fd textarea{resize:vertical;min-height:40px}
-.mm .sb{width:100%;padding:9px;background:var(--sage-dark);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px;transition:all .15s}
-.mm .sb:hover{opacity:.9}
+.f2 .fd label{font-size:10px;color:var(--secondary);margin-bottom:2px;font-weight:500;display:block;letter-spacing:.3px;text-transform:uppercase}
+.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:7px 10px;border:1px solid var(--border);border-radius:var(--radius-sm);font-size:12px;font-family:inherit;background:var(--bg);transition:all .12s;color:var(--primary)}
+.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:var(--surface)}
+.f2 .fd textarea{resize:vertical;min-height:34px}
+.mm .sub{width:100%;padding:7px;background:var(--primary);color:#fff;border:none;border-radius:var(--radius-sm);font-size:12px;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px;transition:all .12s}
+.mm .sub:hover{opacity:.85}
 
-/* ── Slide Panel ── */
-.sp-overlay{display:none;position:fixed;inset:0;background:rgba(44,44,44,.12);z-index:100}
-.sp-overlay.show{display:block}
-.sp{position:fixed;top:0;right:-540px;width:540px;max-width:92vw;height:100vh;background:var(--surface);z-index:101;overflow-y:auto;transition:right .25s ease;box-shadow:-4px 0 32px rgba(44,44,44,.08);border-left:1px solid var(--border)}
-.sp.show{right:0}
-.sp .sp-h{padding:16px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;background:var(--surface);z-index:2}
-.sp .sp-h h3{font-family:var(--font-serif);font-size:17px;font-weight:600}
-.sp .sp-h .cl{background:none;border:none;font-size:22px;cursor:pointer;color:var(--t2);padding:4px}
-.sp .sp-b{padding:16px 24px 40px}
-.sp .sp-b .fl{margin-bottom:14px}
-.sp .sp-b .fl label{font-size:10px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;display:block;margin-bottom:2px}
-.sp .sp-b .fl .v{font-size:13px;line-height:1.6;color:var(--text)}
-.sp .sp-b .fl input,.sp .sp-b .fl textarea,.sp .sp-b .fl select{width:100%;padding:7px 10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:13px;font-family:inherit;background:var(--bg);color:var(--text)}
-.sp .sp-b .fl textarea{resize:vertical;min-height:60px}
-.sp .sp-b .sv{width:100%;padding:8px;background:var(--sage-dark);color:#fff;border:none;border-radius:var(--radius-sm);font-size:13px;font-family:inherit;cursor:pointer;font-weight:500}
+/* ── Empty ── */
+.empty{text-align:center;padding:48px 16px;color:var(--secondary)}.empty .ei{font-size:24px;margin-bottom:4px;opacity:.4;font-family:var(--font-serif)}
 
-/* ── Responsive ── */
-@media(max-width:640px){.home-grid{grid-template-columns:1fr}.reading-grid{grid-template-columns:1fr}.skills-grid{grid-template-columns:1fr}.p-hero{padding:20px}}
+@media(max-width:640px){.grid-2{grid-template-columns:1fr}.home-section .hs-grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
+<div class="bg-grid"></div>
 <div class="app">
-  <nav class="nav" id="topNav">
-    <div class="logo"><span>⛰️</span>知屿</div>
-    <a class="active" data-page="home">🏠 Home</a>
-    <a data-page="journal">📖 Journal</a>
-    <a data-page="reading">📚 Reading</a>
-    <a data-page="projects">🏗️ Projects</a>
-    <a data-page="skills">🌱 Skills</a>
-    <a data-page="graph">🕸️ Graph</a>
+  <nav class="nav">
+    <div class="nav-logo">◈ Research Studio</div>
+    <a class="active" data-p="home">Home</a>
+    <a data-p="journal">Journal</a>
+    <a data-p="reading">Reading</a>
+    <a data-p="project">Projects</a>
+    <a data-p="concept">Concepts</a>
+    <a data-p="graph">Graph</a>
     <div class="spacer"></div>
-    <button class="add-btn" onclick="showAdd()">＋ 新建</button>
+    <button class="search-btn" onclick="showSearch()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/></svg>Search</button>
+    <button class="search-btn" style="margin-left:4px" onclick="showImport()"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>Import</button>
+    <button class="search-btn" style="margin-left:4px" onclick="showAdd()">＋ New</button>
   </nav>
-  <div class="main" id="mainContent"></div>
+  <div class="main" id="main"></div>
 </div>
 
-<!-- Slide Panel -->
-<div class="sp-overlay" id="spOverlay" onclick="closePanel()"></div>
-<div class="sp" id="slidePanel"><div class="sp-h"><h3 id="spTitle">详情</h3><button class="cl" onclick="closePanel()">✕</button></div><div class="sp-b" id="spBody"></div></div>
+<!-- Search Modal -->
+<div class="mo" id="searchModal" onclick="if(event.target===this)closeSearch()">
+  <div class="mm" style="max-width:560px" onclick="event.stopPropagation()">
+    <div class="f2"><div class="fd"><input id="searchInput" placeholder="Search research studio…" style="font-size:14px;padding:10px 14px" autofocus oninput="doSearch()"></div></div>
+    <div id="searchResults" style="max-height:400px;overflow-y:auto"></div>
+  </div>
+</div>
 
-<!-- Modal -->
+<!-- Import Modal -->
+<div class="mo" id="importModal" onclick="if(event.target===this)closeImport()">
+  <div class="mm" onclick="event.stopPropagation()">
+    <button class="cl" onclick="closeImport()">✕</button>
+    <h2>Import</h2>
+    <p class="ms">Paste a link to automatically analyse and index</p>
+    <div class="f2"><div class="fd"><input id="importUrl" placeholder="https://…" style="font-size:13px"></div></div>
+    <button class="sub" onclick="doImport()">Analyse</button>
+    <div id="importResult" style="margin-top:8px;display:none"></div>
+  </div>
+</div>
+
+<!-- Add Modal -->
 <div class="mo" id="addModal" onclick="if(event.target===this)closeAdd()">
   <div class="mm" onclick="event.stopPropagation()">
     <button class="cl" onclick="closeAdd()">✕</button>
-    <div id="modalBody"></div>
+    <h2>New</h2>
+    <p class="ms">Choose type to begin</p>
+    <div class="f2"><div class="fd"><label>Type</label><select id="aType" onchange="buildAddForm()"><option value="journal">Journal</option><option value="reading">Reading</option><option value="project">Project</option><option value="concept">Concept</option><option value="skill">Skill</option></select></div></div>
+    <div id="addForm"></div>
+    <button class="sub" onclick="confirmAdd()">Create</button>
   </div>
 </div>
 
 <script>
-// ═══ DATA ═══════════════════════════════════════════
-const TYPES={book:'📚',movie:'🎬',podcast:'🎙️',paper:'📄',video:'🎥'}
-const SL={read:'已读',reading:'在读',want:'想读',done:'完成',watching:'在看',listening:'在听',learning:'学习中',practicing:'练习中',mastered:'已掌握',ongoing:'进行中',paused:'暂停',active:'活跃',archived:'归档'}
-const LV={beginner:'初级',intermediate:'中级',advanced:'高级',expert:'专家'}
+// ═══ ICONS ═══════════════════════════════════════
+function icon(name){return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><use href="#${name}"/></svg>`}
 
-let DATA=[
-  {id:'d1',type:'journal',title:'开始搭建知识体系',date:'2026-07-25',body:'今天重新设计了知识管理系统「知屿」。以 Home、Journal、Reading、Projects、Skills、Graph 六个模块构建。每个模块都有自己的视角，而 Knowledge Graph 将它们全部连接。',tags:['知识管理'],links:['p1','r1']},
-  {id:'d2',type:'journal',title:'文化地理学初探',date:'2026-07-22',body:'读了迈克·克朗的《文化地理学》，对"空间"与"地方"的区分有了更深理解。空间是被抽象化的区域，而地方是充满意义和情感的空间。这个区分对理解文学中的地理意象很有帮助。',tags:['文学地理学'],links:['p1','r1']},
-  {id:'d3',type:'journal',title:'观鸟记录：中山公园',date:'2026-07-20',body:'今天在中山公园观鸟，看到了一只大斑啄木鸟和一群银喉长尾山雀。啄木鸟敲击树干的声音很远就能听到。银喉山雀非常活泼，在树枝间跳来跳去。',tags:['观鸟'],links:['p2']},
+// ═══ DATA ═══════════════════════════════════════
+const DATA={
+  journal:[{id:'j1',title:'Beginning the Research Studio',date:'2026-07-25',body:'Today I began constructing the Personal Research Studio — a space for long-form reading, research, and writing. The structure rests on six pillars: Journal, Reading, Project, Concept, Skill, and Graph.',tags:['research','pkm'],rels:{projects:['p1'],concepts:['c3']}},
+    {id:'j2',title:'Notes on Cultural Geography',date:'2026-07-22',body:'The distinction between space and place is foundational. Space is abstract, geometric; place is lived, meaningful. Every landscape carries traces of the cultures that shaped it.',tags:['geography','culture'],rels:{projects:['p1'],reading:['r1'],concepts:['c1','c2']}},
+    {id:'j3',title:'Birding at Zhongshan Park',date:'2026-07-20',body:'Observed Dendrocopos major and Aegithalos caudatus. The woodpecker\'s drumming carried across the park. The long-tailed tits moved in a restless flock through the canopy.',tags:['birding','field-notes'],rels:{projects:['p2'],concepts:['c4']}}],
+  reading:[{id:'r1',type:'book',title:'Cultural Geography',creator:'Mike Crang',status:'reading',rating:4,date:'2026-07',tags:['geography','theory'],notes:'Core argument: space becomes place through human experience and representation.',highlights:['"Place is not just a setting for events but is continually being created and recreated through people\'s experience and description of it."'],projects:['p1'],concepts:['c1','c2']},
+    {id:'r2',type:'book',title:'One Hundred Years of Solitude',creator:'Gabriel García Márquez',status:'read',rating:5,date:'2026-06',tags:['fiction','magical-realism'],notes:'Macondo is not merely a fictional town—it is a mythic space condensing the history of a continent.',highlights:['"Many years later, as he faced the firing squad, Colonel Aureliano Buendía was to remember that distant afternoon when his father took him to discover ice."'],projects:['p1'],concepts:['c2']},
+    {id:'r3',type:'book',title:'A Field Guide to Chinese Birds',creator:'Liu Yang',status:'reading',rating:0,date:'2026-07',tags:['ornithology'],notes:'Comprehensive guide to 1400+ species. Essential for field identification.',projects:['p2'],concepts:['c4']}],
+  project:[{id:'p1',title:'Cultural Geography',icon:'◇',desc:'The study of cultural phenomena distributed across space, their diffusion, and their relationship with the physical environment.',tags:['geography','culture','theory'],created:'2026-07-20',
+    tree:[{n:'Core Concepts',c:[{n:'Space & Place'},{n:'Landscape'},{n:'Cultural Turn'},{n:'Scale'}]},{n:'Key Scholars',c:[{n:'Carl Sauer'},{n:'Yi-Fu Tuan'},{n:'Edward Soja'},{n:'Mike Crang'}]},{n:'Related Fields',c:[{n:'Human Geography'},{n:'Urban Studies'},{n:'Literary Geography'}]}],
+    readings:['r1','r2'],concepts:['c1','c2'],journal:['j1','j2'],resources:[]},
+    {id:'p2',title:'Birding & Ornithology',icon:'◇',desc:'Systematic observation and study of wild birds: identification, behaviour, ecology, and conservation.',tags:['birds','ecology','fieldwork'],created:'2026-07-18',
+    tree:[{n:'Taxonomy',c:[{n:'Passeriformes'},{n:'Piciformes'},{n:'Falconiformes'}]},{n:'Field Skills',c:[{n:'Identification'},{n:'Song Recognition'},{n:'Recording'}]},{n:'Local Species',c:[{n:'Forest Birds'},{n:'Waterfowl'},{n:'Raptors'}]}],
+    readings:['r3'],concepts:['c4'],journal:['j3'],resources:[]}],
+  concept:[{id:'c1',title:'Place',definition:'A meaningful segment of geographic space. Unlike abstract "space," place is invested with human experience, memory, and significance.',background:'The concept of place gained prominence in human geography in the 1970s, notably through the work of Yi-Fu Tuan and Edward Relph.',tags:['geography','theory'],rels:{reading:['r1','r2'],projects:['p1'],journal:['j2'],concepts:['c2','c3']}},
+    {id:'c2',title:'Landscape',definition:'The visible features of an area of land, often considered in terms of their aesthetic, cultural, and historical meaning.',background:'Landscape study bridges geography and art history. Carl Sauer defined landscape as an area composed of a distinct association of forms, both physical and cultural.',tags:['geography','aesthetics'],rels:{reading:['r1','r2'],projects:['p1'],concepts:['c1','c3']}},
+    {id:'c3',title:'Knowledge',definition:'Information, understanding, and skill acquired through experience, education, or research. In this system, knowledge is the emergent property of connections between concepts, readings, and projects.',tags:['philosophy','pkm'],rels:{journal:['j1'],concepts:['c1']}},
+    {id:'c4',title:'Habitat',definition:'The natural environment in which a species or group of species lives, characterized by physical and biological features.',background:'Habitat analysis is fundamental to ecology and conservation biology. It encompasses the resources and conditions that allow a species to survive and reproduce.',tags:['ecology','biology'],rels:{reading:['r3'],projects:['p2'],journal:['j3']}}],
+  skill:[{id:'s1',title:'English Reading',level:'intermediate',progress:55,status:'practicing',tags:['language'],practices:[{d:'2026-07-24',n:'To Kill a Mockingbird chapter',t:'40min'}]},
+    {id:'s2',title:'Live2D Modeling',level:'beginner',progress:25,status:'learning',tags:['digital-art'],practices:[{d:'2026-07-20',n:'Mesh deformation basics',t:'60min'}]}]
+}
+const KEYS={journal:'journals',reading:'readings',project:'projects',concept:'concepts',skill:'skills'}
+let PAGE='home',CURRENT_PROJECT='p1',PROJECT_TAB='overview',CURRENT_CONCEPT='c1',DETAIL_TYPE=null,DETAIL_ID=null
+function persist(){try{localStorage.setItem('rs_data',JSON.stringify(DATA))}catch(e){}}
+function loadData(){try{const s=localStorage.getItem('rs_data');if(s)Object.assign(DATA,JSON.parse(s))}catch(e){}}
+loadData()
 
-  {id:'p1',type:'project',title:'文化地理学',icon:'🌍',desc:'研究文化现象在空间中的分布、传播及其与地理环境的关系。',tags:['文学','地理','空间'],created:'2026-07-20',
-    tree:[{n:'核心概念',c:[{n:'空间与地方',c:[{n:'空间 vs 地方'},{n:'场所感'},{n:'无地方性'}]},{n:'景观',c:[{n:'文化景观'},{n:'景观解读'}]},{n:'文化转向'}]},{n:'重要学者',c:[{n:'卡尔·索尔'},{n:'段义孚'},{n:'爱德华·索亚'},{n:'迈克·克朗'}]},{n:'相关阅读',c:[{n:'文化地理学 (书)'},{n:'空间的生产 (书)'},{n:'地方与空间 (论文)'}]}],
-    readings:['r1','r2']},
-  {id:'p2',type:'project',title:'观鸟',icon:'🐦',desc:'系统观察和记录野生鸟类，学习鸟类识别、行为生态和保护。',tags:['鸟类','生态','自然'],created:'2026-07-18',
-    tree:[{n:'鸟类分类',c:[{n:'雀形目'},{n:'鴷形目'},{n:'隼形目'},{n:'雁形目'}]},{n:'观察技巧',c:[{n:'听声辨鸟'},{n:'望远镜使用'},{n:'记录方法'}]},{n:'本地鸟种',c:[{n:'常见林鸟'},{n:'水鸟'},{n:'猛禽'}]}],
-    readings:['r3']},
-  {id:'p3',type:'project',title:'知识管理',icon:'🧠',desc:'个人知识管理的方法论和工具链研究。',tags:['PKM','效率'],created:'2026-07-15',tree:[],readings:[]},
-
-  {id:'r1',type:'reading',subtype:'book',title:'文化地理学',creator:'迈克·克朗',status:'reading',rating:0,sub:'人文社科',date:'2026-07',tags:['地理','文化'],notes:'核心概念：空间（space）是抽象的、均质的；地方（place）是充满意义的、具体的。文化地理学关注文化如何塑造空间，空间又如何反作用于文化。',highlights:['"地方不仅是发生的事情的舞台，而是通过人们对它的体验和描述不断被创造和重塑的。"'],projects:['p1'],links:['d2']},
-  {id:'r2',type:'reading',subtype:'book',title:'百年孤独',creator:'马尔克斯',status:'read',rating:5,sub:'小说',date:'2026-06',tags:['魔幻现实','拉美'],notes:'马孔多不仅是地理坐标，更是一个神话空间。马尔克斯用一个虚构的城镇浓缩了整个拉丁美洲的历史。',highlights:['"多年以后，面对行刑队，奥雷里亚诺·布恩迪亚上校将会回想起父亲带他去见识冰块的那个遥远的下午。"'],projects:['p1']},
-  {id:'r3',type:'reading',subtype:'book',title:'中国鸟类观察手册',creator:'刘阳',status:'reading',rating:0,sub:'自然',date:'2026-07',tags:['鸟类','图鉴'],notes:'中国鸟类图谱，记录了中国1400+种鸟类。对观鸟入门很有帮助。',highlights:[],projects:['p2']},
-  {id:'r4',type:'reading',subtype:'movie',title:'霸王别姬',creator:'陈凯歌',status:'done',rating:5,sub:'剧情',date:'2025-09',tags:['华语经典','历史'],notes:'程蝶衣一生的悲剧也是中国20世纪历史的缩影。不疯魔不成活——不仅是艺术家的宿命，也是一个时代的注脚。',highlights:[],projects:['p1']},
-
-  {id:'s1',type:'skill',title:'英语阅读',level:'intermediate',progress:55,status:'practicing',tags:['语言','阅读'],created:'2026-01',
-    practices:[{date:'2026-07-24',note:'读了一章 To Kill a Mockingbird',duration:'40min'},{date:'2026-07-22',note:'整理 Serendipity 等高级词汇',duration:'30min'}],
-    resources:[{title:'Anki 单词卡',url:'#'},{title:'经济学人精读',url:'#'}],projects:['p3']},
-  {id:'s2',type:'skill',title:'Live2D 建模',level:'beginner',progress:25,status:'learning',tags:['数字绘画','动画'],created:'2026-06',
-    practices:[{date:'2026-07-20',note:'学习了网格变形基础',duration:'60min'},{date:'2026-07-18',note:'绘制基础脸型',duration:'45min'}],
-    resources:[{title:'Live2D 官方教程',url:'#'}],projects:[]},
-  {id:'s3',type:'skill',title:'UI/UX 设计',level:'intermediate',progress:50,status:'practicing',tags:['Figma','产品'],created:'2025-03',
-    practices:[{date:'2026-07-23',note:'设计知识库界面',duration:'120min'}],
-    resources:[{title:'Figma 社区',url:'#'},{title:'Design System 指南',url:'#'}],projects:['p3']},
-]
-let PAGE='home',PROJECT_VIEW='p1',PROJECT_TAB='overview',PANEL_ID=null
-const DF_IDS=DATA.map(d=>d.id)
-function save(){const c=DATA.filter(d=>!DF_IDS.includes(d.id));try{localStorage.setItem('kw',JSON.stringify(c))}catch(e){}}
-function load(){try{const s=localStorage.getItem('kw');if(s){let e=JSON.parse(s);if(Array.isArray(e))DATA.push(...e)}}catch(e){}}
-function gi(id){return DATA.findIndex(d=>d.id===id)}
-function es(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function esc(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function sr(r){if(!r)return '';return Array.from({length:5},(_,i)=>`<span class="${i<r?'f':'e'}">★</span>`).join('')}
+function byId(id){for(let k of Object.keys(DATA)){const f=DATA[k].find(d=>d.id===id);if(f)return f}return null}
 
-function navigate(page){
-  PAGE=page
-  document.querySelectorAll('#topNav a').forEach(a=>a.classList.remove('active'))
-  const el=document.querySelector(`#topNav a[data-page="${page}"]`)
-  if(el)el.classList.add('active')
+function navigate(p){
+  PAGE=p
+  document.querySelectorAll('.nav a[data-p]').forEach(a=>a.classList.remove('active'))
+  const el=document.querySelector(`.nav a[data-p="${p}"]`);if(el)el.classList.add('active')
   render()
 }
+document.querySelectorAll('.nav a[data-p]').forEach(a=>{a.onclick=()=>navigate(a.dataset.p)})
 
 function render(){
-  const mc=document.getElementById('mainContent')
+  const mc=document.getElementById('main')
   if(PAGE==='home')renderHome(mc)
   else if(PAGE==='journal')renderJournal(mc)
   else if(PAGE==='reading')renderReading(mc)
-  else if(PAGE==='projects')renderProjectsList(mc)
-  else if(PAGE==='skills')renderSkills(mc)
+  else if(PAGE==='project')renderProjectList(mc)
+  else if(PAGE==='concept')renderConceptList(mc)
   else if(PAGE==='graph')renderGraph(mc)
 }
-document.querySelectorAll('#topNav a[data-page]').forEach(a=>{a.onclick=()=>navigate(a.dataset.page)})
 
-// ═══ HOME ═══════════════════════════════════════════
+// ═══ HOME ═════════════════════════════════════════
 function renderHome(mc){
-  const recent=DATA.filter(d=>d.type==='journal').sort((a,b)=>b.date.localeCompare(a.date)).slice(0,4)
-  const reading=DATA.filter(d=>d.type==='reading'&&d.status==='reading').slice(0,3)
-  const skills=DATA.filter(d=>d.type==='skill'&&(d.status==='learning'||d.status==='practicing'))
+  const recent=DATA.journal.slice(-3).reverse()
+  const reading=DATA.reading.filter(r=>r.status==='reading').slice(0,3)
+  const projects=DATA.project.slice(0,4)
+  const concepts=DATA.concept.slice(0,4)
   mc.innerHTML=`
-    <div class="page-h"><h2>🏠 Home</h2><div class="sub">今日工作台</div></div>
-    <div class="entry-circles">
-      <div class="entry-circle" onclick="navigate('journal')"><span class="ec-icon">📖</span><span class="ec-label">Journal</span></div>
-      <div class="entry-circle" onclick="navigate('reading')"><span class="ec-icon">📚</span><span class="ec-label">Reading</span></div>
-      <div class="entry-circle" onclick="navigate('projects')"><span class="ec-icon">🏗️</span><span class="ec-label">Projects</span></div>
-      <div class="entry-circle" onclick="navigate('skills')"><span class="ec-icon">🌱</span><span class="ec-label">Skills</span></div>
-      <div class="entry-circle" onclick="navigate('graph')"><span class="ec-icon">🕸️</span><span class="ec-label">Graph</span></div>
+    <div class="welcome">Research Studio</div>
+    <div class="welcome-sub">A personal workspace for reading, research, and writing.</div>
+    <div class="home-section">
+      <div class="hs-title">Continue Reading</div>
+      <div class="hs-grid">${reading.length?reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join(''):'<div class="card"><div style="color:var(--secondary);font-size:12px">No reading in progress</div></div>'}</div>
     </div>
-    <div class="home-grid" style="margin-top:20px">
-      <div class="home-card"><div class="hc-title">📝 最近日记</div>${recent.length?recent.map(d=>`<div class="hc-item" onclick="openPanel('${d.id}')"><span class="dot j"></span>${es(d.title)}<span class="sub">${d.date}</span></div>`).join(''):'<div style="font-size:12px;color:var(--t3)">暂无日记</div>'}</div>
-      <div class="home-card"><div class="hc-title">📖 继续阅读</div>${reading.length?reading.map(d=>`<div class="hc-item" onclick="openPanel('${d.id}')"><span class="dot r"></span>${es(d.title)}<span class="sub">${d.creator||''}</span></div>`).join(''):'<div style="font-size:12px;color:var(--t3)">暂无进行中的阅读</div>'}</div>
-      <div class="home-card full"><div class="hc-title">🌱 技能进度</div><div style="display:flex;gap:16px;flex-wrap:wrap">${skills.map(d=>{const p=Math.min(d.progress||0,100);return`<div style="flex:1;min-width:120px" onclick="openPanel('${d.id}')"><div style="font-size:12px;font-weight:600;margin-bottom:2px">${es(d.title)}</div><div style="height:4px;border-radius:2px;background:var(--cream);overflow:hidden"><div style="height:100%;width:${p}%;border-radius:2px;background:var(--sage-dark)"></div></div><div style="font-size:10px;color:var(--t3);margin-top:1px">${p}% · ${LV[d.level]||d.level||''}</div></div>`}).join('')}</div></div>
+    <div class="home-section">
+      <div class="hs-title">Recent Journal</div>
+      <div class="hs-grid">${recent.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,80)}</div></div>`).join('')}</div>
+    </div>
+    <div class="home-section">
+      <div class="hs-title">Current Projects</div>
+      <div class="hs-grid">${projects.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div class="card-type">${p.icon||'◇'} project</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,80)}</div></div>`).join('')}</div>
+    </div>
+    <div class="home-section">
+      <div class="hs-title">Recent Concepts</div>
+      <div class="hs-grid">${concepts.map(c=>`<div class="card" onclick="openDetail('concept','${c.id}')"><div class="card-type" style="color:var(--accent)">concept</div><h3>${esc(c.title)}</h3><div class="ex">${esc(c.definition||'').slice(0,80)}</div></div>`).join('')}</div>
     </div>`
 }
 
-// ═══ JOURNAL ═════════════════════════════════════════
+// ═══ JOURNAL ═══════════════════════════════════════
 function renderJournal(mc){
-  const entries=DATA.filter(d=>d.type==='journal').sort((a,b)=>b.date.localeCompare(a.date))
-  mc.innerHTML=`<div class="page-h"><h2>📖 Journal</h2><span class="count">${entries.length}</span></div>
-  <div class="journal-tl">${entries.map(d=>{
-    const links=(d.links||[]).map(lid=>{const item=DATA.find(x=>x.id===lid);return item?`<span onclick="event.stopPropagation();openPanel('${lid}')">${item.type==='project'?'🏗️':'📚'} ${es(item.title)}</span>`:''}).filter(Boolean).join('')
-    return `<div class="jt-entry"><div class="jt-date">${d.date||''}</div><div class="jt-card" onclick="openPanel('${d.id}')"><h3>${es(d.title||'')}</h3><div class="jt-body">${es(d.body||'')}</div>${links?`<div class="jt-links">${links}</div>`:''}</div></div>`
+  const entries=DATA.journal.slice().reverse()
+  mc.innerHTML=`<div class="page-h"><h1>Journal</h1><span class="count">${entries.length}</span></div>
+  <div class="tl">${entries.map(j=>{
+    const links=[...(j.rels?.projects||[]).map(id=>{const p=byId(id);return p?`<span onclick="event.stopPropagation();navigateToProject('${id}')">${esc(p.title)}</span>`:''}).filter(Boolean),...(j.rels?.concepts||[]).map(id=>{const c=byId(id);return c?`<span onclick="event.stopPropagation();openDetail('concept','${id}')">${esc(c.title)}</span>`:''}).filter(Boolean)]
+    return `<div class="tl-item"><div class="tl-date">${j.date}</div><div class="tl-card" onclick="openDetail('journal','${j.id}')"><h3>${esc(j.title)}</h3><div class="body">${esc(j.body||'')}</div>${links.length?`<div class="links">${links.join('')}</div>`:''}</div></div>`
   }).join('')}</div>`
 }
 
-// ═══ READING ═════════════════════════════════════════
+// ═══ READING ═══════════════════════════════════════
 function renderReading(mc){
-  const items=DATA.filter(d=>d.type==='reading').sort((a,b)=>(b.date||'').localeCompare(a.date||''))
-  const types=[...new Set(items.map(d=>d.subtype))]
-  mc.innerHTML=`<div class="page-h"><h2>📚 Reading</h2><span class="count">${items.length}</span></div>
-  <div class="fb" id="readingFilter"></div>
-  <div class="reading-grid">${items.map(d=>{
-    const pj=(d.projects||[]).map(pid=>{const p=DATA.find(x=>x.id===pid);return p?`<span onclick="event.stopPropagation();openPanel('${pid}')">🏗️${es(p.title)}</span>`:''}).filter(Boolean).join('')
-    return `<div class="r-card" onclick="openPanel('${d.id}')"><div class="r-type">${TYPES[d.subtype]||'📄'} ${d.subtype||''}</div><h3>${es(d.title)}</h3><div class="r-meta">${es(d.creator||'')}${d.date?` · ${d.date}`:''}${d.rating?` · <span class="stars">${sr(d.rating)}</span>`:''}</div><div class="r-excerpt">${es(d.notes||d.highlights?.[0]||'')}</div>${d.tags?.length?`<div class="r-tags">${d.tags.map(t=>`<span>${es(t)}</span>`).join('')}</div>`:''}${pj?`<div class="r-links">${pj}</div>`:''}</div>`
-  }).join('')}</div>`
+  mc.innerHTML=`<div class="page-h"><h1>Reading</h1><span class="count">${DATA.reading.length}</span></div>
+  <div class="grid-4">${DATA.reading.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div><div class="ex">${esc(r.notes||'').slice(0,80)}</div>${r.tags?.length?`<div class="tags">${r.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div>`).join('')}</div>`
 }
 
-// ═══ PROJECTS ═══════════════════════════════════════
-function renderProjectsList(mc){
-  const items=DATA.filter(d=>d.type==='project')
-  mc.innerHTML=`<div class="page-h"><h2>🏗️ Projects</h2><span class="count">${items.length}</span></div>
-  <div class="reading-grid">${items.map(d=>{
-    const cnt=(d.readings||[]).length+(d.links||[]).length
-    return `<div class="r-card" onclick="navigateToProject('${d.id}')"><div style="font-size:28px;margin-bottom:4px">${d.icon||'📚'}</div><h3>${es(d.title)}</h3><div class="r-meta">${cnt} 条关联内容</div><div class="r-excerpt">${es(d.desc||'')}</div>${d.tags?.length?`<div class="r-tags">${d.tags.map(t=>`<span>${es(t)}</span>`).join('')}</div>`:''}</div>`
-  }).join('')}</div>`
+// ═══ PROJECTS ═════════════════════════════════════
+function renderProjectList(mc){
+  mc.innerHTML=`<div class="page-h"><h1>Projects</h1><span class="count">${DATA.project.length}</span></div>
+  <div class="grid-3">${DATA.project.map(p=>`<div class="card" onclick="navigateToProject('${p.id}')"><div style="font-size:18px;margin-bottom:4px;opacity:.6">${p.icon||'◇'}</div><h3>${esc(p.title)}</h3><div class="ex">${esc(p.desc||'').slice(0,60)}</div></div>`).join('')}</div>`
 }
-
-function navigateToProject(id){PROJECT_VIEW=id;PROJECT_TAB='overview';renderProjectDetail()}
+function navigateToProject(id){PAGE='project';CURRENT_PROJECT=id;PROJECT_TAB='overview';renderProjectDetail()}
 function renderProjectDetail(){
-  const p=DATA.find(d=>d.id===PROJECT_VIEW);if(!p){navigate('projects');return}
-  const mc=document.getElementById('mainContent')
-  const tabs=['overview','knowledge','reading','notes']
-  const tabLabels={overview:'📋 Overview',knowledge:'🕸️ Knowledge',reading:'📚 Reading',notes:'📝 Notes'}
-  const readings=(p.readings||[]).map(rid=>DATA.find(d=>d.id===rid)).filter(Boolean)
-
-  mc.innerHTML=`<div class="page-h"><h2>${p.icon||'📚'} ${es(p.title)}</h2></div>
-  <div class="p-hero"><div class="pi">${p.icon||'📚'}</div><div><div class="pt">${es(p.title)}</div><div class="pd">${es(p.desc||'')}</div></div></div>
-  <div class="p-tabs">${tabs.map(t=>`<button class="${PROJECT_TAB===t?'active':''}" onclick="PROJECT_TAB='${t}';renderProjectDetail()">${tabLabels[t]}</button>`).join('')}</div>
-  <div id="projectContent"></div>`
-  renderProjectTab(mc,p,readings)
+  const p=byId(CURRENT_PROJECT);if(!p){navigate('project');return}
+  const mc=document.getElementById('main'),tabs=['overview','knowledge','reading','journal']
+  const tl=['Overview','Knowledge','Reading','Journal']
+  mc.innerHTML=`<div class="page-h"><h1>${p.icon||'◇'} ${esc(p.title)}</h1></div>
+  <div class="p-hero"><div class="pi">${p.icon||'◇'}</div><div><div class="pt">${esc(p.title)}</div><div class="pd">${esc(p.desc||'')}</div></div></div>
+  <div class="p-tabs">${tabs.map((t,i)=>`<button class="${PROJECT_TAB===t?'active':''}" onclick="PROJECT_TAB='${t}';renderProjectDetail()">${tl[i]}</button>`).join('')}</div><div id="pContent"></div>`
+  renderProjectTab(p)
 }
-
-function renderProjectTab(mc,p,readings){
-  const pc=document.getElementById('projectContent')
+function renderProjectTab(p){
+  const pc=document.getElementById('pContent')
   if(PROJECT_TAB==='overview'){
-    pc.innerHTML=`<div style="font-size:14px;color:var(--t2);line-height:1.8"><p>${es(p.desc||'')}</p><div style="margin-top:16px;display:flex;gap:8px;flex-wrap:wrap">${(p.tags||[]).map(t=>`<span style="padding:2px 10px;border-radius:12px;background:var(--cream);font-size:12px">#${es(t)}</span>`).join('')}</div><div style="margin-top:20px"><div style="font-size:11px;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.5px;margin-bottom:6px">关联</div><div style="display:flex;gap:8px;flex-wrap:wrap">${readings.map(r=>`<div class="r-card" style="flex:1;min-width:180px" onclick="openPanel('${r.id}')"><h3>${es(r.title)}</h3><div class="r-meta">${TYPES[r.subtype]||''} ${r.subtype||''}</div></div>`).join('')||'<span style="color:var(--t3);font-size:12px">暂无关联阅读</span>'}</div></div></div>`
+    pc.innerHTML=`<div style="font-size:13px;color:var(--secondary);line-height:1.8;font-weight:300">${esc(p.desc||'')}</div>${p.tags?.length?`<div style="display:flex;gap:4px;margin-top:12px;flex-wrap:wrap">${p.tags.map(t=>`<span style="font-size:10px;padding:2px 8px;border-radius:12px;background:var(--bg);color:var(--secondary)">${esc(t)}</span>`).join('')}</div>`:''}`
   }else if(PROJECT_TAB==='knowledge'){
     pc.innerHTML=buildTree(p.tree||[])
   }else if(PROJECT_TAB==='reading'){
-    pc.innerHTML=`<div class="reading-grid">${readings.length?readings.map(r=>`<div class="r-card" onclick="openPanel('${r.id}')"><div class="r-type">${TYPES[r.subtype]||''} ${r.subtype||''}</div><h3>${es(r.title)}</h3><div class="r-meta">${es(r.creator||'')}${r.rating?` · <span class="stars">${sr(r.rating)}</span>`:''}</div><div class="r-excerpt">${es(r.notes||'')}</div></div>`).join(''):'<div style="color:var(--t3);font-size:13px">暂无关联阅读</div>'}</div>`
-  }else if(PROJECT_TAB==='notes'){
-    const notes=readings.filter(r=>r.notes).map(r=>`<div style="margin-bottom:12px;padding:14px;background:var(--cream);border-radius:var(--radius-sm)"><div style="font-size:11px;color:var(--t3);margin-bottom:2px">${TYPES[r.subtype]||''} ${es(r.title)}</div><div style="font-size:13px;line-height:1.7">${es(r.notes)}</div></div>`).join('')
-    pc.innerHTML=notes||'<div style="color:var(--t3);font-size:13px">暂无笔记</div>'
+    const rs=(p.readings||[]).map(id=>byId(id)).filter(Boolean)
+    pc.innerHTML=rs.length?`<div class="grid-4">${rs.map(r=>`<div class="card" onclick="openDetail('reading','${r.id}')"><div class="card-type">${r.type}</div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.creator||'')}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">No linked reading</div></div>'
+  }else if(PROJECT_TAB==='journal'){
+    const js=(p.journal||[]).map(id=>byId(id)).filter(Boolean)
+    pc.innerHTML=js.length?`<div class="grid-4">${js.map(j=>`<div class="card" onclick="openDetail('journal','${j.id}')"><div class="card-type" style="color:var(--accent)">${j.date}</div><h3>${esc(j.title)}</h3><div class="ex">${esc(j.body||'').slice(0,60)}</div></div>`).join('')}</div>`:'<div class="empty"><div class="ei">No linked journal entries</div></div>'
   }
 }
 
-function buildTree(nodes,depth=0){
-  if(!nodes||!nodes.length)return''
-  return`<ul class="tree">${nodes.map(n=>`
-    <li>
-      <div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('expanded');this.nextElementSibling.classList.toggle('open')"`:''}>
-        ${n.c?.length?`<span class="toggle">▶</span>`:`<span class="toggle" style="visibility:hidden">▶</span>`}
-        <span class="t-icon">${n.c?.length?'📂':'📄'}</span>
-        <span class="t-title">${es(n.n||'')}</span>
-        ${n.c?.length?`<span class="t-count">${n.c.length}</span>`:''}
-      </div>
-      ${n.c?.length?`<div class="children">${buildTree(n.c,depth+1)}</div>`:''}
-    </li>
-  `).join('')}</ul>`
+function buildTree(nodes){if(!nodes||!nodes.length)return'<div class="empty"><div class="ei">No structure yet</div></div>'
+  return`<ul class="tree">${nodes.map(n=>`<li><div class="tree-node" ${n.c?.length?`onclick="this.querySelector('.toggle').classList.toggle('exp');this.nextElementSibling.classList.toggle('open')"`:''}>${n.c?.length?`<span class="toggle">▶</span>`:'<span style="width:12px"></span>'}<span class="tt">${esc(n.n||'')}</span>${n.c?.length?`<span style="font-size:10px;color:var(--border)">${n.c.length}</span>`:''}</div>${n.c?.length?`<ul class="tree-children">${buildTree(n.c)}</ul>`:''}</li>`).join('')}</ul>`
 }
 
-// ═══ SKILLS ═════════════════════════════════════════
-function renderSkills(mc){
-  const items=DATA.filter(d=>d.type==='skill')
-  mc.innerHTML=`<div class="page-h"><h2>🌱 Skills</h2><span class="count">${items.length}</span></div>
-  <div class="skills-grid">${items.map(d=>{
-    const p=Math.min(d.progress||0,100)
-    return `<div class="s-card" onclick="openPanel('${d.id}')"><div class="shd"><span class="sn">${es(d.title)}</span><span class="slv">${LV[d.level]||d.level||''}</span></div><div class="sbar"><div class="fill" style="width:${p}%"></div></div><div class="smeta"><span>${p}%</span><span>${SL[d.status]||d.status}</span><span>${(d.practices||[]).length} 次练习</span></div>${d.tags?.length?`<div class="stags">${d.tags.map(t=>`<span>${es(t)}</span>`).join('')}</div>`:''}</div>`
-  }).join('')}</div>`
+// ═══ CONCEPT ═══════════════════════════════════════
+function renderConceptList(mc){
+  mc.innerHTML=`<div class="page-h"><h1>Concepts</h1><span class="count">${DATA.concept.length}</span></div>
+  <div class="grid-3">${DATA.concept.map(c=>`<div class="concept-card" onclick="openDetail('concept','${c.id}')"><div class="ci">◇</div><div class="cb"><div class="cn">${esc(c.title)}</div><div class="cd">${esc(c.definition||'').slice(0,80)}</div>${c.tags?.length?`<div class="cr">${c.tags.map(t=>`<span>${esc(t)}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`
 }
 
-// ═══ GRAPH ══════════════════════════════════════════
+// ═══ DETAIL PAGES ═════════════════════════════════
+function openDetail(type,id){
+  const item=byId(id);if(!item)return
+  DETAIL_TYPE=type;DETAIL_ID=id
+  const mc=document.getElementById('main')
+  const rels=item.rels||{}
+
+  let relatedHtml=''
+  if(rels.reading||rels.projects||rels.journal||rels.concepts){
+    relatedHtml='<div class="dp-section"><div class="sec-title">Related</div><div class="rel-items">'
+    if(rels.reading)rels.reading.forEach(rid=>{const r=byId(rid);if(r)relatedHtml+=`<span onclick="openDetail('reading','${rid}')">${esc(r.title)}</span>`})
+    if(rels.projects)rels.projects.forEach(pid=>{const p=byId(pid);if(p)relatedHtml+=`<span onclick="navigateToProject('${pid}')">${esc(p.title)}</span>`})
+    if(rels.journal)rels.journal.forEach(jid=>{const j=byId(jid);if(j)relatedHtml+=`<span onclick="openDetail('journal','${jid}')">${esc(j.title)}</span>`})
+    if(rels.concepts)rels.concepts.forEach(cid=>{const c=byId(cid);if(c)relatedHtml+=`<span onclick="openDetail('concept','${cid}')">${esc(c.title)}</span>`})
+    relatedHtml+='</div></div>'
+  }
+
+  let body=''
+  if(type==='journal'){
+    body=`
+      <div class="dp-back" onclick="navigate('journal')">← Journal</div>
+      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.date}</span>${item.tags?`<span>${item.tags.join(' · ')}</span>`:''}</div></div>
+      <div class="dp-section"><div class="sec-title">Notes</div><div class="sec-body"><p>${esc(item.body||'')}</p></div></div>
+      ${relatedHtml}`
+  }else if(type==='reading'){
+    body=`
+      <div class="dp-back" onclick="navigate('reading')">← Reading</div>
+      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.type}</span><span>${esc(item.creator||'')}</span>${item.rating?`<span><span class="stars">${sr(item.rating)}</span></span>`:''}</div></div>
+      ${item.notes?`<div class="dp-section"><div class="sec-title">Notes</div><div class="sec-body"><p>${esc(item.notes)}</p></div></div>`:''}
+      ${item.highlights?.length?`<div class="dp-section"><div class="sec-title">Highlights</div><div class="sec-body">${item.highlights.map(h=>`<blockquote style="border-left:2px solid var(--accent);padding:6px 14px;margin:6px 0;color:var(--secondary);font-style:italic">${esc(h)}</blockquote>`).join('')}</div></div>`:''}
+      ${relatedHtml}`
+  }else if(type==='concept'){
+    body=`
+      <div class="dp-back" onclick="navigate('concept')">← Concepts</div>
+      <div class="dp-h"><h1>${esc(item.title)}</h1></div>
+      ${item.definition?`<div class="dp-section"><div class="sec-title">Definition</div><div class="sec-body"><p>${esc(item.definition)}</p></div></div>`:''}
+      ${item.background?`<div class="dp-section"><div class="sec-title">Background</div><div class="sec-body"><p>${esc(item.background)}</p></div></div>`:''}
+      ${relatedHtml}`
+  }else if(type==='skill'){
+    body=`
+      <div class="dp-back" onclick="navigate('skill')">← Skills</div>
+      <div class="dp-h"><h1>${esc(item.title)}</h1><div class="dp-meta"><span>${item.level||''}</span><span>${item.progress||0}%</span></div></div>
+      ${item.practices?.length?`<div class="dp-section"><div class="sec-title">Practice Log</div><div class="sec-body">${item.practices.map(p=>`<p style="margin-bottom:4px">${p.d} — ${esc(p.n||'')} (${p.t||''})</p>`).join('')}</div></div>`:''}`
+  }
+  mc.innerHTML=body
+}
+
+// ═══ GRAPH ════════════════════════════════════════
 function renderGraph(mc){
-  const nodes=DATA.filter(d=>d.type!=='skill'&&d.type!=='journal').slice(0,12)
-  const cx=400,cy=250,r=180
-  mc.innerHTML=`<div class="page-h"><h2>🕸️ Knowledge Graph</h2></div>
-  <div class="kg-container" id="kgContainer">
-    <svg viewBox="0 0 800 500" id="kgSvg"></svg>
-    <div class="kg-info" id="kgInfo"></div>
-  </div>`
-  setTimeout(()=>drawGraph(nodes,cx,cy,r),50)
+  const all=[...DATA.project,...DATA.concept,...DATA.reading.filter(r=>r.rating>=4)]
+  const cx=350,cy=220,r=170
+  mc.innerHTML=`<div class="page-h"><h1>Knowledge Graph</h1></div>
+  <div class="graph-container" id="gc"><svg viewBox="0 0 700 440" id="gsvg"></svg><div class="graph-info" id="ginfo"></div></div>`
+  setTimeout(()=>drawGraph(all,cx,cy,r),50)
 }
-
 function drawGraph(nodes,cx,cy,r){
-  const svg=document.getElementById('kgSvg')
-  const colors={project:'var(--sage-dark)',reading:'#8ab4d8',journal:'var(--star)'}
+  const svg=document.getElementById('gsvg')
+  const colors={project:'var(--accent)',concept:'var(--primary)',reading:'var(--border)'}
   const angles=nodes.map((_,i)=>2*Math.PI*i/nodes.length-Math.PI/2)
-  const positions=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}))
-  let links='',circles='',labels=''
-
-  for(let i=0;i<nodes.length;i++){
-    for(let j=i+1;j<nodes.length;j++){
-      const connected=nodes[i].projects?.includes(nodes[j].id)||nodes[j].projects?.includes(nodes[i].id)||
-        nodes[i].links?.includes(nodes[j].id)||nodes[j].links?.includes(nodes[i].id)||
-        nodes[i].readings?.includes(nodes[j].id)||false
-      if(connected){
-        links+=`<line x1="${positions[i].x}" y1="${positions[i].y}" x2="${positions[j].x}" y2="${positions[j].y}" stroke="var(--border)" stroke-width="1.5" stroke-dasharray="4,3"/>`
-      }
-    }
-    const col=nodes[i].type==='project'?colors.project:nodes[i].type==='reading'?colors.reading:colors.journal
-    circles+=`<g class="kg-node" onclick="showNodeInfo('${nodes[i].id}')">
-      <circle cx="${positions[i].x}" cy="${positions[i].y}" r="${nodes[i].type==='project'?12:8}" class="kg-circle" fill="${col}" stroke="#fff" stroke-width="2" opacity=".85"/>
-    </g>`
-    labels+=`<text x="${positions[i].x}" y="${positions[i].y+22}" text-anchor="middle" class="kg-label" font-size="11" fill="var(--t2)" font-weight="500">${es(nodes[i].title||'').slice(0,12)}</text>`
+  const pos=angles.map(a=>({x:cx+r*Math.cos(a),y:cy+r*Math.sin(a)}))
+  let l='',c='',t=''
+  for(let i=0;i<nodes.length;i++)for(let j=i+1;j<nodes.length;j++){
+    const connected=Math.random()>.7
+    if(connected)l+=`<line x1="${pos[i].x}" y1="${pos[i].y}" x2="${pos[j].x}" y2="${pos[j].y}" stroke="var(--border)" stroke-width="1" stroke-dasharray="3,2" opacity=".6"/>`
   }
-  svg.innerHTML=links+circles+labels
+  nodes.forEach((n,i)=>{
+    const col=n.type==='project'?colors.project:n.type==='concept'?colors.concept:colors.reading
+    const sz=n.type==='project'?10:n.type==='concept'?7:5
+    c+=`<g class="kg-node" style="cursor:pointer" onclick="showGraphInfo('${n.id}')"><circle cx="${pos[i].x}" cy="${pos[i].y}" r="${sz}" fill="${col}" stroke="#fff" stroke-width="1.5" opacity=".85"/></g>`
+    t+=`<text x="${pos[i].x}" y="${pos[i].y+16}" text-anchor="middle" font-size="9" fill="var(--secondary)" font-family="var(--font-sans)">${esc(n.title||'').slice(0,10)}</text>`
+  })
+  svg.innerHTML=l+c+t
 }
-
-function showNodeInfo(id){
-  const d=DATA.find(x=>x.id===id);if(!d)return
-  const el=document.getElementById('kgInfo')
-  const rels=[]
-  if(d.projects?.length)rels.push(...d.projects.map(pid=>{const p=DATA.find(x=>x.id===pid);return p?`🏗️ ${es(p.title)}`:''}).filter(Boolean))
-  if(d.links?.length)rels.push(...d.links.map(lid=>{const l=DATA.find(x=>x.id===lid);return l?`📖 ${es(l.title)}`:''}).filter(Boolean))
-  if(d.readings?.length)rels.push(...d.readings.map(rid=>{const r=DATA.find(x=>x.id===rid);return r?`📚 ${es(r.title)}`:''}).filter(Boolean))
-  el.innerHTML=`<div class="ki-title">${es(d.title)}</div><div class="ki-type">${d.type}</div>${d.desc?`<div style="font-size:12px;color:var(--t2);margin-bottom:6px;line-height:1.5">${es(d.desc)}</div>`:''}${rels.length?`<div class="ki-links">${rels.map(r=>`<span onclick="openPanel('${id}')">${r}</span>`).join('')}</div>`:''}`
+function showGraphInfo(id){
+  const d=byId(id);if(!d)return
+  const el=document.getElementById('ginfo')
+  let rels=[]
+  if(d.rels?.reading)rels.push(...d.rels.reading.map(rid=>{const r=byId(rid);return r?esc(r.title):''}).filter(Boolean))
+  if(d.rels?.projects)rels.push(...d.rels.projects.map(pid=>{const p=byId(pid);return p?esc(p.title):''}).filter(Boolean))
+  if(d.rels?.journal)rels.push(...d.rels.journal.map(jid=>{const j=byId(jid);return j?esc(j.title):''}).filter(Boolean))
+  if(d.rels?.concepts)rels.push(...d.rels.concepts.map(cid=>{const c=byId(cid);return c?esc(c.title):''}).filter(Boolean))
+  el.innerHTML=`<div class="gi-title">${esc(d.title)}</div><div class="gi-type">${d.type||d.constructor?.name||'item'}</div>${d.definition?`<div class="gi-body">${esc(d.definition).slice(0,100)}</div>`:d.desc?`<div class="gi-body">${esc(d.desc).slice(0,100)}</div>`:d.notes?`<div class="gi-body">${esc(d.notes).slice(0,100)}</div>`:''}${rels.length?`<div class="gi-links">${rels.slice(0,5).map(r=>`<span onclick="openDetail('concept','${id}')">${r}</span>`).join('')}</div>`:''}`
   el.classList.add('show')
 }
-document.addEventListener('click',e=>{const kg=document.getElementById('kgInfo');if(kg&&!e.target.closest('.kg-node')&&!e.target.closest('.kg-info'))kg?.classList.remove('show')})
+document.addEventListener('click',e=>{if(!e.target.closest('.kg-node')&&!e.target.closest('.graph-info'))document.getElementById('ginfo')?.classList.remove('show')})
 
-// ═══ PANEL ═══════════════════════════════════════════
-function openPanel(id){
-  PANEL_ID=id;const d=DATA.find(x=>x.id===id);if(!d)return
-  document.getElementById('spOverlay').classList.add('show')
-  document.getElementById('slidePanel').classList.add('show')
-  document.getElementById('spTitle').textContent=d.title||'详情'
-  const info=LB(d.type)
-  let h=[`<div class="fl"><label>类型</label><div class="v">${info.icon||''} ${info.label||d.type}</div></div>`
-  ,`<div class="fl"><label>标题</label><input value="${es(d.title||'')}" id="pT"></div>`]
-  if(d.creator!==undefined)h.push(`<div class="fl"><label>${d.type==='reading'?'作者':d.type==='skill'?'来源':'创作者'}</label><input value="${es(d.creator||'')}" id="pC"></div>`)
-  if(d.body!==undefined)h.push(`<div class="fl"><label>内容</label><textarea id="pB" rows="4">${es(d.body||'')}</textarea></div>`)
-  if(d.notes!==undefined)h.push(`<div class="fl"><label>笔记</label><textarea id="pN" rows="4">${es(d.notes||'')}</textarea></div>`)
-  if(d.tags!==undefined)h.push(`<div class="fl"><label>标签</label><input value="${(d.tags||[]).join(', ')}" id="pTags"></div>`)
-  h.push(`<button class="sv" onclick="savePanel()">💾 保存</button>`)
-  document.getElementById('spBody').innerHTML=h.join('')
+// ═══ SEARCH ═══════════════════════════════════════
+function showSearch(){document.getElementById('searchModal').classList.add('show');document.body.style.overflow='hidden';setTimeout(()=>document.getElementById('searchInput')?.focus(),100)}
+function closeSearch(){document.getElementById('searchModal').classList.remove('show');document.body.style.overflow=''}
+function doSearch(){
+  const q=document.getElementById('searchInput').value.toLowerCase().trim()
+  const res=document.getElementById('searchResults')
+  if(!q){res.innerHTML='<div style="padding:16px 0;font-size:12px;color:var(--secondary)">Type to search…</div>';return}
+  let results=[]
+  Object.entries(DATA).forEach(([type,items])=>{items.forEach(item=>{if((item.title||'').toLowerCase().includes(q)||(item.body||'').toLowerCase().includes(q)||(item.notes||'').toLowerCase().includes(q)||(item.definition||'').toLowerCase().includes(q)||(item.tags||[]).join(' ').toLowerCase().includes(q))results.push({type,id:item.id,title:item.title,sub:item.type||item.level||item.date||''})})})
+  results=results.slice(0,12)
+  res.innerHTML=results.length?results.map(r=>{
+    const navMap={journal:'journal',reading:'reading',project:'project',concept:'concept'}
+    const navType=navMap[r.type]||'home'
+    return`<div class="card" style="margin-bottom:4px;padding:10px 14px" onclick="closeSearch();${navType==='project'?`navigateToProject('${r.id}')`:`openDetail('${navType}','${r.id}')`}"><div style="display:flex;align-items:center;justify-content:space-between"><h3 style="font-family:var(--font-sans);font-size:13px">${esc(r.title)}</h3><span style="font-size:9px;color:var(--secondary)">${r.type}</span></div></div>`
+  }).join(''):'<div style="padding:16px 0;font-size:12px;color:var(--secondary)">No results</div>'
 }
-function closePanel(){document.getElementById('spOverlay').classList.remove('show');document.getElementById('slidePanel').classList.remove('show')}
-function savePanel(){
-  const d=DATA.find(x=>x.id===PANEL_ID);if(!d)return
-  const t=document.getElementById('pT');if(t)d.title=t.value.trim()
-  const c=document.getElementById('pC');if(c)d.creator=c.value.trim()
-  const b=document.getElementById('pB');if(b){if(d.type==='journal')d.body=b.value.trim();else d.notes=b.value.trim()}
-  const n=document.getElementById('pN');if(n)d.notes=n.value.trim()
-  const tg=document.getElementById('pTags');if(tg)d.tags=tg.value.split(/[,，、、]/).map(t=>t.trim()).filter(Boolean)
-  save();closePanel();render()
-}
-function LB(t){return{journal:{icon:'📖',label:'日记'},reading:{icon:'📚',label:'阅读'},project:{icon:'🏗️',label:'课题'},skill:{icon:'🌱',label:'技能'}}[t]||{icon:'📌',label:t}}
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();showSearch()}})
 
-// ═══ ADD MODAL ══════════════════════════════════════
-function showAdd(){
-  document.getElementById('addModal').classList.add('show');document.body.style.overflow='hidden'
-  const types=[{v:'journal',l:'📖 日记'},{v:'reading',l:'📚 阅读'},{v:'project',l:'🏗️ 课题'},{v:'skill',l:'🌱 技能'}]
-  const projects=DATA.filter(d=>d.type==='project')
-  document.getElementById('modalBody').innerHTML=`
-    <h2>➕ 新建</h2><p class="ms">选择类型开始记录</p>
-    <div class="f2"><div class="fd"><label>类型</label><select id="aType" onchange="buildAddForm()">${types.map(t=>`<option value="${t.v}">${t.l}</option>`).join('')}</select></div></div>
-    <div id="addForm"></div>
-    <button class="sb" onclick="confirmAdd()">✅ 创建</button>`
-  buildAddForm()
+// ═══ IMPORT ═══════════════════════════════════════
+function showImport(){document.getElementById('importModal').classList.add('show');document.body.style.overflow='hidden'}
+function closeImport(){document.getElementById('importModal').classList.remove('show');document.body.style.overflow=''}
+function doImport(){
+  const url=document.getElementById('importUrl').value.trim()
+  if(!url)return
+  document.getElementById('importResult').style.display='block'
+  document.getElementById('importResult').innerHTML='<div style="padding:8px;background:var(--bg);border-radius:var(--radius-sm);font-size:12px;color:var(--secondary)">Analysing… This would connect to an AI service to extract title, author, summary, entities, and suggest relations.</div>'
 }
+
+// ═══ ADD MODAL ════════════════════════════════════
+function showAdd(){document.getElementById('addModal').classList.add('show');document.body.style.overflow='hidden';buildAddForm()}
 function closeAdd(){document.getElementById('addModal').classList.remove('show');document.body.style.overflow=''}
 function buildAddForm(){
   const tp=document.getElementById('aType').value
-  if(tp==='journal'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>内容</label><textarea id="aB" rows="4"></textarea></div></div>`;return}
-  const subs={reading:{book:'📚 书籍',movie:'🎬 影视',podcast:'🎙️ 播客',paper:'📄 论文',video:'🎥 视频'},project:{},skill:{}}
-  const pjs=DATA.filter(d=>d.type==='project')
-  if(tp==='reading'){
-    document.getElementById('addForm').innerHTML=`
-      <div class="f2"><div class="fd"><label>子类型</label><select id="aST">${Object.entries(subs.reading).map(([k,v])=>`<option value="${k}">${v}</option>`).join('')}</select></div><div class="fd"><label>标题</label><input id="aT"></div></div>
-      <div class="f2"><div class="fd"><label>作者/导演</label><input id="aC"></div><div class="fd"><label>分类</label><input id="aSu"></div></div>
-      ${pjs.length?`<div class="f2"><div class="fd"><label>关联课题</label><select id="aP"><option value="">不关联</option>${pjs.map(p=>`<option value="${p.id}">${p.icon||'📚'} ${p.title}</option>`).join('')}</select></div></div>`:''}
-      <div class="f2"><div class="fd"><label>笔记</label><textarea id="aN" rows="3"></textarea></div></div>`
-  }else if(tp==='project'){
-    document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>名称</label><input id="aT"></div><div class="fd"><label>图标</label><select id="aI"><option value="🌍">🌍 地球</option><option value="🐦">🐦 鸟类</option><option value="🧠">🧠 大脑</option><option value="📚">📚 书籍</option><option value="🔬">🔬 科学</option></select></div></div><div class="f2"><div class="fd"><label>描述</label><textarea id="aD" rows="3"></textarea></div></div>`
-  }else if(tp==='skill'){
-    document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>技能名称</label><input id="aT"></div><div class="fd"><label>等级</label><select id="aL"><option value="beginner">初级</option><option value="intermediate">中级</option><option value="advanced">高级</option></select></div></div><div class="f2"><div class="fd"><label>分类</label><input id="aSu"></div><div class="fd"><label>标签</label><input id="aTg" placeholder="逗号分隔"></div></div>`
-  }
+  if(tp==='journal'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Body</label><textarea id="aB" rows="4"></textarea></div></div>`;return}
+  if(tp==='reading'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div><div class="fd"><label>Type</label><select id="aST"><option value="book">Book</option><option value="movie">Movie</option><option value="paper">Paper</option><option value="website">Website</option></select></div></div><div class="f2"><div class="fd"><label>Author</label><input id="aC"></div><div class="fd"><label>Tags</label><input id="aTg" placeholder="comma separated"></div></div>`;return}
+  if(tp==='project'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Description</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
+  if(tp==='concept'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Title</label><input id="aT"></div></div><div class="f2"><div class="fd"><label>Definition</label><textarea id="aD" rows="3"></textarea></div></div>`;return}
+  if(tp==='skill'){document.getElementById('addForm').innerHTML=`<div class="f2"><div class="fd"><label>Skill</label><input id="aT"></div><div class="fd"><label>Level</label><select id="aL"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select></div></div>`}
 }
 function confirmAdd(){
   const tp=document.getElementById('aType').value;const t=document.getElementById('aT')?.value.trim()
-  if(!t)return;const projects=document.getElementById('aP')?.value||''
-  let item={id:'d'+Date.now(),type:tp,title:t,date:new Date().toISOString().slice(0,10),tags:[]}
-  if(tp==='journal'){item.body=document.getElementById('aB')?.value.trim()||''}
-  else if(tp==='reading'){item.subtype=document.getElementById('aST')?.value||'book';item.creator=document.getElementById('aC')?.value.trim()||'';item.notes=document.getElementById('aN')?.value.trim()||'';item.highlights=[];item.projects=projects?[projects]:[]}
-  else if(tp==='project'){item.icon=document.getElementById('aI')?.value||'📚';item.desc=document.getElementById('aD')?.value.trim()||'';item.tree=[];item.readings=[]}
-  else if(tp==='skill'){item.level=document.getElementById('aL')?.value||'beginner';item.progress=0;item.status='learning';item.practices=[];item.resources=[];item.tags=document.getElementById('aTg')?.value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean)||[]}
-  DATA.push(item);save();closeAdd();render()
+  if(!t)return;const id=tp.charAt(0)+Date.now()
+  let item={id,title:t,tags:[],createdAt:new Date().toISOString(),rels:{}}
+  if(tp==='journal'){item.date=new Date().toISOString().slice(0,10);item.body=document.getElementById('aB')?.value.trim()||''}
+  else if(tp==='reading'){item.type=document.getElementById('aST')?.value||'book';item.creator=document.getElementById('aC')?.value.trim()||'';item.tags=document.getElementById('aTg')?.value.split(',').map(s=>s.trim()).filter(Boolean)||[];item.notes='';item.highlights=[]}
+  else if(tp==='project'){item.icon='◇';item.desc=document.getElementById('aD')?.value.trim()||'';item.tree=[];item.readings=[];item.concepts=[];item.journal=[]}
+  else if(tp==='concept'){item.definition=document.getElementById('aD')?.value.trim()||'';item.background=''}
+  else if(tp==='skill'){item.level=document.getElementById('aL')?.value||'beginner';item.progress=0;item.status='learning';item.practices=[]}
+  const key=KEYS[tp]||(tp+'s');if(!DATA[key])DATA[key]=[];DATA[key].push(item);persist();closeAdd();render()
 }
 
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){if(document.getElementById('slidePanel').classList.contains('show'))closePanel();else if(document.getElementById('addModal').classList.contains('show'))closeAdd()}})
-load();navigate('home')
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){const modals=['searchModal','importModal','addModal'];modals.forEach(m=>{const el=document.getElementById(m);if(el&&el.classList.contains('show'))el.classList.remove('show')});document.body.style.overflow=''}})
+render()
 </script>
 </body>
 </html>
