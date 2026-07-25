@@ -2,128 +2,127 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>我的知识仓库</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>知识仓库</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Serif+SC:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;700&display=swap');
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{--bg:#faf9f7;--card:#fff;--text:#1d1d1f;--t2:#86868b;--accent:#8b5cf6;--accent2:#a78bfa;--al:#f5f3ff;--border:#e5e5e7;--border2:#d4d4d8;--radius:12px;--shadow:0 1px 3px rgba(0,0,0,.04);--hsh:0 4px 12px rgba(0,0,0,.08);--star:#f59e0b;--li:#f0fdf4;--lc:#16a34a;--sd:#22c55e;--si:#3b82f6;--sw:#a1a1aa;--sa:#eab308;--sp:#a855f7}
-body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5}
-::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:transparent}::-webkit-scrollbar-thumb{background:#e0e0e0;border-radius:3px}
-
-/* Layout */
+:root{--bg:#f5f5f7;--card:#fff;--text:#1d1d1f;--t2:#86868b;--t3:#aeaeb2;--accent:#5e5ce6;--al:#f0f0ff;--border:#e5e5ea;--radius:14px;--shadow:0 1px 3px rgba(0,0,0,.04);--star:#ff9f0a;--tag-bg:#f2f2f7;--tag-c:#636366}
+body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(--bg);color:var(--text);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden;height:100vh}
 .app{display:flex;height:100vh}
 
-/* Sidebar */
-.sb{width:230px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden}
-.sb-h{padding:16px 16px 10px;border-bottom:1px solid var(--border)}
-.sb-h h1{font-family:'Inter',sans-serif;font-size:.95rem;font-weight:700;color:var(--text);letter-spacing:-.3px;display:flex;align-items:center;gap:8px}
-.sb-h .sh-s{font-size:.6rem;color:var(--t2);letter-spacing:.5px;margin-top:2px;font-weight:400}
-.sb-n{flex:1;overflow-y:auto;padding:6px 0}
-.sb-g{font-size:.58rem;color:var(--t2);padding:10px 16px 4px;font-weight:500;letter-spacing:.5px;text-transform:uppercase}
-.sb-n button{display:flex;align-items:center;gap:8px;width:calc(100%-10px);margin:1px 5px;padding:7px 11px;border:none;background:transparent;cursor:pointer;border-radius:6px;transition:all .12s;font-family:inherit;font-size:.78rem;color:var(--t2);text-align:left}
+/* ── Sidebar ── */
+.sb{width:220px;flex-shrink:0;background:var(--card);border-right:1px solid var(--border);display:flex;flex-direction:column;overflow:hidden;z-index:10}
+.sb-h{padding:18px 14px 10px}
+.sb-h h1{font-size:.88rem;font-weight:700;display:flex;align-items:center;gap:6px;letter-spacing:-.2px}
+.sb-h .ss{font-size:.58rem;color:var(--t3);margin-top:1px;letter-spacing:.3px}
+.sb-n{flex:1;overflow-y:auto;padding:4px 0 12px}
+.sb-g{font-size:.55rem;color:var(--t3);padding:8px 14px 3px;font-weight:600;letter-spacing:.4px;text-transform:uppercase}
+.sb-n button{display:flex;align-items:center;gap:7px;width:calc(100%-8px);margin:1px 4px;padding:6px 10px;border:none;background:transparent;cursor:pointer;border-radius:6px;transition:all .12s;font-family:inherit;font-size:.75rem;color:var(--t2);text-align:left}
 .sb-n button:hover{background:var(--bg);color:var(--text)}
 .sb-n button.active{background:var(--al);color:var(--accent);font-weight:600}
-.sb-n .si{font-size:.82rem;flex-shrink:0;width:18px;text-align:center}
 
-/* Main */
-.mn{flex:1;display:flex;flex-direction:column;overflow:hidden}
-.mn-h{display:flex;align-items:center;gap:10px;padding:10px 20px;border-bottom:1px solid var(--border);background:var(--card);flex-shrink:0;flex-wrap:wrap}
-.mn-h .vl{font-size:.8rem;font-weight:600;color:var(--text);display:flex;align-items:center;gap:6px}
-.mn-h .vl .c{font-size:.72rem;color:var(--t2);font-weight:400}
-.fr{display:flex;gap:3px;flex-wrap:wrap}
-.fr button{padding:2px 10px;border:1px solid transparent;border-radius:12px;background:transparent;color:var(--t2);cursor:pointer;font-size:.66rem;font-family:inherit;transition:all .12s}
+/* ── Main ── */
+.mn{flex:1;display:flex;flex-direction:column;overflow:hidden;background:var(--bg)}
+.mn-h{display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--card);border-bottom:1px solid var(--border);flex-shrink:0;flex-wrap:wrap;min-height:44px}
+.mn-h .vl{font-size:.78rem;font-weight:600;letter-spacing:-.2px;display:flex;align-items:center;gap:4px;white-space:nowrap;margin-right:4px}
+.mn-h .vl .c{font-size:.7rem;color:var(--t2);font-weight:400}
+.fr{display:flex;gap:2px;flex-wrap:wrap}
+.fr button{padding:2px 9px;border-radius:10px;border:none;background:transparent;color:var(--t2);cursor:pointer;font-size:.64rem;font-family:inherit;transition:all .12s;white-space:nowrap}
 .fr button:hover{color:var(--text);background:var(--bg)}
-.fr button.active{background:var(--al);color:var(--accent);border-color:var(--accent);font-weight:500}
+.fr button.active{background:var(--al);color:var(--accent);font-weight:500}
 
-.ct{flex:1;overflow-y:auto;padding:16px}
-.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:8px}
-.es{text-align:center;padding:50px 20px;color:var(--t2)}
-.es .ei{font-size:2.2rem;margin-bottom:6px}
+.ct{flex:1;overflow-y:auto;padding:12px 14px}
+.ct::-webkit-scrollbar{width:3px}
+.ct::-webkit-scrollbar-thumb{background:var(--border);border-radius:2px}
 
-/* Card */
-.cd{background:var(--card);border-radius:var(--radius);box-shadow:var(--shadow);cursor:pointer;transition:all .15s;border:1px solid transparent;overflow:hidden}
-.cd:hover{box-shadow:var(--hsh);border-color:var(--border);transform:translateY(-2px)}
-.cd-i{padding:14px}
-.cd-i .cd-t{display:flex;align-items:center;gap:6px;margin-bottom:4px}
-.cd-i .cd-t .cty{font-size:.58rem;color:var(--t2);background:var(--bg);padding:2px 8px;border-radius:4px;font-weight:500;letter-spacing:.2px}
-.cd-i .cd-t .cs{font-size:.56rem;padding:2px 8px;border-radius:4px;color:#fff;font-weight:500}
-.cs.sd{background:var(--sd)}.cs.si{background:var(--si)}.cs.sw{background:var(--sw)}.cs.sa{background:var(--sa)}.cs.sp{background:var(--sp)}
-.cd-i h3{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;margin-bottom:2px;letter-spacing:-.2px}
-.cd-i .cr{font-size:.64rem;color:var(--t2);margin-bottom:3px}
-.cd-i .mt{display:flex;align-items:center;gap:4px;font-size:.62rem;color:var(--t2);flex-wrap:wrap}
-.cd-i .mt .gt{color:var(--accent);background:var(--al);padding:1px 6px;border-radius:4px;font-weight:500}
-.sr{display:inline-flex;gap:1px;font-size:.64rem}
-.sr .sf{color:var(--star)}.sr .se{color:#e4e4e7}
-.tgs{display:flex;flex-wrap:wrap;gap:2px;margin-top:4px}
-.tgs .tg{font-size:.54rem;padding:1px 6px;border-radius:4px;background:#f0f0f0;color:#555}
+/* ── Cards ── */
+.gr{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.cd{background:var(--card);border-radius:10px;cursor:pointer;transition:all .15s;overflow:hidden;border:1px solid transparent}
+.cd:hover{box-shadow:0 2px 8px rgba(0,0,0,.04);border-color:var(--border);transform:translateY(-1px)}
+.cd-i{padding:12px 14px}
+.cd-hd{display:flex;align-items:center;gap:5px;margin-bottom:3px}
+.cd-hd .cty{font-size:.56rem;color:var(--t3);background:var(--tag-bg);padding:1px 7px;border-radius:4px}
+.cd-hd .cs{font-size:.54rem;padding:1px 7px;border-radius:4px;color:#fff;font-weight:500}
+.cs.sd{background:#34c759}.cs.si{background:#007aff}.cs.sw{background:var(--t3)}.cs.sa{background:#ff9f0a}.cs.sp{background:#bf5af2}
+
+.cd-i h3{font-size:.8rem;font-weight:600;margin-bottom:1px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.cd-i .cr{font-size:.62rem;color:var(--t2);margin-bottom:2px}
+.cd-i .mt{display:flex;align-items:center;gap:4px;font-size:.6rem;color:var(--t2);flex-wrap:wrap}
+.cd-i .mt .gt{color:var(--accent);background:var(--al);padding:0 6px;border-radius:3px}
+.cd-i .ex{font-size:.64rem;color:var(--t2);line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;margin-top:4px;padding-top:4px;border-top:1px solid var(--bg)}
+.sr{display:inline-flex;gap:1px;font-size:.6rem}
+.sr .sf{color:var(--star)}.sr .se{color:#e5e5ea}
 .bds{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
-.lb{font-size:.52rem;color:var(--lc);background:var(--li);padding:1px 6px;border-radius:3px;font-weight:500}
-.rb{font-size:.52rem;color:var(--accent);background:var(--al);padding:1px 6px;border-radius:3px;cursor:pointer;font-weight:500}
-.rb:hover{background:#ede9fe}
+.lb{font-size:.5rem;color:#34c759;background:#f0fdf4;padding:1px 5px;border-radius:3px;font-weight:500}
+.rb{font-size:.5rem;color:var(--accent);background:var(--al);padding:1px 5px;border-radius:3px;cursor:pointer;font-weight:500}
+.es{text-align:center;padding:60px 16px;color:var(--t2)}
+.es .ei{font-size:2rem;margin-bottom:6px;opacity:.6}
 
-/* FAB */
-.fab{position:fixed;bottom:24px;right:24px;width:42px;height:42px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 2px 12px rgba(139,92,246,.35);z-index:100;display:flex;align-items:center;justify-content:center;transition:all .2s}
-.fab:hover{transform:scale(1.08);box-shadow:0 4px 16px rgba(139,92,246,.45)}
+/* ── FAB ── */
+.fab{position:fixed;bottom:20px;right:20px;width:40px;height:40px;border-radius:50%;background:var(--accent);color:#fff;border:none;font-size:20px;cursor:pointer;box-shadow:0 2px 12px rgba(94,92,230,.3);z-index:100;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.fab:hover{transform:scale(1.05);box-shadow:0 4px 16px rgba(94,92,230,.4)}
 
-/* Modal */
-.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.25);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(4px)}
+/* ── Modal ── */
+.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.2);z-index:200;align-items:center;justify-content:center;padding:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .mo.o{display:flex}
-.mm{background:#fff;border-radius:14px;width:100%;max-width:480px;max-height:85vh;overflow-y:auto;padding:24px;box-shadow:0 24px 64px rgba(0,0,0,.12);animation:in .2s ease}
+.mm{background:var(--card);border-radius:14px;width:100%;max-width:460px;max-height:85vh;overflow-y:auto;padding:20px;box-shadow:0 24px 80px rgba(0,0,0,.15);animation:in .2s ease}
 @keyframes in{from{opacity:0;transform:translateY(8px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
-.mm h2{font-family:'Inter',sans-serif;font-size:.9rem;font-weight:600;margin-bottom:2px}
-.mm .ms{font-size:.7rem;color:var(--t2);margin-bottom:14px}
-.mm .cl{float:right;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--t2);padding:0 3px;line-height:1}
-.mm .cl:hover{color:var(--text)}
-.f2{display:flex;gap:8px;margin-bottom:7px}
-.f2 .fd{flex:1}
-.f2 .fd label{display:block;font-size:.62rem;color:var(--t2);margin-bottom:2px;font-weight:500}
-.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:6px 10px;border:1px solid var(--border);border-radius:8px;font-size:.78rem;font-family:inherit;background:#fafafa;transition:border .15s}
-.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(139,92,246,.08)}
-.f2 .fd textarea{resize:vertical;min-height:32px}
-.mm .sb2{width:100%;padding:8px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.8rem;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px;transition:background .15s}
-.mm .sb2:hover{background:#7c3aed}
-.ts{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:10px}
-.ts button{padding:5px 2px;border:1.5px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:.64rem;font-family:inherit;transition:all .12s;text-align:center}
-.ts button:hover{border-color:var(--accent);background:var(--al)}
+.mm h2{font-size:.85rem;font-weight:600;margin-bottom:2px}
+.mm .ms{font-size:.68rem;color:var(--t2);margin-bottom:12px}
+.mm .cl{float:right;background:none;border:none;font-size:1.2rem;cursor:pointer;color:var(--t3);padding:0 2px;line-height:1}
+.ts{display:grid;grid-template-columns:repeat(5,1fr);gap:3px;margin-bottom:8px}
+.ts button{padding:4px 2px;border:1.5px solid var(--border);border-radius:8px;background:transparent;cursor:pointer;font-size:.62rem;font-family:inherit;transition:all .1s;text-align:center;color:var(--t2)}
+.ts button:hover{border-color:var(--accent)}
 .ts button.active{border-color:var(--accent);background:var(--al);color:var(--accent);font-weight:600}
+.f2{display:flex;gap:6px;margin-bottom:6px}
+.f2 .fd{flex:1}
+.f2 .fd label{font-size:.6rem;color:var(--t2);margin-bottom:1px;display:block;font-weight:500}
+.f2 .fd input,.f2 .fd select,.f2 .fd textarea{width:100%;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.74rem;font-family:inherit;background:#fafafa;transition:border .12s}
+.f2 .fd input:focus,.f2 .fd select:focus,.f2 .fd textarea:focus{outline:none;border-color:var(--accent);background:#fff;box-shadow:0 0 0 3px rgba(94,92,230,.06)}
+.f2 .fd textarea{resize:vertical;min-height:30px}
+.mm .sb2{width:100%;padding:7px;background:var(--accent);color:#fff;border:none;border-radius:8px;font-size:.78rem;font-family:inherit;cursor:pointer;font-weight:500;margin-top:4px;transition:opacity .15s}
+.mm .sb2:hover{opacity:.9}
 
 @media(max-width:768px){
-  .sb{width:56px}
-  .sb-h{padding:12px 6px 8px}
-  .sb-h h1{font-size:0;gap:0;justify-content:center}
-  .sb-h h1::after{content:'🧠';font-size:1.2rem}
-  .sb-h .sh-s{display:none}
-  .sb-n button{width:44px;margin:1px 3px;padding:6px 0;justify-content:center;font-size:0}
-  .sb-n .sg{text-align:center;padding:6px 0 2px;font-size:.5rem}
-  .sb-n .si{font-size:.82rem;width:auto}
+  .sb{width:48px;background:var(--card);border-right:1px solid var(--border)}
+  .sb-h{padding:14px 0 8px;text-align:center}
+  .sb-h h1{font-size:0;justify-content:center}
+  .sb-h h1::after{content:'🧠';font-size:1.1rem}
+  .sb-h .ss{display:none}
+  .sb-n button{width:40px;margin:1px 4px;padding:6px 0;justify-content:center;font-size:0}
+  .sb-n .sg{text-align:center;padding:6px 0 2px;font-size:.48rem}
   .gr{grid-template-columns:1fr 1fr}
+  .ct{padding:8px 10px}
   .ts{grid-template-columns:repeat(5,1fr)}
   .f2{flex-direction:column;gap:0}
+  .mn-h{padding:8px 10px}
 }
-@media(max-width:480px){.gr{grid-template-columns:1fr}}
+@media(max-width:480px){
+  .gr{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
 <div class="app">
   <div class="sb">
-    <div class="sb-h"><h1>🧠 知识仓库</h1><div class="sh-s">Knowledge Base</div></div>
+    <div class="sb-h"><div><h1>🧠 知识库</h1><div class="ss">KNOWLEDGE</div></div></div>
     <div class="sb-n">
       <div class="sg">概览</div>
-      <button class="active" data-m="home" data-v="all"><span class="si">🏠</span>全部</button>
+      <button class="active" data-m="home" data-v="all">🏠 全部</button>
       <div class="sg">学习流</div>
-      <button data-m="flow" data-v="input"><span class="si">📥</span>输入</button>
-      <button data-m="flow" data-v="output"><span class="si">📤</span>输出</button>
-      <button data-m="flow" data-v="tool"><span class="si">🔧</span>工具</button>
-      <div class="sg" id="domainSG">知识域</div>
-      <div id="domainB"></div>
-      <div class="sg" id="regionSG">地区</div>
-      <div id="regionB"></div>
+      <button data-m="flow" data-v="input">📥 输入</button>
+      <button data-m="flow" data-v="output">📤 输出</button>
+      <button data-m="flow" data-v="tool">🔧 工具</button>
+      <div class="sg" id="dsg">知识域</div>
+      <div id="db"></div>
+      <div class="sg" id="rsg">地区</div>
+      <div id="rb"></div>
     </div>
   </div>
   <div class="mn">
     <div class="mn-h">
-      <div class="vl" id="vl">🏠 全部 <span class="c" id="count"></span></div>
+      <div class="vl" id="vl">全部 <span class="c" id="cnt"></span></div>
       <div class="fr" id="fr"></div>
     </div>
     <div class="ct"><div class="gr" id="gr"></div></div>
@@ -134,7 +133,7 @@ body{font-family:'Inter','Noto Sans SC',-apple-system,sans-serif;background:var(
 <div class="mo" id="mo" onclick="cM(event)">
   <div class="mm" onclick="event.stopPropagation()">
     <button class="cl" onclick="cM()">✕</button>
-    <h2>➕ 添加</h2>
+    <h2>添加</h2>
     <p class="ms">记录你的输入、输出与思考</p>
     <form id="af" onsubmit="aI(event)">
       <div class="ts" id="ts">
@@ -165,136 +164,48 @@ const RI={'拉美':'🌎','中国':'🇨🇳','日本':'🇯🇵','法国':'🇫
 const SL={read:'已读',reading:'在读',want:'想读',done:'完成',watching:'在看',saved:'已存',listening:'在听',learning:'学习中',learned:'已掌握',todo:'待学',active:'启用',archived:'归档',draft:'草稿',ongoing:'进行中',paused:'暂停',using:'在用',tried:'试过'};
 const SC={read:'sd',reading:'si',want:'sw',done:'sd',watching:'si',saved:'sw',listening:'si',learning:'si',learned:'sd',todo:'sw',active:'sa',archived:'sw',draft:'sw',ongoing:'sa',paused:'sp',using:'sa',tried:'sw'};
 const DFLT=[
-  {type:'book',title:'百年孤独',creator:'马尔克斯',status:'read',rating:5,sub:'文学小说',extra:'360页',tags:['魔幻现实'],excerpt:'多年以后…',notes:'魔幻现实主义的巅峰。',domain:['文学'],region:'拉美',links:[]},
+  {type:'book',title:'百年孤独',creator:'马尔克斯',status:'read',rating:5,sub:'文学小说',extra:'360页',tags:['魔幻现实'],excerpt:'多年以后，面对行刑队…',domain:['文学'],region:'拉美',links:[]},
   {type:'book',title:'活着',creator:'余华',status:'read',rating:5,sub:'文学小说',extra:'200页',tags:['中国文学'],excerpt:'人是为了活着本身而活着。',domain:['文学'],region:'中国',links:[]},
   {type:'book',title:'人类简史',creator:'赫拉利',status:'read',rating:5,sub:'社科',extra:'440页',tags:['历史'],excerpt:'人类以为自己驯化了小麦。',domain:['社科·历史'],region:'全球',links:[]},
-  {type:'movie',title:'肖申克的救赎',creator:'德拉邦特',status:'done',rating:5,sub:'剧情',extra:'1994',tags:['经典'],excerpt:'恐惧让你沦为囚犯。',domain:['文学·影视'],region:'美国',links:['活着']},
+  {type:'movie',title:'肖申克的救赎',creator:'德拉邦特',status:'done',rating:5,sub:'剧情',extra:'1994',tags:['经典'],excerpt:'恐惧让你沦为囚犯，希望让你重获自由。',domain:['文学·影视'],region:'美国',links:['活着']},
   {type:'movie',title:'星际穿越',creator:'诺兰',status:'done',rating:5,sub:'科幻',extra:'2014',tags:['科幻'],excerpt:'爱是唯一能穿越时空的维度。',domain:['科幻'],region:'美国',links:['人类简史']},
   {type:'article',title:'黑客与画家',creator:'Paul Graham',status:'read',rating:5,sub:'编程',extra:'paulgraham.com',tags:['编程'],excerpt:'编程是一种创造性活动。',domain:['编程·科技'],region:'美国',links:[]},
   {type:'podcast',title:'故事FM',creator:'寇爱哲',status:'listening',rating:5,sub:'叙事',extra:'小宇宙',tags:['故事'],excerpt:'用你的声音讲述你的故事。',domain:['媒体'],region:'中国',links:[]},
   {type:'english',title:'Serendipity',creator:'词汇',status:'learning',rating:0,sub:'词汇',extra:'/sɛrənˈdɪpəti/',tags:['词汇'],excerpt:'意外发现美好事物的能力。',domain:['语言'],region:'欧美',links:[]},
-  {type:'sop',title:'周复盘流程',creator:'自我管理',status:'active',rating:4,sub:'效率',extra:'6步',tags:['复盘'],excerpt:'每周日晚的复盘标准流程。',steps:[{text:'回顾本周',done:false},{text:'检查进度',done:false},{text:'分析改进',done:false},{text:'记录收获',done:false},{text:'规划下周',done:false},{text:'更新库',done:false}],domain:['效率·成长'],region:'通用',links:[]},
-  {type:'review',title:'7月第三周复盘',creator:'自己',status:'done',rating:4,sub:'weekly',extra:'07-15~21',tags:['复盘'],excerpt:'整体状态不错。',prompts:[{q:'最大成就？',a:'完成链接系统'},{q:'困难？',a:'会议太多'},{q:'学到？',a:'Dataview'},{q:'下周？',a:'读书'}],domain:['效率·成长'],region:'通用',links:[]},
-  {type:'project',title:'知识仓库网站',creator:'独立开发',status:'ongoing',rating:0,sub:'Web',extra:'85%',tags:['前端','个人项目'],excerpt:'个人知识管理系统。',domain:['编程·科技'],region:'通用',links:['知识图谱可视化']},
-  {type:'tool',title:'Obsidian',creator:'Obsidian MD',status:'using',rating:5,sub:'笔记',extra:'全平台',tags:['笔记','PKM'],excerpt:'个人知识管理神器。',domain:['效率·成长','编程·科技'],region:'通用',links:[]},
+  {type:'sop',title:'周复盘流程',creator:'自我管理',status:'active',rating:4,sub:'效率',extra:'6步',tags:['复盘'],excerpt:'每周日晚的复盘标准流程。',steps:[{text:'回顾',done:false},{text:'检查',done:false},{text:'分析',done:false},{text:'记录',done:false},{text:'规划',done:false}],domain:['效率·成长'],region:'通用',links:[]},
+  {type:'review',title:'7月第三周复盘',creator:'自己',status:'done',rating:4,sub:'weekly',extra:'07-15~21',tags:['复盘'],excerpt:'整体状态不错，完成链接系统设计。',prompts:[{q:'成就？',a:'完成链接系统'},{q:'困难？',a:'会议太多'},{q:'学到？',a:'Dataview'}],domain:['效率·成长'],region:'通用',links:[]},
+  {type:'project',title:'知识仓库网站',creator:'独立开发',status:'ongoing',rating:0,sub:'Web',extra:'85%',tags:['个人项目'],excerpt:'个人知识管理系统。',domain:['编程·科技'],region:'通用',links:[]},
+  {type:'tool',title:'Obsidian',creator:'Obsidian MD',status:'using',rating:5,sub:'笔记',extra:'全平台',tags:['PKM'],excerpt:'个人知识管理神器。',domain:['效率·成长'],region:'通用',links:[]},
 ];
-const DF=DFLT.map(d=>d.title);const SK='kc_v6';let ITEMS=[],MODE='home',VAL='all',SUB='all';
+const DF=DFLT.map(d=>d.title);const SK='k';let ITEMS=[],MODE='home',VAL='all',SUB='all';
 function sl(s){return SL[s]||s}
 function sc(s){return SC[s]||''}
 function sr(r){if(!r)return '';return Array.from({length:5},(_,i)=>`<span class="${i<r?'sf':'se'}">★</span>`).join('')}
-function ti(t){return TM[t]||{icon:'📌',label:t,nl:'笔记',cl:''}}
+function ti(t){return TM[t]||{icon:'📌',label:t}}
 function ft(f){return TY.filter(t=>t.flow===f).map(t=>t.id)}
 function gD(){const d=new Set();ITEMS.forEach(i=>{(i.domain||[]).forEach(dd=>d.add(dd))});return[...d].sort()}
 function gR(){return[...new Set(ITEMS.map(i=>i.region).filter(Boolean))].sort()}
-
-function gF(){
-  let l=[...ITEMS];
-  if(MODE==='flow'){const t=ft(VAL);if(t.length)l=l.filter(i=>t.includes(i.type))}
-  else if(MODE==='domain')l=l.filter(i=>i.domain&&i.domain.includes(VAL))
-  else if(MODE==='region')l=l.filter(i=>i.region===VAL)
-  if(SUB!=='all'){if(SUB.startsWith('_d_')){const d=SUB.slice(3);l=l.filter(i=>i.domain&&i.domain.includes(d))}
-  else if(SUB.startsWith('_r_')){const r=SUB.slice(3);l=l.filter(i=>i.region===r)}
-  else l=l.filter(i=>i.status===SUB||i.sub===SUB||(i.tags&&i.tags.includes(SUB)))}
-  return l
-}
-
-function r(){
-  const list=gF();const g=document.getElementById('gr');
-  const ll={home:{all:'🏠 全部'},flow:{input:'📥 输入',output:'📤 输出',tool:'🔧 工具'},domain:{},region:{}};
-  gD().forEach(d=>ll.domain[d]=`🌐 ${d}`);gR().forEach(r=>{const i=RI[r]||{};ll.region[r]=`${i||'🌍'} ${r}`});
-  const v=ll[MODE]?.[VAL]||'🏠 全部';
-  document.getElementById('vl').innerHTML=`${v} <span class="c">${list.length}</span>`;
-  if(!list.length){g.innerHTML=`<div class="es"><div class="ei">📭</div><p>暂无内容</p></div>`;bF(list);return}
-  g.innerHTML=list.map(item=>{
-    const iid=ITEMS.indexOf(item),info=ti(item.type);
-    const tgs=item.tags?.length?`<div class="tgs">${item.tags.map(t=>`<span class="tg">${t}</span>`).join('')}</div>`:'';
-    let ex='';
-    if(item.type==='sop'&&item.steps){const d=item.steps.filter(s=>s.done).length;ex=`<span>${d}/${item.steps.length}</span>`}
-    else if(item.extra)ex=`<span>${item.extra}</span>`;
-    const lc=item.links?.filter(l=>typeof l==='string').length||0;
-    return `<div class="cd" onclick="oD(${iid})">
-      <div class="cd-i">
-        <div class="cd-t"><span class="cty">${info.icon} ${info.label}</span><span class="cs ${sc(item.status)}">${sl(item.status)}</span></div>
-        <h3>${item.title}</h3>
-        <div class="cr">${item.creator||''}</div>
-        <div class="mt"><span class="gt">${item.sub||'?'}</span>${item.rating?`<span class="sr">${sr(item.rating)}</span>`:''}${ex}</div>
-        ${tgs}
-        <div class="bds">${lc?`<span class="lb">🔗${lc}</span>`:''}${item.region&&item.region!=='通用'?`<span class="rb" onclick="event.stopPropagation();oR('${item.region}')">${RI[item.region]||'🌍'} ${item.region}</span>`:''}</div>
-      </div></div>`;
-  }).join('');bF(list)
-}
-
-function bF(list){
-  const f=document.getElementById('fr');
-  const sts=[...new Set(list.map(i=>i.status))],subs=[...new Set(list.map(i=>i.sub).filter(Boolean))],tags=[...new Set(list.flatMap(i=>i.tags||[]))];
-  const ds=[...new Set(list.flatMap(i=>i.domain||[]))].slice(0,5),rs=[...new Set(list.map(i=>i.region).filter(Boolean))].slice(0,5);
-  const all=['all',...sts,...subs,...tags,...ds.map(d=>`_d_${d}`),...rs.map(r=>`_r_${r}`)].slice(0,25);
-  f.innerHTML=all.map(v=>{
-    let label=v;let cls='';
-    if(v==='all'){label='全部';cls='active'}
-    else if(v.startsWith('_d_'))label=`🌐${v.slice(3)}`;
-    else if(v.startsWith('_r_')){const r=v.slice(3);label=`${RI[r]||'🌍'}${r}`}
-    else label=sl(v)||v;
-    return `<button class="${cls}" data-v="${v}">${label}</button>`
-  }).join('');
-  f.querySelectorAll('button').forEach(b=>{b.onclick=()=>{f.querySelectorAll('button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');SUB=b.dataset.v;r()}})
-}
-
+function gF(){let l=[...ITEMS];if(MODE==='flow'){const t=ft(VAL);if(t.length)l=l.filter(i=>t.includes(i.type))}else if(MODE==='domain')l=l.filter(i=>i.domain&&i.domain.includes(VAL));else if(MODE==='region')l=l.filter(i=>i.region===VAL);if(SUB!=='all'){if(SUB.startsWith('_d_')){const d=SUB.slice(3);l=l.filter(i=>i.domain&&i.domain.includes(d))}else if(SUB.startsWith('_r_')){const r=SUB.slice(3);l=l.filter(i=>i.region===r)}else l=l.filter(i=>i.status===SUB||i.sub===SUB||(i.tags&&i.tags.includes(SUB)))}return l}
+function r(){const list=gF();const g=document.getElementById('gr');const ll={home:{all:'全部'},flow:{input:'输入',output:'输出',tool:'工具'},domain:{},region:{}};gD().forEach(d=>ll.domain[d]=`${d}`);gR().forEach(r=>ll.region[r]=`${r}`);const v=ll[MODE]?.[VAL]||'全部';document.getElementById('vl').textContent=v;document.getElementById('cnt').textContent=`${list.length}`;if(!list.length){g.innerHTML=`<div class="es"><div class="ei">📭</div><p>暂无内容</p></div>`;bF(list);return}g.innerHTML=list.map(item=>{const iid=ITEMS.indexOf(item),info=ti(item.type);let ex='';if(item.type==='sop'&&item.steps){const d=item.steps.filter(s=>s.done).length;ex=`<span>${d}/${item.steps.length}</span>`}else if(item.extra)ex=`<span>${item.extra}</span>`;const lc=item.links?.filter(l=>typeof l==='string').length||0;return`<div class="cd" onclick="oD(${iid})"><div class="cd-i"><div class="cd-hd"><span class="cty">${info.icon} ${info.label}</span><span class="cs ${sc(item.status)}">${sl(item.status)}</span></div><h3>${item.title}</h3><div class="cr">${item.creator||''}</div><div class="mt"><span class="gt">${item.sub||'?'}</span>${item.rating?`<span class="sr">${sr(item.rating)}</span>`:''}${ex}</div><div class="bds">${lc?`<span class="lb">🔗${lc}</span>`:''}${item.region&&item.region!=='通用'?`<span class="rb" onclick="event.stopPropagation();oR('${item.region}')">${RI[item.region]||'🌍'} ${item.region}</span>`:''}</div><div class="ex">${item.excerpt||''}</div></div></div>`}).join('');bF(list)}
+function bF(list){const f=document.getElementById('fr');const sts=[...new Set(list.map(i=>i.status))],subs=[...new Set(list.map(i=>i.sub).filter(Boolean))],tags=[...new Set(list.flatMap(i=>i.tags||[]))];const ds=[...new Set(list.flatMap(i=>i.domain||[]))].slice(0,4),rs=[...new Set(list.map(i=>i.region).filter(Boolean))].slice(0,4);const all=['all',...sts,...subs,...tags,...ds.map(d=>`_d_${d}`),...rs.map(r=>`_r_${r}`)].slice(0,22);f.innerHTML=all.map(v=>{let label=v;let cls='';if(v==='all'){label='全部';cls='active'}else if(v.startsWith('_d_'))label=v.slice(3);else if(v.startsWith('_r_'))label=v.slice(3);else label=sl(v)||v;return`<button class="${cls}" data-v="${v}">${label}</button>`}).join('');f.querySelectorAll('button').forEach(b=>{b.onclick=()=>{f.querySelectorAll('button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');SUB=b.dataset.v;r()}})}
 function sM(m,v){MODE=m;VAL=v;SUB='all';document.querySelectorAll('.sb-n button[data-m]').forEach(b=>b.classList.remove('active'));const t=document.querySelector(`.sb-n button[data-m="${m}"][data-v="${v}"]`);if(t)t.classList.add('active');r()}
 document.querySelectorAll('.sb-n button[data-m]').forEach(b=>{b.onclick=()=>sM(b.dataset.m,b.dataset.v)});
-
-function buD(){const c=document.getElementById('domainB');const ds=gD();if(!ds.length){document.getElementById('domainSG').style.display='none';c.innerHTML='';return}
-document.getElementById('domainSG').style.display='';c.innerHTML=ds.map(d=>`<button data-m="domain" data-v="${d}"><span class="si">🌐</span>${d}</button>`).join('');c.querySelectorAll('button').forEach(b=>{b.onclick=()=>sM('domain',b.dataset.v)})}
-function buR(){const c=document.getElementById('regionB');const rs=gR();if(!rs.length){document.getElementById('regionSG').style.display='none';c.innerHTML='';return}
-document.getElementById('regionSG').style.display='';c.innerHTML=rs.map(r=>{const i=RI[r]||'🌍';return`<button data-m="region" data-v="${r}"><span class="si">${i}</span>${r}</button>`}).join('');c.querySelectorAll('button').forEach(b=>{b.onclick=()=>sM('region',b.dataset.v)})}
-
+function buD(){const c=document.getElementById('db');const ds=gD();if(!ds.length){document.getElementById('dsg').style.display='none';c.innerHTML='';return}document.getElementById('dsg').style.display='';c.innerHTML=ds.map(d=>`<button data-m="domain" data-v="${d}">🌐 ${d}</button>`).join('');c.querySelectorAll('button').forEach(b=>{b.onclick=()=>sM('domain',b.dataset.v)})}
+function buR(){const c=document.getElementById('rb');const rs=gR();if(!rs.length){document.getElementById('rsg').style.display='none';c.innerHTML='';return}document.getElementById('rsg').style.display='';c.innerHTML=rs.map(r=>{const i=RI[r]||'🌍';return`<button data-m="region" data-v="${r}">${i} ${r}</button>`}).join('');c.querySelectorAll('button').forEach(b=>{b.onclick=()=>sM('region',b.dataset.v)})}
 function oD(i){localStorage.setItem('k_idx',JSON.stringify(i));localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='detail.html'}
 function oR(r){localStorage.setItem('k_region',r);localStorage.setItem('k_data',JSON.stringify(ITEMS));window.location.href='region.html'}
-
 function ld(){ITEMS=JSON.parse(JSON.stringify(DFLT));try{const s=localStorage.getItem(SK);if(s){let e=JSON.parse(s);if(Array.isArray(e))ITEMS.push(...e)}}catch(e){}sC()}
 function sC(){const c=ITEMS.filter(i=>!DF.includes(i.title));try{localStorage.setItem(SK,JSON.stringify(c))}catch(e){}}
-
 let mt='book',sc=1,pc=1;
 function oM(){document.getElementById('mo').classList.add('o');document.body.style.overflow='hidden';bM('book')}
 function cM(e){if(e&&e.target!==e.currentTarget)return;document.getElementById('mo').classList.remove('o');document.body.style.overflow=''}
 document.querySelectorAll('#ts button').forEach(b=>{b.onclick=()=>{document.querySelectorAll('#ts button').forEach(bb=>bb.classList.remove('active'));b.classList.add('active');mt=b.dataset.t;bM(mt)}});
-
-function bM(type){
-  const info=ti(type),st={book:[['read','已读'],['reading','在读'],['want','想读']],movie:[['done','已看'],['watching','在看'],['want','想看']],article:[['read','已读'],['saved','待读']],podcast:[['done','已听'],['listening','在听'],['saved','待听']],english:[['learning','学习中'],['learned','已掌握'],['todo','待学']],idea:[['active','活跃'],['archived','归档']],project:[['ongoing','进行中'],['done','完成'],['paused','暂停']],review:[['done','完成'],['draft','草稿']],sop:[['active','启用'],['archived','归档']],tool:[['using','在用'],['tried','试过'],['want','想试']]}[type]||[['done','完成'],['todo','待做']];
-  const el={book:'页数',movie:'年份',article:'来源',podcast:'平台',english:'音标',idea:'场景',project:'进度',review:'周期',sop:'步骤',tool:'平台'}[type]||'备注';
-  let extra='';
-  if(type==='sop'){sc=1;extra=`<div><label style="font-size:.62rem;color:var(--t2)">步骤</label><div id="sl"><div class="f2" style="margin-bottom:3px"><input id="s_0" placeholder="第1步..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rs(0)" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button></div></div><button type="button" onclick="as()" style="border:1px dashed var(--border);border-radius:5px;padding:3px 10px;font-size:.66rem;color:var(--t2);cursor:pointer;background:transparent;margin-top:2px">＋步骤</button></div>`}
-  if(type==='review'){pc=1;extra=`<div><label style="font-size:.62rem;color:var(--t2)">引导问题</label><div id="pl"><div class="f2" style="margin-bottom:3px"><input id="p_0" placeholder="问题1..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rp(0)" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button></div></div><button type="button" onclick="ap()" style="border:1px dashed var(--border);border-radius:5px;padding:3px 10px;font-size:.66rem;color:var(--t2);cursor:pointer;background:transparent;margin-top:2px">＋问题</button></div>`}
-  document.getElementById('mf').innerHTML=`
-    <div class="f2"><div class="fd"><label>标题</label><input id="fT" required></div><div class="fd"><label>${info.cl}</label><input id="fC"></div></div>
-    <div class="f2"><div class="fd"><label>状态</label><select id="fS">${st.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div><div class="fd"><label>评分</label><select id="fR"><option value="0">无</option>${[5,4,3,2,1].map(i=>`<option value="${i}">⭐${i}</option>`).join('')}</select></div></div>
-    <div class="f2"><div class="fd"><label>分类</label><input id="fSub"></div><div class="fd"><label>${el}</label><input id="fEx"></div></div>
-    <div class="f2"><div class="fd"><label>知识域（决定知识网位置）</label><input id="fDm" placeholder="例：文学, 编程·科技"></div></div>
-    <div class="f2"><div class="fd"><label>地区</label><input id="fRg" placeholder="例：中国, 拉美"></div></div>
-    <div class="f2"><div class="fd"><label>标签</label><input id="fTg" placeholder="逗号分隔"></div></div>
-    ${extra}
-    <div class="f2"><div class="fd"><label>简介</label><textarea id="fExcerpt" rows="1"></textarea></div></div>
-    <div class="f2"><div class="fd"><label>${info.nl}</label><textarea id="fN" rows="2"></textarea></div></div>`;
-  if(type==='sop'){const l=document.getElementById('sl');if(sc===1){const d=document.createElement('div');d.className='f2';d.style.marginBottom='3px';d.innerHTML=`<input id="s_0" placeholder="第1步..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rs(0)" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button>`;l.appendChild(d)}}
-  if(type==='review'){const l=document.getElementById('pl');if(pc===1){const d=document.createElement('div');d.className='f2';d.style.marginBottom='3px';d.innerHTML=`<input id="p_0" placeholder="问题1..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rp(0)" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button>`;l.appendChild(d)}}
-}
-function as(){const l=document.getElementById('sl');const d=document.createElement('div');d.className='f2';d.style.marginBottom='3px';d.innerHTML=`<input id="s_${sc}" placeholder="第${sc+1}步..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rs(${sc})" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button>`;l.appendChild(d);sc++}
+function bM(type){const info=ti(type);const st={book:[['read','已读'],['reading','在读'],['want','想读']],movie:[['done','已看'],['watching','在看'],['want','想看']],article:[['read','已读'],['saved','待读']],podcast:[['done','已听'],['listening','在听'],['saved','待听']],english:[['learning','学习中'],['learned','已掌握'],['todo','待学']],idea:[['active','活跃'],['archived','归档']],project:[['ongoing','进行中'],['done','完成'],['paused','暂停']],review:[['done','完成'],['draft','草稿']],sop:[['active','启用'],['archived','归档']],tool:[['using','在用'],['tried','试过'],['want','想试']]}[type]||[['done','完成'],['todo','待做']];const el={book:'页数',movie:'年份',article:'来源',podcast:'平台',english:'音标',idea:'场景',project:'进度',review:'周期',sop:'步骤',tool:'平台'}[type]||'备注';let extra='';if(type==='sop'){sc=1;extra=`<div><label style="font-size:.58rem;color:var(--t2)">步骤</label><div id="sl"><div class="f2" style="margin-bottom:2px"><input id="s_0" placeholder="第1步..." style="flex:1;padding:4px 7px;border:1px solid var(--border);border-radius:5px;font-size:.72rem"><button type="button" onclick="rs(0)" style="background:none;border:none;color:#ff3b30;font-size:.9rem;cursor:pointer">×</button></div></div><button type="button" onclick="as()" style="border:1px dashed var(--border);border-radius:5px;padding:2px 8px;font-size:.64rem;color:var(--t2);cursor:pointer;background:transparent;margin-top:2px">＋步骤</button></div>`}if(type==='review'){pc=1;extra=`<div><label style="font-size:.58rem;color:var(--t2)">引导问题</label><div id="pl"><div class="f2" style="margin-bottom:2px"><input id="p_0" placeholder="问题1..." style="flex:1;padding:4px 7px;border:1px solid var(--border);border-radius:5px;font-size:.72rem"><button type="button" onclick="rp(0)" style="background:none;border:none;color:#ff3b30;font-size:.9rem;cursor:pointer">×</button></div></div><button type="button" onclick="ap()" style="border:1px dashed var(--border);border-radius:5px;padding:2px 8px;font-size:.64rem;color:var(--t2);cursor:pointer;background:transparent;margin-top:2px">＋问题</button></div>`}document.getElementById('mf').innerHTML=`<div class="f2"><div class="fd"><label>标题</label><input id="fT" required></div><div class="fd"><label>${info.cl||'作者'}</label><input id="fC"></div></div><div class="f2"><div class="fd"><label>状态</label><select id="fS">${st.map(([v,l])=>`<option value="${v}">${l}</option>`).join('')}</select></div><div class="fd"><label>评分</label><select id="fR"><option value="0">无</option>${[5,4,3,2,1].map(i=>`<option value="${i}">⭐${i}</option>`).join('')}</select></div></div><div class="f2"><div class="fd"><label>分类</label><input id="fSub"></div><div class="fd"><label>${el}</label><input id="fEx"></div></div><div class="f2"><div class="fd"><label>知识域</label><input id="fDm" placeholder="文学, 编程·科技"></div></div><div class="f2"><div class="fd"><label>地区</label><input id="fRg" placeholder="中国, 拉美"></div></div>${extra}<div class="f2"><div class="fd"><label>简介</label><textarea id="fExcerpt" rows="1"></textarea></div></div><div class="f2"><div class="fd"><label>${info.nl||'笔记'}</label><textarea id="fN" rows="2"></textarea></div></div>`}
+function as(){const l=document.getElementById('sl');const d=document.createElement('div');d.className='f2';d.style.marginBottom='2px';d.innerHTML=`<input id="s_${sc}" placeholder="第${sc+1}步..." style="flex:1;padding:4px 7px;border:1px solid var(--border);border-radius:5px;font-size:.72rem"><button type="button" onclick="rs(${sc})" style="background:none;border:none;color:#ff3b30;font-size:.9rem;cursor:pointer">×</button>`;l.appendChild(d);sc++}
 function rs(i){const e=document.getElementById(`s_${i}`);if(e&&sc>1){e.parentElement.remove();sc--}}
-function ap(){const l=document.getElementById('pl');const d=document.createElement('div');d.className='f2';d.style.marginBottom='3px';d.innerHTML=`<input id="p_${pc}" placeholder="问题${pc+1}..." style="flex:1;padding:5px 8px;border:1px solid var(--border);border-radius:6px;font-size:.76rem"><button type="button" onclick="rp(${pc})" style="background:none;border:none;color:#ef4444;font-size:1rem;cursor:pointer">×</button>`;l.appendChild(d);pc++}
+function ap(){const l=document.getElementById('pl');const d=document.createElement('div');d.className='f2';d.style.marginBottom='2px';d.innerHTML=`<input id="p_${pc}" placeholder="问题${pc+1}..." style="flex:1;padding:4px 7px;border:1px solid var(--border);border-radius:5px;font-size:.72rem"><button type="button" onclick="rp(${pc})" style="background:none;border:none;color:#ff3b30;font-size:.9rem;cursor:pointer">×</button>`;l.appendChild(d);pc++}
 function rp(i){const e=document.getElementById(`p_${i}`);if(e&&pc>1){e.parentElement.remove();pc--}}
-
-function aI(e){
-  e.preventDefault();const tg=document.getElementById('fTg').value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean);
-  const dm=document.getElementById('fDm').value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean);
-  const rg=document.getElementById('fRg').value.trim()||'通用';
-  let steps=[],prompts=[];
-  if(mt==='sop'){for(let i=0;i<sc;i++){const el=document.getElementById(`s_${i}`);if(el&&el.value.trim())steps.push({text:el.value.trim(),done:false})}}
-  if(mt==='review'){for(let i=0;i<pc;i++){const el=document.getElementById(`p_${i}`);if(el&&el.value.trim())prompts.push({q:el.value.trim(),a:''})}}
-  const item={type:mt,title:document.getElementById('fT').value.trim(),creator:document.getElementById('fC').value.trim(),status:document.getElementById('fS').value,rating:parseInt(document.getElementById('fR').value),sub:document.getElementById('fSub').value.trim(),extra:document.getElementById('fEx').value.trim(),tags:tg,domain:dm,region:rg,links:[],excerpt:document.getElementById('fExcerpt')?.value.trim()||'',notes:document.getElementById('fN')?.value.trim()||'',quote:'',...(steps.length?{steps}:{}),...(prompts.length?{prompts}:{})};
-  if(!item.title)return;if(item.type==='sop'&&item.steps)item.extra=item.steps.length+'步';
-  ITEMS.push(item);sC();document.getElementById('af').reset();cM();buD();buR();r()
-}
-
+function aI(e){e.preventDefault();const tg=document.getElementById('fTg')?.value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean)||[];const dm=document.getElementById('fDm').value.split(/[,，、]/).map(t=>t.trim()).filter(Boolean);const rg=document.getElementById('fRg').value.trim()||'通用';let steps=[],prompts=[];if(mt==='sop'){for(let i=0;i<sc;i++){const el=document.getElementById(`s_${i}`);if(el&&el.value.trim())steps.push({text:el.value.trim(),done:false})}}if(mt==='review'){for(let i=0;i<pc;i++){const el=document.getElementById(`p_${i}`);if(el&&el.value.trim())prompts.push({q:el.value.trim(),a:''})}}const item={type:mt,title:document.getElementById('fT').value.trim(),creator:document.getElementById('fC').value.trim(),status:document.getElementById('fS').value,rating:parseInt(document.getElementById('fR').value),sub:document.getElementById('fSub').value.trim(),extra:document.getElementById('fEx').value.trim(),tags:tg,domain:dm,region:rg,links:[],excerpt:document.getElementById('fExcerpt')?.value.trim()||'',notes:document.getElementById('fN')?.value.trim()||'',quote:'',...(steps.length?{steps}:{}),...(prompts.length?{prompts}:{})};if(!item.title)return;if(item.type==='sop'&&item.steps)item.extra=item.steps.length+'步';ITEMS.push(item);sC();document.getElementById('af').reset();cM();buD();buR();r()}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'){const o=document.getElementById('mo');if(o.classList.contains('o'))cM()}if((e.ctrlKey||e.metaKey)&&e.key==='k'){e.preventDefault();oM()}});
 ld();buD();buR();r();
 </script>
