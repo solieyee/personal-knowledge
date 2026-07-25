@@ -3,318 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Style Preview · 五方向对比</title>
+<title>Style Preview · C+D Fusion</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:-apple-system,system-ui,sans-serif;background:#f5f3f0;color:#222;padding:32px 24px}
-.header{max-width:1200px;margin:0 auto 32px}
-.header h1{font-size:24px;font-weight:600;margin-bottom:4px;letter-spacing:-.3px}
-.header p{font-size:14px;color:#666;margin-bottom:4px}
-.header .note{font-size:12px;color:#999;font-style:italic}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(520px,1fr));gap:24px;max-width:1200px;margin:0 auto}
-.card{border:1px solid #ddd;border-radius:4px;overflow:hidden;background:#fff;break-inside:avoid}
-.card-header{padding:12px 16px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center}
-.card-header h2{font-size:14px;font-weight:600;letter-spacing:.5px}
-.card-header .tag{font-size:10px;padding:2px 8px;border-radius:3px;color:#fff}
-.preview{padding:20px}
-.preview iframe{width:100%;height:460px;border:none;overflow:hidden;background:#fff}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{background:#0e120f;color:#c8c0b0;font-family:'Georgia','Times New Roman',serif;padding:0;-webkit-font-smoothing:antialiased}
 
-/* Inline previews */
-.inline-preview{height:460px;overflow:hidden;position:relative}
-.inline-preview .mock-content{padding:24px;height:100%;overflow-y:auto}
-.inline-preview .mock-content::-webkit-scrollbar{width:2px}
-.inline-preview .mock-content::-webkit-scrollbar-thumb{background:rgba(0,0,0,.1);border-radius:1px}
+/* ── Page ── */
+.page{max-width:860px;margin:0 auto;padding:48px 40px 64px;position:relative}
+.page::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:
+    radial-gradient(ellipse at 30% 20%, rgba(184,160,90,.03) 0%, transparent 50%),
+    radial-gradient(ellipse at 70% 80%, rgba(196,58,49,.02) 0%, transparent 50%),
+    radial-gradient(ellipse at 50% 50%, rgba(14,18,15,.98) 0%, #0e120f 100%);
+}
 
-/* ── Direction A: Astronomical Engraving ── */
-.dir-a{background:#0f0d0a;color:#e8ddd0}
-.dir-a .nav-a{display:flex;gap:0;border-bottom:1px solid rgba(232,221,208,.1);padding:0 0 8px;margin-bottom:16px}
-.dir-a .nav-a a{padding:4px 12px;font-size:10px;color:rgba(232,221,208,.4);letter-spacing:1.5px;text-transform:uppercase;font-family:Georgia,serif;cursor:default;border-right:1px solid rgba(232,221,208,.08)}
-.dir-a .nav-a a.active{color:#e8ddd0}
-.dir-a .nav-a a:last-child{border-right:none}
-.dir-a .title-a{font-family:Georgia,serif;font-size:24px;font-weight:400;letter-spacing:1px;color:#e8ddd0;margin-bottom:2px}
-.dir-a .sub-a{font-size:10px;color:rgba(232,221,208,.35);letter-spacing:2px;margin-bottom:16px;font-family:Georgia,serif;font-style:italic}
-.dir-a .section-a{font-size:9px;color:rgba(232,221,208,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-family:Georgia,serif}
-.dir-a .list-a{border-top:1px solid rgba(232,221,208,.08);margin-top:8px}
-.dir-a .list-item-a{padding:8px 0;border-bottom:1px solid rgba(232,221,208,.06);font-size:13px;color:rgba(232,221,208,.7);cursor:default;font-family:Georgia,serif}
-.dir-a .list-item-a:hover{color:#e8ddd0}
-.dir-a .list-item-a .date-a{font-size:9px;color:rgba(232,221,208,.3);margin-right:10px;font-style:italic}
-.dir-a .divider-a{border-top:1px solid rgba(232,221,208,.08);margin:12px 0}
-.dir-a .quote-a{border-left:1px solid rgba(200,170,130,.3);padding:6px 12px;margin:8px 0;font-size:12px;color:rgba(232,221,208,.5);font-style:italic;font-family:Georgia,serif;line-height:1.5}
-.dir-a .tag-a{display:inline-block;padding:1px 8px;border:1px solid rgba(200,170,130,.15);font-size:9px;color:rgba(200,170,130,.5);margin-right:3px;font-family:Georgia,serif}
+/* ── Header / Masthead ── */
+.masthead{text-align:center;padding-bottom:28px;margin-bottom:28px;border-bottom:2px solid rgba(184,160,90,.12);position:relative}
+.masthead::after{content:'● ● ●';position:absolute;bottom:-10px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(184,160,90,.15);letter-spacing:12px;background:#0e120f;padding:0 16px}
+.masthead .journal-name{font-size:10px;color:rgba(196,58,49,.4);letter-spacing:4px;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:400;margin-bottom:2px}
+.masthead .title{font-family:Georgia,'Times New Roman',serif;font-size:36px;font-weight:400;letter-spacing:2px;color:#d8d0c0;margin-bottom:2px}
+.masthead .subtitle{font-size:12px;color:rgba(200,192,176,.3);font-style:italic;letter-spacing:1px}
+.masthead .volume{font-size:9px;color:rgba(184,160,90,.2);letter-spacing:2px;font-family:'Inter',sans-serif;margin-top:4px;text-transform:uppercase}
 
-/* ── Direction B: Kraft Paper Archive ── */
-.dir-b{background:#e8dcc4;color:#3a2f22}
-.dir-b .nav-b{display:flex;gap:0;border-bottom:1px dashed rgba(58,47,34,.12);padding:0 0 8px;margin-bottom:16px}
-.dir-b .nav-b a{padding:4px 10px;font-size:9px;color:rgba(58,47,34,.4);letter-spacing:1px;text-transform:uppercase;font-family:'Courier New',monospace;cursor:default}
-.dir-b .nav-b a.active{color:#3a2f22;font-weight:600}
-.dir-b .title-b{font-family:'Times New Roman',Georgia,serif;font-size:22px;font-weight:400;color:#3a2f22;margin-bottom:2px}
-.dir-b .sub-b{font-family:'Courier New',monospace;font-size:10px;color:rgba(58,47,34,.4);margin-bottom:14px}
-.dir-b .list-b{border-top:2px dotted rgba(58,47,34,.12);margin-top:8px}
-.dir-b .list-item-b{padding:7px 0;border-bottom:1px dashed rgba(58,47,34,.08);display:flex;align-items:center;gap:10px;font-size:14px;color:rgba(58,47,34,.75);cursor:default;font-family:Garamond,'Times New Roman',serif}
-.dir-b .list-item-b:hover{color:#3a2f22}
-.dir-b .list-item-b .stamp{width:28px;height:28px;border-radius:50%;border:1.5px solid rgba(150,60,40,.3);display:flex;align-items:center;justify-content:center;font-size:7px;color:rgba(150,60,40,.5);flex-shrink:0;font-family:'Courier New',monospace}
-.dir-b .tag-b{display:inline-block;border:1px solid rgba(150,60,40,.2);padding:1px 8px;font-size:9px;color:rgba(150,60,40,.5);margin-right:3px;font-family:'Courier New',monospace}
-.dir-b .quote-b{border-left:2px solid rgba(150,60,40,.2);padding:6px 12px;margin:8px 0;font-size:13px;color:rgba(58,47,34,.55);font-style:italic;font-family:Garamond,serif}
+/* ── Navigation ── */
+.nav{display:flex;justify-content:center;gap:0;margin-bottom:28px;border-bottom:1px solid rgba(184,160,90,.08);padding-bottom:0}
+.nav a{padding:6px 16px;font-size:11px;color:rgba(200,192,176,.3);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;cursor:default;position:relative;transition:color .2s;font-weight:300}
+.nav a:hover{color:rgba(200,192,176,.6)}
+.nav a.active{color:#d8d0c0}
+.nav a.active::after{content:'';position:absolute;bottom:-1px;left:16px;right:16px;height:1px;background:rgba(196,58,49,.4)}
 
-/* ── Direction C: Ink & Gold ── */
-.dir-c{background:#131b16;color:#e8e0d0}
-.dir-c .nav-c{display:flex;gap:0;border-bottom:1px solid rgba(184,160,90,.12);padding:0 0 8px;margin-bottom:16px}
-.dir-c .nav-c a{padding:4px 14px;font-size:10px;color:rgba(232,224,208,.3);letter-spacing:1.5px;text-transform:uppercase;font-family:Garamond,Georgia,serif;cursor:default}
-.dir-c .nav-c a.active{color:#b8a05a}
-.dir-c .nav-c a.active::before{content:'◆ ';font-size:6px;color:#b8a05a}
-.dir-c .title-c{font-family:Garamond,'Times New Roman',serif;font-size:26px;font-weight:400;letter-spacing:.5px;color:#e8e0d0;margin-bottom:2px}
-.dir-c .sub-c{font-size:10px;color:rgba(232,224,208,.25);letter-spacing:2px;font-family:Georgia,serif;font-style:italic;margin-bottom:14px}
-.dir-c .list-c{border-top:1px solid rgba(184,160,90,.08);margin-top:6px}
-.dir-c .list-item-c{padding:7px 0;border-bottom:1px solid rgba(184,160,90,.06);display:flex;align-items:center;gap:10px;font-size:13px;color:rgba(232,224,208,.65);cursor:default;font-family:Garamond,Georgia,serif}
-.dir-c .list-item-c:hover{color:#e8e0d0}
-.dir-c .list-item-c .gold-dot{width:4px;height:4px;border-radius:50%;background:rgba(184,160,90,.3);flex-shrink:0}
-.dir-c .tag-c{display:inline-block;border:1px solid rgba(184,160,90,.12);padding:1px 8px;font-size:9px;color:rgba(184,160,90,.4);margin-right:3px;font-family:Garamond,serif}
-.dir-c .divider-c{border-top:1px solid rgba(184,160,90,.06);margin:10px 0}
-.dir-c .quote-c{border-left:1px solid rgba(184,160,90,.2);padding:6px 14px;margin:8px 0;font-size:12px;color:rgba(232,224,208,.45);font-style:italic;line-height:1.5;font-family:Garamond,serif}
+/* ── Two-column grid ── */
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+.col{min-width:0}
 
-/* ── Direction D: Newsprint ── */
-.dir-d{background:#eeebe6;color:#2a2a2a}
-.dir-d .nav-d{display:flex;gap:0;border-bottom:2px solid #2a2a2a;padding:0 0 6px;margin-bottom:14px}
-.dir-d .nav-d a{padding:4px 10px;font-size:11px;color:rgba(42,42,42,.4);letter-spacing:.3px;text-transform:uppercase;font-family:'Impact','Arial Black',sans-serif;cursor:default;font-weight:600}
-.dir-d .nav-d a.active{color:#2a2a2a}
-.dir-d .title-d{font-family:'Times New Roman',Georgia,serif;font-size:28px;font-weight:700;color:#2a2a2a;margin-bottom:1px;letter-spacing:-.5px}
-.dir-d .sub-d{font-size:10px;color:rgba(42,42,42,.3);letter-spacing:1px;margin-bottom:14px;text-transform:uppercase}
-.dir-d .list-d{border-top:1px solid rgba(42,42,42,.12);margin-top:6px}
-.dir-d .list-item-d{padding:6px 0;border-bottom:1px dotted rgba(42,42,42,.1);font-size:13px;color:rgba(42,42,42,.7);cursor:default;font-family:Georgia,'Times New Roman',serif}
-.dir-d .list-item-d:hover{color:#2a2a2a}
-.dir-d .list-item-d .date-d{font-size:10px;color:rgba(42,42,42,.3);margin-right:8px;font-family:'Courier New',monospace}
-.dir-d .tag-d{display:inline-block;background:rgba(42,42,42,.04);padding:1px 7px;font-size:9px;color:rgba(42,42,42,.4);margin-right:2px;font-family:'Courier New',monospace;letter-spacing:.3px}
-.dir-d .hl-d{border-bottom:2px solid #c43a31;padding-bottom:1px;cursor:default}
-.dir-d .quote-d{border-left:3px solid #2a2a2a;padding:4px 12px;margin:6px 0;font-size:12px;color:rgba(42,42,42,.5);font-style:italic;line-height:1.5;font-family:Georgia,serif}
+/* ── Section ── */
+.section-label{font-size:8px;color:rgba(196,58,49,.3);letter-spacing:2.5px;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:400;margin-bottom:6px;display:flex;align-items:center;gap:8px}
+.section-label::after{content:'';flex:1;height:1px;background:rgba(184,160,90,.06)}
 
-/* ── Direction E: Manuscript & Marginalia ── */
-.dir-e{background:#f4efe4;color:#2c2418}
-.dir-e .nav-e{display:flex;gap:0;border-bottom:1px solid rgba(44,36,24,.1);padding:0 0 8px;margin-bottom:16px;position:relative}
-.dir-e .nav-e a{padding:4px 10px;font-size:10px;color:rgba(44,36,24,.3);letter-spacing:.5px;cursor:default;font-family:Georgia,serif}
-.dir-e .nav-e a.active{color:#2c2418;font-weight:600}
-.dir-e .title-e{font-family:Georgia,'Times New Roman',serif;font-size:22px;font-weight:400;color:#2c2418;margin-bottom:2px}
-.dir-e .sub-e{font-family:'Comic Sans MS',cursive;font-size:11px;color:rgba(168,73,46,.5);margin-bottom:14px;transform:rotate(-.3deg)}
-.dir-e .list-e{border-top:1px solid rgba(44,36,24,.08);margin-top:6px;position:relative}
-.dir-e .list-e::before{content:'☞';position:absolute;left:-18px;top:0;font-size:12px;color:rgba(168,73,46,.3)}
-.dir-e .list-item-e{padding:6px 0;border-bottom:1px solid rgba(44,36,24,.05);font-size:13px;color:rgba(44,36,24,.7);cursor:default;font-family:Georgia,serif;position:relative}
-.dir-e .list-item-e:hover{color:#2c2418}
-.dir-e .annotation{font-family:'Comic Sans MS',cursive;font-size:10px;color:rgba(168,73,46,.5);margin-left:6px}
-.dir-e .tag-e{display:inline-block;font-size:10px;color:rgba(168,73,46,.4);margin-right:3px;font-family:'Comic Sans MS',cursive}
-.dir-e .quote-e{border-left:1px solid rgba(168,73,46,.2);padding:5px 12px;margin:6px 0;font-size:12px;color:rgba(44,36,24,.45);font-style:italic;font-family:Georgia,serif;line-height:1.5;position:relative}
-.dir-e .quote-e::after{content:'✎';position:absolute;right:-14px;top:0;font-size:10px;color:rgba(168,73,46,.2)}
-.dir-e .margin-note{position:absolute;right:-80px;width:70px;font-family:'Comic Sans MS',cursive;font-size:8px;color:rgba(168,73,46,.3);line-height:1.3;border-left:1px solid rgba(168,73,46,.08);padding-left:6px}
+/* ── Entry list ── */
+.entry{padding:8px 0;border-bottom:1px solid rgba(184,160,90,.04);cursor:default;transition:all .15s}
+.entry:hover{border-bottom-color:rgba(196,58,49,.15)}
+.entry:last-child{border-bottom:none}
+.entry .e-title{font-size:14px;color:rgba(200,192,176,.7);line-height:1.4;transition:color .15s}
+.entry:hover .e-title{color:#d8d0c0}
+.entry .e-meta{font-size:9px;color:rgba(200,192,176,.2);margin-top:1px;font-family:'Inter',sans-serif;letter-spacing:.5px}
+.entry .e-number{font-size:10px;color:rgba(184,160,90,.15);font-family:'Inter',sans-serif;margin-right:8px;font-style:italic}
 
-@media(max-width:600px){.grid{grid-template-columns:1fr}.card{max-width:100%}}
+/* ── Reading card (newspaper column style) ── */
+.reading-item{padding:10px 0;border-bottom:1px dotted rgba(184,160,90,.06)}
+.reading-item:last-child{border-bottom:none}
+.reading-item .ri-type{font-size:7px;color:rgba(196,58,49,.25);letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:1px}
+.reading-item .ri-title{font-size:13px;color:rgba(200,192,176,.65);line-height:1.3}
+.reading-item .ri-author{font-size:10px;color:rgba(200,192,176,.2);font-style:italic}
+
+/* ── Concept card ── */
+.concept-item{padding:7px 0;border-bottom:1px solid rgba(184,160,90,.03)}
+.concept-item .ci-title{font-size:18px;color:rgba(200,192,176,.45);font-family:Georgia,serif;font-style:italic;line-height:1.2;transition:color .15s;cursor:default}
+.concept-item:hover .ci-title{color:#d8d0c0}
+.concept-item .ci-def{font-size:11px;color:rgba(200,192,176,.2);margin-top:1px;line-height:1.4}
+
+/* ── Journal detail (right column) ── */
+.journal-entry{padding:8px 0}
+.journal-entry .je-date{font-size:9px;color:rgba(184,160,90,.15);font-family:'Inter',sans-serif;letter-spacing:1px;margin-bottom:2px}
+.journal-entry .je-title{font-size:18px;color:#d8d0c0;font-weight:400;letter-spacing:.3px;margin-bottom:4px;font-family:Georgia,serif}
+.journal-entry .je-body{font-size:13px;color:rgba(200,192,176,.45);line-height:1.7;font-weight:300}
+.journal-entry .je-tags{display:flex;gap:3px;margin-top:4px;flex-wrap:wrap}
+.journal-entry .je-tags span{font-size:8px;color:rgba(184,160,90,.15);letter-spacing:.5px;font-family:'Inter',sans-serif;border:1px solid rgba(184,160,90,.06);padding:1px 7px}
+
+/* ── Blockquote ── */
+.blockquote{border-left:1px solid rgba(196,58,49,.12);padding:6px 14px;margin:8px 0;font-size:12px;color:rgba(200,192,176,.3);font-style:italic;line-height:1.6}
+.blockquote .attr{font-size:9px;color:rgba(184,160,90,.12);margin-top:2px;font-style:normal;font-family:'Inter',sans-serif}
+
+/* ── Tag ── */
+.tag{display:inline-block;border:1px solid rgba(184,160,90,.06);padding:1px 8px;font-size:8px;color:rgba(184,160,90,.15);margin-right:2px;font-family:'Inter',sans-serif;letter-spacing:.3px}
+
+/* ── Divider ── */
+.divider{height:1px;background:rgba(184,160,90,.06);margin:16px 0}
+.divider-thick{height:2px;background:rgba(196,58,49,.06);margin:16px 0;width:60px}
+.divider-ornament{text-align:center;font-size:10px;color:rgba(184,160,90,.08);letter-spacing:8px;margin:12px 0}
+
+/* ── C+D Fusion Principles ── */
+.principles{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:12px 0}
+.principles .principle{border:1px solid rgba(184,160,90,.04);padding:12px;background:rgba(184,160,90,.02);cursor:default;transition:all .2s}
+.principles .principle:hover{border-color:rgba(196,58,49,.08)}
+.principles .principle .p-num{font-size:8px;color:rgba(196,58,49,.15);font-family:'Inter',sans-serif;letter-spacing:1px;margin-bottom:2px}
+.principles .principle .p-title{font-size:12px;color:rgba(200,192,176,.6);margin-bottom:2px;font-style:italic}
+.principles .principle .p-desc{font-size:10px;color:rgba(200,192,176,.2);line-height:1.4}
+
+/* ── Palette ── */
+.palette{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0}
+.palette .swatch{width:48px;height:32px;position:relative;cursor:default}
+.palette .swatch:hover{transform:scale(1.05)}
+.palette .swatch .hex-label{position:absolute;bottom:-14px;left:50%;transform:translateX(-50%);font-size:7px;color:rgba(200,192,176,.15);font-family:'Inter',sans-serif;white-space:nowrap}
+
+/* ── Color Palette Grid ── */
+.color-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;margin:12px 0}
+.color-grid .c-swatch{height:40px;display:flex;align-items:flex-end;padding:4px 6px;font-size:7px;font-family:'Inter',sans-serif;letter-spacing:.3px}
+
+/* ── Typography Showcase ── */
+.type-showcase{margin:12px 0}
+.type-showcase .t-block{padding:12px 0;border-bottom:1px solid rgba(184,160,90,.04)}
+.type-showcase .t-block:last-child{border-bottom:none}
+.type-showcase .t-label{font-size:8px;color:rgba(184,160,90,.15);font-family:'Inter',sans-serif;letter-spacing:1px;margin-bottom:2px;text-transform:uppercase}
+.font-display{font-size:42px;font-family:Georgia,'Times New Roman',serif;font-weight:400;letter-spacing:3px;color:#d8d0c0;line-height:1}
+.font-h1{font-size:28px;font-family:Georgia,'Times New Roman',serif;color:#d8d0c0;letter-spacing:-.3px;line-height:1.15}
+.font-h2{font-size:20px;font-family:Georgia,'Times New Roman',serif;font-style:italic;color:#c8c0b0;letter-spacing:.3px}
+.font-body{font-size:14px;color:rgba(200,192,176,.55);line-height:1.7;max-width:500px}
+.font-meta{font-size:9px;color:rgba(200,192,176,.2);font-family:'Inter',sans-serif;letter-spacing:1px;text-transform:uppercase}
+.font-caption{font-size:11px;color:rgba(200,192,176,.25);font-style:italic}
+
+/* ── Page number ── */
+.page-num{text-align:center;margin-top:40px;padding-top:20px;border-top:1px solid rgba(184,160,90,.04);font-family:'Inter',sans-serif;font-size:9px;color:rgba(184,160,90,.1);letter-spacing:3px}
+
+/* ── Buttons ── */
+.btn-group{display:flex;gap:16px;margin:8px 0;flex-wrap:wrap}
+.btn-text{border:none;background:none;font-family:Georgia,serif;font-size:13px;font-style:italic;color:rgba(200,192,176,.3);cursor:pointer;padding:2px 0;transition:color .2s;letter-spacing:.3px}
+.btn-text:hover{color:rgba(200,192,176,.6)}
+.btn-ghost{border:1px solid rgba(184,160,90,.1);background:transparent;padding:4px 12px;font-family:'Inter',sans-serif;font-size:9px;letter-spacing:.5px;color:rgba(184,160,90,.2);cursor:pointer;text-transform:uppercase;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(196,58,49,.15);color:rgba(196,58,49,.3)}
+
+/* ── Input ── */
+.input-field{border:1px solid rgba(184,160,90,.08);padding:6px 10px;background:rgba(184,160,90,.03);font-family:Georgia,serif;font-size:14px;color:#c8c0b0;width:280px;max-width:100%;transition:all .2s}
+.input-field:focus{outline:none;border-color:rgba(196,58,49,.1);background:rgba(184,160,90,.06)}
+.input-field::placeholder{color:rgba(200,192,176,.12);font-style:italic}
+
+/* ── Blockquote Showcase ── */
+.quote-showcase{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:12px 0}
+.quote-showcase .qs-item{padding:10px 14px;border-left:1px solid rgba(196,58,49,.08);font-size:12px;color:rgba(200,192,176,.25);font-style:italic;line-height:1.5}
+
+/* ── Responsive ── */
+@media(max-width:680px){
+  .page{padding:28px 16px 48px}
+  .masthead .title{font-size:28px}
+  .grid-2{grid-template-columns:1fr;gap:20px}
+  .principles{grid-template-columns:1fr 1fr}
+  .masthead::after{background:transparent}
+  .quote-showcase{grid-template-columns:1fr}
+}
 </style>
 </head>
 <body>
+<div class="page">
 
-<div class="header">
-  <h1>研究工作室 · 风格方向预览</h1>
-  <p>五个方向，每个包含「首页工作台 + 日记条目」的静态小样。</p>
-  <p class="note">选定方向后再落地 design tokens 并铺开到全站。不确认前不动主站代码。</p>
-</div>
-
-<div class="grid">
-
-<!-- ═══ A: Astronomical Engraving ═══ -->
-<div class="card">
-  <div class="card-header">
-    <h2>⏺ A · 星图版画</h2>
-    <span class="tag" style="background:#0f0d0a">黑底铜版</span>
+  <!-- ═══ MASTHEAD ═══ -->
+  <div class="masthead">
+    <div class="journal-name">Academic Notebook</div>
+    <div class="title">研究工作室</div>
+    <div class="subtitle">Personal Research Studio</div>
+    <div class="volume">Vol. I · July MMXXVI · C+D Fusion Direction</div>
   </div>
-  <div class="inline-preview dir-a">
-    <div class="mock-content">
-      <div class="nav-a">
-        <a class="active">HOME</a><a>JOURNAL</a><a>READING</a><a>PROJECT</a><a>CONCEPT</a>
+
+  <!-- ═══ NAV ═══ -->
+  <div class="nav">
+    <a class="active">首页</a>
+    <a>日记</a>
+    <a>阅读</a>
+    <a>课题</a>
+    <a>概念</a>
+    <a>图谱</a>
+  </div>
+
+  <!-- ═══ SECTION 01: COLOR ═══ -->
+  <div class="section-label">01 · Color</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:2px;font-family:Georgia,serif;letter-spacing:.5px">配色体系</div>
+  <div style="font-size:11px;color:rgba(200,192,176,.2);margin-bottom:10px;font-style:italic">深底 + 哑金 + 赭红强调 · 源自 C 的墨绿与 D 的信号红</div>
+  <div class="color-grid">
+    <div class="c-swatch" style="background:#0e120f;color:rgba(200,192,176,.3)">#0E120F</div>
+    <div class="c-swatch" style="background:#1a1f1b;color:rgba(200,192,176,.2)">#1A1F1B</div>
+    <div class="c-swatch" style="background:#d8d0c0;color:#0e120f">#D8D0C0</div>
+    <div class="c-swatch" style="background:#c8c0b0;color:#0e120f">#C8C0B0</div>
+    <div class="c-swatch" style="background:rgba(200,192,176,.45);color:#0e120f">TEXT·45%</div>
+    <div class="c-swatch" style="background:rgba(200,192,176,.2);color:#0e120f">TEXT·20%</div>
+    <div class="c-swatch" style="background:#b8a05a;color:#0e120f">#B8A05A</div>
+    <div class="c-swatch" style="background:rgba(184,160,90,.1);color:rgba(200,192,176,.2)">GOLD·10%</div>
+    <div class="c-swatch" style="background:#c43a31;color:#d8d0c0">#C43A31</div>
+    <div class="c-swatch" style="background:rgba(196,58,49,.08);color:rgba(200,192,176,.2)">RED·8%</div>
+    <div class="c-swatch" style="background:rgba(184,160,90,.04);color:rgba(200,192,176,.1)">RULE</div>
+    <div class="c-swatch" style="background:#1a1f1b;border:1px solid rgba(184,160,90,.06);color:rgba(200,192,176,.1)">SURFACE</div>
+  </div>
+
+  <!-- ═══ SECTION 02: TYPOGRAPHY ═══ -->
+  <div class="section-label" style="margin-top:20px">02 · Typography</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:10px;font-family:Georgia,serif">字体层级</div>
+
+  <div class="type-showcase">
+    <div class="t-block">
+      <div class="t-label">Display / Masthead</div>
+      <div class="font-display">RESEARCH STUDIO</div>
+      <div style="font-size:9px;color:rgba(200,192,176,.1);font-family:'Inter',sans-serif">Georgia · 42px · letter-spacing 3px · uppercase</div>
+    </div>
+    <div class="t-block">
+      <div class="t-label">Heading 1</div>
+      <div class="font-h1">文化地理学</div>
+    </div>
+    <div class="t-block">
+      <div class="t-label">Heading 2</div>
+      <div class="font-h2">空间与地方 · 景观 · 文化转向</div>
+    </div>
+    <div class="t-block">
+      <div class="t-label">Body</div>
+      <div class="font-body">空间是抽象的、几何的、可以被测量的。地方是被经验的、被赋予意义的。每一处景观都承载着塑造它的文化痕迹——文化地理学的核心命题在于理解"空间如何变成地方"。</div>
+      <div style="font-size:9px;color:rgba(200,192,176,.1);font-family:'Inter',sans-serif">Georgia / Noto Serif SC · 14px · line-height 1.7 · color 45%</div>
+    </div>
+    <div class="t-block">
+      <div class="t-label">Meta / Label</div>
+      <div class="font-meta">JOURNAL · 2026.07 · VOL. I</div>
+    </div>
+    <div class="t-block" style="border-bottom:none">
+      <div class="t-label">Caption</div>
+      <div class="font-caption">Fig. I — 文化地理学核心概念示意</div>
+    </div>
+  </div>
+
+  <!-- ═══ SECTION 03: HOME DASHBOARD ═══ -->
+  <div class="section-label" style="margin-top:20px">03 · Home</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:10px;font-family:Georgia,serif">首页工作台</div>
+
+  <div class="grid-2">
+    <div class="col">
+      <div class="section-label">Continue Reading</div>
+      <div class="reading-item"><div class="ri-type">Book</div><div class="ri-title">文化地理学</div><div class="ri-author">Mike Crang</div></div>
+      <div class="reading-item"><div class="ri-type">Book</div><div class="ri-title">中国鸟类观察手册</div><div class="ri-author">刘阳</div></div>
+
+      <div class="divider"></div>
+      <div class="section-label">Recent Concepts</div>
+      <div class="concept-item"><div class="ci-title">Place</div><div class="ci-def">具有意义的空间片段，区别于抽象空间</div></div>
+      <div class="concept-item"><div class="ci-title">Landscape</div><div class="ci-def">自然与文化共同塑造的可视形态</div></div>
+      <div class="concept-item"><div class="ci-title">Habitat</div><div class="ci-def">物种赖以生存的自然环境</div></div>
+    </div>
+
+    <div class="col">
+      <div class="section-label">Recent Journal</div>
+      <div class="journal-entry">
+        <div class="je-date">25 JULY 2026</div>
+        <div class="je-title">开始搭建研究工作室</div>
+        <div class="je-body">今天开始构建个人研究工作室——一个用于长期阅读、研究和写作的空间。系统以六大模块为核心：日记、阅读、课题、概念、技能和图谱。</div>
+        <div class="je-tags"><span>研究</span><span>知识管理</span></div>
       </div>
-      <div class="title-a">RESEARCH STUDIO</div>
-      <div class="sub-a">Ad Astra per Aspera</div>
-      <div class="section-a">Continue Reading</div>
-      <div style="margin-top:6px">
-        <div style="font-size:12px;color:rgba(232,221,208,.6);font-family:Georgia,serif;margin-bottom:2px">Cultural Geography</div>
-        <div style="font-size:10px;color:rgba(232,221,208,.25)">Mike Crang · 2026</div>
-      </div>
-      <div class="divider-a"></div>
-      <div class="section-a">Journal · 25 July</div>
-      <div class="list-a">
-        <div class="list-item-a"><span class="date-a">25 Jul</span>开始搭建研究工作室</div>
-        <div class="list-item-a"><span class="date-a">22 Jul</span>文化地理学·空间与地方</div>
-        <div class="list-item-a"><span class="date-a">20 Jul</span>中山公园观鸟记录</div>
-      </div>
-      <div class="divider-a"></div>
-      <div class="quote-a">"Space becomes place through human experience."</div>
-      <div style="margin-top:10px">
-        <span class="tag-a">地理</span><span class="tag-a">文化</span><span class="tag-a">理论</span>
-      </div>
-      <div style="margin-top:14px;border-top:1px solid rgba(232,221,208,.06);padding-top:8px">
-        <div style="font-size:9px;color:rgba(232,221,208,.2);letter-spacing:2px;text-align:center">✻ ✻ ✻</div>
+      <div class="divider-thick"></div>
+      <div class="journal-entry">
+        <div class="je-date">22 JULY 2026</div>
+        <div class="je-title">文化地理学·空间与地方</div>
+        <div class="je-body">空间与地方的区分是基础性的。空间是抽象的、几何的；地方是被经验、被赋予意义的。</div>
+        <div class="je-tags"><span>地理</span><span>文化</span></div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ═══ B: Kraft Paper Archive ═══ -->
-<div class="card">
-  <div class="card-header">
-    <h2>⏺ B · 牛皮纸档案</h2>
-    <span class="tag" style="background:#3a2f22;color:#e8dcc4">暖褐档案</span>
+  <!-- ═══ SECTION 04: JOURNAL DETAIL ═══ -->
+  <div class="divider-ornament">● ● ●</div>
+  <div class="section-label">04 · Journal Detail</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:10px;font-family:Georgia,serif">日记详情页</div>
+
+  <div style="border:1px solid rgba(184,160,90,.04);padding:20px;background:rgba(184,160,90,.02);margin-bottom:12px">
+    <div style="font-size:10px;color:rgba(184,160,90,.12);font-family:'Inter',sans-serif;letter-spacing:1px;margin-bottom:4px">22 JULY 2026</div>
+    <div style="font-size:24px;color:#d8d0c0;font-family:Georgia,serif;margin-bottom:8px;letter-spacing:-.3px">文化地理学·空间与地方</div>
+    <div style="font-size:13px;color:rgba(200,192,176,.4);line-height:1.8;font-weight:300">
+      <p>空间与地方的区分是文化地理学的基础命题。空间是抽象的、均质的、可以被测量的；地方是被经验的、充满意义的。段义孚（Yi-Fu Tuan）在 <em>Space and Place</em>（1977）中指出："当空间被赋予意义后，它就变成了地方。"</p>
+      <p style="margin-top:6px">这一区分并非纯粹的学术概念——它直接影响我们如何理解城市、景观、建筑与身份认同。马孔多是地方，不是空间；故园是地方，不是空间。</p>
+    </div>
+    <div class="divider"></div>
+    <div class="blockquote">"地方不仅是事件的背景，而是通过人们对它的体验和描述被不断创造和重塑的。"<div class="attr">— Mike Crang, Cultural Geography (1998)</div></div>
+    <div style="margin-top:6px"><span class="tag">地理</span><span class="tag">文化</span><span class="tag">理论</span><span class="tag">空间</span></div>
   </div>
-  <div class="inline-preview dir-b">
-    <div class="mock-content">
-      <div class="nav-b">
-        <a class="active">首页</a><a>日记</a><a>阅读</a><a>课题</a><a>概念</a>
+
+  <!-- ═══ SECTION 05: TWO-COLUMN CONCEPT ═══ -->
+  <div class="section-label">05 · Concept Detail (双栏)</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:10px;font-family:Georgia,serif">概念详情页 · 左正文右关系</div>
+
+  <div class="grid-2" style="border:1px solid rgba(184,160,90,.04);padding:20px;background:rgba(184,160,90,.02);margin-bottom:12px">
+    <div class="col">
+      <div style="font-size:8px;color:rgba(196,58,49,.15);letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:2px">Definition</div>
+      <div style="font-size:18px;color:#d8d0c0;font-family:Georgia,serif;margin-bottom:4px">Place · 地方</div>
+      <div style="font-size:13px;color:rgba(200,192,176,.35);line-height:1.6;font-weight:300">具有意义的空间片段。与抽象的"空间"不同，地方被赋予人类经验、记忆和意义。地方概念在 1970 年代的人文地理学中获得 prominence，段义孚和爱德华·雷尔夫是奠基者。</div>
+      <div class="divider" style="margin:8px 0"></div>
+      <div class="blockquote" style="margin:0">"Space is freedom, place is security."<div class="attr">— Yi-Fu Tuan</div></div>
+    </div>
+    <div class="col">
+      <div style="font-size:8px;color:rgba(184,160,90,.12);letter-spacing:1.5px;text-transform:uppercase;font-family:'Inter',sans-serif;margin-bottom:4px">Relations</div>
+      <div style="border-bottom:1px solid rgba(184,160,90,.03);padding:4px 0">
+        <div style="font-size:8px;color:rgba(200,192,176,.15);font-family:'Inter',sans-serif;letter-spacing:1px">Related Reading</div>
+        <div style="font-size:13px;color:rgba(200,192,176,.5);cursor:default">文化地理学 · Mike Crang</div>
+        <div style="font-size:13px;color:rgba(200,192,176,.5);cursor:default">Space and Place · Yi-Fu Tuan</div>
       </div>
-      <div class="title-b">研究工作室</div>
-      <div class="sub-b">FILE No. 2026-07</div>
-      <div style="margin-bottom:12px">
-        <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">
-          <span style="font-family:'Courier New',monospace;font-size:9px;color:rgba(58,47,34,.3)">CONTINUE READING</span>
-          <span style="flex:1;border-top:1px dotted rgba(58,47,34,.1)"></span>
-        </div>
-        <div style="font-size:14px;color:rgba(58,47,34,.7);font-family:Garamond,serif">文化地理学 · 迈克·克朗</div>
+      <div style="border-bottom:1px solid rgba(184,160,90,.03);padding:4px 0">
+        <div style="font-size:8px;color:rgba(200,192,176,.15);font-family:'Inter',sans-serif;letter-spacing:1px">Related Project</div>
+        <div style="font-size:13px;color:rgba(200,192,176,.5);cursor:default">文化地理学</div>
       </div>
-      <div style="margin-bottom:8px">
-        <div style="display:flex;gap:6px;align-items:center;margin-bottom:4px">
-          <span style="font-family:'Courier New',monospace;font-size:9px;color:rgba(58,47,34,.3)">RECENT JOURNAL</span>
-          <span style="flex:1;border-top:1px dotted rgba(58,47,34,.1)"></span>
-        </div>
-        <div class="list-b">
-          <div class="list-item-b"><span class="stamp">25</span>开始搭建研究工作室</div>
-          <div class="list-item-b"><span class="stamp">22</span>文化地理学·空间与地方</div>
-          <div class="list-item-b"><span class="stamp">20</span>中山公园观鸟记录</div>
-        </div>
-      </div>
-      <div style="margin-top:10px;padding:8px;background:rgba(58,47,34,.03);border:1px dashed rgba(58,47,34,.08)">
-        <div class="quote-b">"地方不仅是事件的背景，而是被不断创造和重塑的。"</div>
-        <div style="font-family:'Courier New',monospace;font-size:8px;color:rgba(58,47,34,.25);margin-top:2px">— Crang, 1998</div>
-      </div>
-      <div style="margin-top:8px">
-        <span class="tag-b">地理</span><span class="tag-b">文化</span><span class="tag-b">档案</span>
+      <div style="padding:4px 0">
+        <div style="font-size:8px;color:rgba(200,192,176,.15);font-family:'Inter',sans-serif;letter-spacing:1px">Related Concepts</div>
+        <div style="font-size:13px;color:rgba(200,192,176,.5);cursor:default">景观 · 知识 · 栖息地</div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- ═══ C: Ink & Gold ═══ -->
-<div class="card">
-  <div class="card-header">
-    <h2>⏺ C · 暗夜书房</h2>
-    <span class="tag" style="background:#b8a05a;color:#131b16">墨绿哑金</span>
-  </div>
-  <div class="inline-preview dir-c">
-    <div class="mock-content">
-      <div class="nav-c">
-        <a class="active">首页</a><a>日记</a><a>阅读</a><a>课题</a><a>概念</a>
+  <!-- ═══ SECTION 06: COMPONENTS ═══ -->
+  <div class="section-label">06 · Components</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:10px;font-family:Georgia,serif">组件</div>
+
+  <div class="grid-2">
+    <div class="col">
+      <div class="section-label">Tags</div>
+      <div style="margin-bottom:12px"><span class="tag">地理</span><span class="tag">文化</span><span class="tag">理论</span><span class="tag">空间</span><span class="tag">地方</span></div>
+
+      <div class="section-label">Buttons</div>
+      <div class="btn-group" style="margin-bottom:12px">
+        <button class="btn-text">编辑</button>
+        <button class="btn-text">引用</button>
+        <button class="btn-text">展开</button>
+        <button class="btn-ghost">导入链接</button>
+        <button class="btn-ghost">＋ 新建</button>
       </div>
-      <div class="title-c">Research Studio</div>
-      <div class="sub-c">In Quietude et Lumine</div>
-      <div style="margin-bottom:14px">
-        <div style="font-size:9px;color:rgba(184,160,90,.25);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px">Continue Reading</div>
-        <div style="font-size:13px;color:rgba(232,224,208,.65);font-family:Garamond,serif">文化地理学 <span style="color:rgba(232,224,208,.3);font-size:11px">— Mike Crang</span></div>
+
+      <div class="section-label">Input</div>
+      <input class="input-field" placeholder="搜索研究工作室…" style="margin-bottom:12px">
+
+      <div class="section-label">Dividers</div>
+      <div style="height:1px;background:rgba(184,160,90,.06);margin:4px 0"></div>
+      <div style="height:2px;background:rgba(196,58,49,.04);width:40px;margin:8px 0"></div>
+      <div style="text-align:center;font-size:12px;color:rgba(184,160,90,.06);letter-spacing:10px;margin:4px 0">● ● ●</div>
+      <div style="border-bottom:2px double rgba(184,160,90,.04);margin:4px 0"></div>
+    </div>
+
+    <div class="col">
+      <div class="section-label">Quotes</div>
+      <div class="quote-showcase" style="margin-bottom:12px">
+        <div class="qs-item">"Space becomes place through human experience."<br><span style="font-size:8px;color:rgba(184,160,90,.08)">— Tuan</span></div>
+        <div class="qs-item">"Landscape is a way of seeing."<br><span style="font-size:8px;color:rgba(184,160,90,.08)">— Cosgrove</span></div>
       </div>
-      <div class="list-c">
-        <div style="font-size:9px;color:rgba(184,160,90,.25);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:4px">Journal · July</div>
-        <div class="list-item-c"><span class="gold-dot"></span>开始搭建研究工作室</div>
-        <div class="list-item-c"><span class="gold-dot"></span>文化地理学·空间与地方</div>
-        <div class="list-item-c"><span class="gold-dot"></span>中山公园观鸟记录</div>
-      </div>
-      <div class="divider-c"></div>
-      <div class="quote-c">"地方不是事件的背景，而是通过人的体验被不断创造的。"</div>
-      <div style="margin-top:8px"><span class="tag-c">地理</span><span class="tag-c">文化</span><span class="tag-c">理论</span></div>
-      <div style="border-top:1px solid rgba(184,160,90,.06);margin-top:12px;padding-top:8px;display:flex;justify-content:space-between;font-size:8px;color:rgba(184,160,90,.15);letter-spacing:1px">— VII —</div>
+
+      <div class="section-label">Entry List</div>
+      <div class="entry" style="padding:6px 0"><span class="e-number">01</span><span class="e-title">开始搭建研究工作室</span><div class="e-meta">25 Jul 2026 · 日记</div></div>
+      <div class="entry" style="padding:6px 0"><span class="e-number">02</span><span class="e-title">文化地理学·空间与地方</span><div class="e-meta">22 Jul 2026 · 日记</div></div>
+      <div class="entry" style="padding:6px 0"><span class="e-number">03</span><span class="e-title">中山公园观鸟记录</span><div class="e-meta">20 Jul 2026 · 日记</div></div>
+
+      <div class="section-label" style="margin-top:10px">Page Number</div>
+      <div style="font-family:'Inter',sans-serif;font-size:9px;color:rgba(184,160,90,.08);letter-spacing:3px">— VII —</div>
     </div>
   </div>
-</div>
 
-<!-- ═══ D: Newsprint ═══ -->
-<div class="card">
-  <div class="card-header">
-    <h2>⏺ D · 旧报纸</h2>
-    <span class="tag" style="background:#2a2a2a;color:#eeebe6">灰阶报纸</span>
+  <!-- ═══ SECTION 07: PRINCIPLES ═══ -->
+  <div class="divider-ornament">● ● ●</div>
+  <div class="section-label">07 · Design Principles</div>
+  <div style="font-size:20px;color:#d8d0c0;margin-bottom:4px;font-family:Georgia,serif">设计原则</div>
+  <div style="font-size:11px;color:rgba(200,192,176,.2);margin-bottom:8px;font-style:italic">C + D 融合 · 暗夜学术期刊</div>
+
+  <div class="principles">
+    <div class="principle"><div class="p-num">01</div><div class="p-title">暗底哑光</div><div class="p-desc">底色取自 C 的深墨绿，不出现纯黑，保留纸张呼吸感</div></div>
+    <div class="principle"><div class="p-num">02</div><div class="p-title">金红点睛</div><div class="p-desc">金来自 C，红来自 D；金用于结构，红用于强调</div></div>
+    <div class="principle"><div class="p-num">03</div><div class="p-title">低对比度</div><div class="p-desc">正文 45% 透明度，像铜版画淡印，阅读不疲劳</div></div>
+    <div class="principle"><div class="p-num">04</div><div class="p-title">学术刊物体</div><div class="p-desc">全站衬线体，Georgia 为主，Inter 仅用于标签</div></div>
+    <div class="principle"><div class="p-num">05</div><div class="p-title">无机元素</div><div class="p-desc">无 emoji、无圆角、无投影、无色块、无卡片</div></div>
+    <div class="principle"><div class="p-num">06</div><div class="p-desc">慢过渡 200ms ease-out，仅改变透明度和边框颜色</div></div>
   </div>
-  <div class="inline-preview dir-d">
-    <div class="mock-content">
-      <div class="nav-d">
-        <a class="active">HOME</a><a>JOURNAL</a><a>READING</a><a>PROJECTS</a><a>CONCEPTS</a>
-      </div>
-      <div class="title-d">RESEARCH STUDIO</div>
-      <div class="sub-d">Vol. I No. 7 · July 2026</div>
-      <div style="margin-bottom:12px;display:grid;grid-template-columns:1fr 1fr;gap:10px">
-        <div>
-          <div style="font-size:8px;color:rgba(42,42,42,.3);letter-spacing:1px;text-transform:uppercase;font-weight:600">Continue Reading</div>
-          <div style="font-size:12px;font-weight:600;margin-top:2px">文化地理学</div>
-          <div style="font-size:9px;color:rgba(42,42,42,.3)">Mike Crang</div>
-        </div>
-        <div style="border-left:1px solid rgba(42,42,42,.08);padding-left:10px">
-          <div style="font-size:8px;color:rgba(42,42,42,.3);letter-spacing:1px;text-transform:uppercase;font-weight:600">In Progress</div>
-          <div style="font-size:12px;margin-top:2px">鸟类观察手册</div>
-          <div style="font-size:9px;color:rgba(42,42,42,.3)">刘阳</div>
-        </div>
-      </div>
-      <div style="border-top:2px solid #2a2a2a;padding-top:4px">
-        <div style="font-size:10px;font-weight:700;text-transform:uppercase;margin-bottom:4px">Journal</div>
-        <div class="list-d">
-          <div class="list-item-d"><span class="date-d">25.07</span>开始搭建研究工作室</div>
-          <div class="list-item-d"><span class="date-d">22.07</span><span class="hl-d">文化地理学</span>·空间与地方</div>
-          <div class="list-item-d"><span class="date-d">20.07</span>中山公园观鸟记录</div>
-        </div>
-      </div>
-      <div style="margin-top:8px;padding:6px 8px;background:rgba(42,42,42,.02);border-left:3px solid #c43a31">
-        <div style="font-size:8px;color:rgba(42,42,42,.3);font-weight:600;text-transform:uppercase">Highlight</div>
-        <div class="quote-d">"Space becomes place through human experience."</div>
-      </div>
-      <div style="margin-top:8px"><span class="tag-d">地理</span><span class="tag-d">文化</span><span class="tag-d">理论</span></div>
-    </div>
-  </div>
-</div>
 
-<!-- ═══ E: Manuscript & Marginalia ═══ -->
-<div class="card">
-  <div class="card-header">
-    <h2>⏺ E · 手稿夹批</h2>
-    <span class="tag" style="background:#a8492e;color:#f4efe4">赭红批注</span>
-  </div>
-  <div class="inline-preview dir-e">
-    <div class="mock-content" style="padding-right:40px">
-      <div class="nav-e">
-        <a class="active">首页</a><a>日记</a><a>阅读</a><a>课题</a><a>概念</a>
-      </div>
-      <div class="title-e">研究工作室</div>
-      <div class="sub-e">— 始于丙午年·六月 —</div>
-      <div style="margin-bottom:12px">
-        <div style="font-size:10px;color:rgba(44,36,24,.3);font-weight:600;margin-bottom:2px;font-family:Georgia,serif">续读</div>
-        <div style="font-size:14px;color:rgba(44,36,24,.7);font-family:Georgia,serif">文化地理学 · 迈克·克朗</div>
-      </div>
-      <div style="margin-bottom:8px">
-        <div style="font-size:10px;color:rgba(44,36,24,.3);font-weight:600;margin-bottom:4px;font-family:Georgia,serif">近记</div>
-        <div class="list-e">
-          <div class="list-item-e">开始搭建研究工作室<span class="annotation">✎ 系统架构</span></div>
-          <div class="list-item-e">文化地理学 · 空间与地方<span class="annotation">✎ 核心概念</span></div>
-          <div class="list-item-e">中山公园观鸟记录<span class="annotation">✎ 野外</span></div>
-        </div>
-      </div>
-      <div style="margin-top:10px;padding:8px 10px;background:rgba(44,36,24,.02);border-left:1px solid rgba(168,73,46,.15);position:relative">
-        <div class="quote-e">"地方不是事件的背景，而是通过人的体验被不断创造的。"</div>
-      </div>
-      <div style="margin-top:6px">
-        <span class="tag-e">✎ 地理</span><span class="tag-e">✎ 文化</span><span class="tag-e">✎ 理论</span>
-      </div>
-      <div style="margin-top:12px;padding-top:6px;border-top:1px dotted rgba(44,36,24,.08);font-family:'Comic Sans MS',cursive;font-size:9px;color:rgba(168,73,46,.2)">批：此方向适合侧批功能</div>
-    </div>
-  </div>
+  <div class="page-num">— VIII —</div>
 </div>
-
-</div>
-
-<div style="max-width:1200px;margin:24px auto 0;padding:16px;border:1px solid #ddd;border-radius:4px;background:#fafaf8">
-  <h3 style="font-size:14px;font-weight:600;margin-bottom:8px">📋 选择方式</h3>
-  <p style="font-size:13px;color:#555;line-height:1.6">
-    1. 直接告诉我你选中的方向（如「方向A」或「融合 A 和 E」）<br>
-    2. 我按选定方向落地成正式 design tokens 并铺开到全站<br>
-    3. 确认前不动主站代码
-  </p>
-</div>
-
 </body>
 </html>
