@@ -55,7 +55,7 @@ a{color:inherit;text-decoration:none}
 .btn-sm-danger:hover{background:#e74c3c;color:#fff}
 .app{display:flex;flex-direction:column;height:100vh}
 .main{flex:1;overflow-y:auto;background:var(--canvas-soft)}
-#page-home,#page-journal,#page-reading,#page-project,#page-graph{min-height:calc(100vh - 64px)}
+#page-home,#page-journal,#page-reading,#page-project,#page-graph,#page-detail{min-height:calc(100vh - 64px)}
 .hero-band{background:var(--canvas);border-bottom:1px solid var(--canvas-soft);padding:60px 0 48px}
 .hero-band .greeting{font-size:16px;font-weight:600;color:var(--body);margin-bottom:8px;letter-spacing:.03em}
 .hero-stats{display:flex;gap:48px;margin-top:28px}
@@ -528,7 +528,9 @@ function openDetail(type,id){
     });
     notesHtml+='<div class="note-form"><input id="newNoteTitle" placeholder="笔记标题（可选）"><textarea id="newNoteBody" placeholder="写下你的笔记..." rows="2"></textarea><div class="note-form-actions"><button class="btn btn-primary btn-sm" onclick="addNote(\''+type+'\',\''+item.id+'\')">添加笔记</button></div></div></div>';
   }
-  detail.innerHTML='<div style="max-width:720px;margin:0 auto;padding:16px 24px 32px">'+
+  var _ftr='<footer style="margin-top:auto;padding:12px 0"><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:var(--r-pill);background:var(--primary);display:flex;align-items:center;justify-content:center;color:var(--on-primary);font-weight:900;font-size:13px">z</span><span style="font-weight:700;color:var(--canvas);font-size:13px">我们为何阅读</span></div></div></footer>';detail.innerHTML='<div style="max-width:720px;margin:0 auto;padding:16px 24px 0;display:flex;flex-direction:column;min-height:calc(100vh - 64px)">'+
+    '<div style="flex:1">'+
+    '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">'+
     '<div style="display:flex;align-items:center;gap:8px;margin-bottom:16px">'+
     '<button class="btn btn-sm btn-ghost" onclick="goBack()" style="display:inline-flex;align-items:center;gap:4px">'+
     '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M19 12H5"/><path d="M12 19l-7-7 7-7"/></svg> 返回 '+(pageNames[prevPage]||'首页')+'</button></div>'+
@@ -540,7 +542,7 @@ function openDetail(type,id){
       '<a onclick="scrollToTop()">顶部</a><a onclick="goBack()">返回</a></div>':'')+
     '<hr style="border:none;border-top:1px solid var(--canvas-soft);margin:16px 0">'+
     '<p style="font-size:15px;line-height:1.7;color:var(--body)">'+esc(item.blocks?.[0]?.c||item.desc||'')+'</p>'+
-    notesHtml+'</div>';
+    notesHtml+'</div>'+_ftr+'</div>';
   document.getElementById('mainScroll').scrollTop=0;
 }
 function goBack(){
