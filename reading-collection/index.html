@@ -51,9 +51,9 @@ a{color:inherit;text-decoration:none}
 .btn-ghost{background:transparent;color:var(--body);box-shadow:inset 0 0 0 1.5px var(--canvas-soft)}
 .btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--body)}
 .app{display:flex;flex-direction:column;height:100vh}
-.main{flex:1;display:flex;flex-direction:column;min-height:0;background:var(--canvas-soft)}
-.main > div[id^="page-"]{flex:1;overflow-y:auto}
-.main > #page-detail{flex:1;overflow-y:auto}
+.main{flex:1;overflow-y:auto;background:var(--canvas-soft)}
+#page-home{min-height:calc(100vh - 64px)}
+#page-detail{min-height:calc(100vh - 64px)}
 .hero-band{background:var(--canvas);border-bottom:1px solid var(--canvas-soft);padding:60px 0 48px}
 .hero-band .greeting{font-size:16px;font-weight:600;color:var(--body);margin-bottom:8px;letter-spacing:.03em}
 .hero-stats{display:flex;gap:48px;margin-top:28px}
