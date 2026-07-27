@@ -54,10 +54,7 @@ a{color:inherit;text-decoration:none}
 .btn-sm-danger{padding:4px 12px;font-size:11px;border-radius:var(--r-lg);background:transparent;color:#e74c3c;border:1px solid #e74c3c;cursor:pointer;font-weight:600;transition:all .15s}
 .btn-sm-danger:hover{background:#e74c3c;color:#fff}
 .app{display:flex;flex-direction:column;height:100vh}
-.main{flex:1;display:flex;flex-direction:column;min-height:0;background:var(--canvas-soft)}
-.main > div[id]{flex:1;overflow-y:auto}
-.main > div[id*="page-"]{flex:1;overflow-y:auto}
-.main > footer{flex-shrink:0}
+.main{flex:1;overflow-y:auto;background:var(--canvas-soft)}
 .hero-band{background:var(--canvas);border-bottom:1px solid var(--canvas-soft);padding:60px 0 48px}
 .hero-band .greeting{font-size:16px;font-weight:600;color:var(--body);margin-bottom:8px;letter-spacing:.03em}
 .hero-stats{display:flex;gap:48px;margin-top:28px}
@@ -198,9 +195,9 @@ mark{background:var(--highlight);padding:0 2px;border-radius:2px}
 .gs-card .gs-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
 .gs-card .gs-name{font-size:13px;font-weight:600}
 .gs-card .gs-count{font-size:11px;color:var(--mute);margin-left:auto}
-footer{margin-top:auto;padding:20px 0 16px;width:100%}
+footer{background:var(--ink);color:var(--canvas-soft);padding:12px 0;margin-top:auto}
 footer .wrap{max-width:400px;margin:0 auto;padding:0 16px;display:flex;justify-content:center}
-footer .wrap > div{background:var(--ink);color:var(--canvas-soft);padding:8px 20px;border-radius:999px;display:flex;align-items:center;gap:8px;font-size:12px}
+footer .wrap > div{font-size:12px}
 @media(max-width:768px){
   .wrap,.tl-wrap,.sh-wrap,.kb-wrap,.gr-wrap{padding:0 16px}
   .card-grid{grid-template-columns:1fr}
@@ -272,25 +269,31 @@ footer .wrap > div{background:var(--ink);color:var(--canvas-soft);padding:8px 20
           <div class="card card-dark" onclick="openDetail('project','p2')"><div class="card-label">课题</div><div class="card-title">观鸟与鸟类学</div><div class="card-desc">系统观察和研究野生鸟类。</div><div class="card-footer"><span class="tag tag-neutral" style="background:rgba(255,255,255,.1);color:var(--primary-pale)">鸟类 · 生态</span></div></div>
         </div>
       </div></div>
-    <footer><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:var(--r-pill);background:var(--primary);display:flex;align-items:center;justify-content:center;color:var(--on-primary);font-weight:900;font-size:13px">z</span><span style="font-weight:700;color:var(--canvas);font-size:13px">我们为何阅读</span></div></div></footer>
+    
     </div>
 
     <!-- PAGE: JOURNAL -->
-    <div id="page-journal" style="display:none"><div class="pg"><div class="tl-wrap"><div class="page-h"><h1>日记</h1><span class="count">3 entries</span></div><div class="tl"><div class="tl-item" onclick="openDetail('journal','j1')"><div class="tl-date">2026.07.25 · 周六</div><div class="tl-title">开始搭建研究工作室</div><div class="tl-excerpt">今天开始构建个人研究工作室。</div><div class="tl-tags"><span>研究</span><span>知识管理</span></div></div><div class="tl-item" onclick="openDetail('journal','j2')"><div class="tl-date">2026.07.22 · 周三</div><div class="tl-title">文化地理学笔记</div><div class="tl-excerpt">空间与地方的区分是基础性的。</div><div class="tl-tags"><span>地理</span><span>文化</span></div></div><div class="tl-item" onclick="openDetail('journal','j3')"><div class="tl-date">2026.07.20 · 周一</div><div class="tl-title">中山公园观鸟</div><div class="tl-excerpt">观察到一只大斑啄木鸟。</div><div class="tl-tags"><span>观鸟</span><span>自然</span></div></div></div></div></div></div>
+    <div id="page-journal" style="display:none"><div class="pg"><div class="tl-wrap"><div class="page-h"><h1>日记</h1><span class="count">3 entries</span></div><div class="tl"><div class="tl-item" onclick="openDetail('journal','j1')"><div class="tl-date">2026.07.25 · 周六</div><div class="tl-title">开始搭建研究工作室</div><div class="tl-excerpt">今天开始构建个人研究工作室。</div><div class="tl-tags"><span>研究</span><span>知识管理</span></div></div><div class="tl-item" onclick="openDetail('journal','j2')"><div class="tl-date">2026.07.22 · 周三</div><div class="tl-title">文化地理学笔记</div><div class="tl-excerpt">空间与地方的区分是基础性的。</div><div class="tl-tags"><span>地理</span><span>文化</span></div></div><div class="tl-item" onclick="openDetail('journal','j3')"><div class="tl-date">2026.07.20 · 周一</div><div class="tl-title">中山公园观鸟</div><div class="tl-excerpt">观察到一只大斑啄木鸟。</div><div class="tl-tags"><span>观鸟</span><span>自然</span></div></div></div>
+</div></div></div>
 
     <!-- PAGE: READING -->
-    <div id="page-reading" style="display:none"><div class="pg"><div class="sh-wrap"><div class="page-h" style="border-bottom:none"><h1>阅读</h1><span class="count" id="reading-count">3 本</span></div><div class="shelf" id="reading-shelf"></div></div></div></div>
+    <div id="page-reading" style="display:none"><div class="pg"><div class="sh-wrap"><div class="page-h" style="border-bottom:none"><h1>阅读</h1><span class="count" id="reading-count">3 本</span></div><div class="shelf" id="reading-shelf"></div>
+</div></div></div>
 
     <!-- PAGE: PROJECT -->
-    <div id="page-project" style="display:none"><div class="pg"><div class="kb-wrap"><div class="page-h" style="border-bottom:none"><h1>课题</h1><span class="count">2 项</span></div><div class="kanban"><div class="column"><div class="col-h">进行中</div><div class="k-card" onclick="openDetail('project','p1')"><div class="kc-label">Project</div><div class="kc-title">文化地理学</div><div class="kc-desc">研究文化现象在空间中的分布。</div><div class="kc-footer"><span class="kc-tag">地理</span><span class="kc-tag">文化</span><span class="kc-tag">理论</span></div></div></div><div class="column"><div class="col-h">进行中</div><div class="k-card" onclick="openDetail('project','p2')"><div class="kc-label">Project</div><div class="kc-title">观鸟与鸟类学</div><div class="kc-desc">系统观察和研究野生鸟类。</div><div class="kc-footer"><span class="kc-tag">鸟类</span><span class="kc-tag">生态</span></div></div></div></div></div></div></div>
+    <div id="page-project" style="display:none"><div class="pg"><div class="kb-wrap"><div class="page-h" style="border-bottom:none"><h1>课题</h1><span class="count">2 项</span></div><div class="kanban"><div class="column"><div class="col-h">进行中</div><div class="k-card" onclick="openDetail('project','p1')"><div class="kc-label">Project</div><div class="kc-title">文化地理学</div><div class="kc-desc">研究文化现象在空间中的分布。</div><div class="kc-footer"><span class="kc-tag">地理</span><span class="kc-tag">文化</span><span class="kc-tag">理论</span></div></div></div><div class="column"><div class="col-h">进行中</div><div class="k-card" onclick="openDetail('project','p2')"><div class="kc-label">Project</div><div class="kc-title">观鸟与鸟类学</div><div class="kc-desc">系统观察和研究野生鸟类。</div><div class="kc-footer"><span class="kc-tag">鸟类</span><span class="kc-tag">生态</span></div></div></div></div>
+</div></div></div>
 
     <!-- PAGE: GRAPH -->
     <div id="page-graph" style="display:none"><div class="pg"><div class="gr-wrap"><div class="page-h" style="border-bottom:none"><h1>知识图谱</h1><span class="count">辐射视图</span></div><div class="graph"><svg viewBox="0 0 780 420"><circle cx="390" cy="210" r="140" fill="none" stroke="var(--canvas-soft)" stroke-width=".5" stroke-dasharray="4 4"/><circle cx="390" cy="210" r="100" fill="none" stroke="var(--canvas-soft)" stroke-width=".5" stroke-dasharray="4 4"/><circle cx="390" cy="210" r="60" fill="none" stroke="var(--canvas-soft)" stroke-width=".5" stroke-dasharray="4 4"/><line class="g-edge" x1="390" y1="210" x2="390" y2="70"/><line class="g-edge" x1="390" y1="210" x2="530" y2="140"/><line class="g-edge" x1="390" y1="210" x2="560" y2="280"/><line class="g-edge" x1="390" y1="210" x2="460" y2="340"/><line class="g-edge" x1="390" y1="210" x2="290" y2="330"/><line class="g-edge" x1="390" y1="210" x2="210" y2="260"/><line class="g-edge" x1="390" y1="210" x2="250" y2="140"/><line class="g-edge" x1="390" y1="210" x2="320" y2="120"/><line class="g-edge" x1="390" y1="70" x2="530" y2="140"/><line class="g-edge" x1="530" y1="140" x2="560" y2="280"/><line class="g-edge" x1="250" y1="140" x2="210" y2="260"/><line class="g-edge" x1="210" y1="260" x2="290" y2="330"/><line class="g-edge" x1="560" y1="280" x2="460" y2="340"/><g class="g-node" transform="translate(390,210)"><circle class="gn-c" r="26" fill="var(--primary)" stroke="var(--ink)" stroke-width="1.5"/><text class="gn-t" y="4" fill="var(--on-primary)">知识库</text></g><g class="g-node" transform="translate(390,70)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">阅读</text><text class="gn-ts" y="16">3 本</text></g><g class="g-node" transform="translate(530,140)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">日记</text><text class="gn-ts" y="16">3 篇</text></g><g class="g-node" transform="translate(560,280)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">课题</text><text class="gn-ts" y="16">2 项</text></g><g class="g-node" transform="translate(460,340)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">概念</text><text class="gn-ts" y="16">4 个</text></g><g class="g-node" transform="translate(290,330)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">关联</text><text class="gn-ts" y="16">12 条</text></g><g class="g-node" transform="translate(210,260)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">学习</text><text class="gn-ts" y="16">进行中</text></g><g class="g-node" transform="translate(250,140)"><circle class="gn-c" r="20" fill="var(--primary-pale)" stroke="var(--mute)" stroke-width="1"/><text class="gn-t" y="4">笔记</text><text class="gn-ts" y="16">28 条</text></g></svg></div><div class="g-sidebar"><div class="gs-card"><span class="gs-dot" style="background:var(--primary)"></span><span class="gs-name">知识库</span><span class="gs-count">中心</span></div><div class="gs-card"><span class="gs-dot" style="background:var(--primary-pale)"></span><span class="gs-name">阅读</span><span class="gs-count">3 节点</span></div><div class="gs-card"><span class="gs-dot" style="background:var(--primary-pale)"></span><span class="gs-name">日记</span><span class="gs-count">3 节点</span></div><div class="gs-card"><span class="gs-dot" style="background:var(--primary-pale)"></span><span class="gs-name">课题</span><span class="gs-count">2 节点</span></div></div></div></div></div>
 
-    <!-- PAGE: DETAIL -->
+    
+
+<!-- PAGE: DETAIL -->
     <div id="page-detail" style="display:none"></div>
 
-  </div>
+  
+  <footer><div class="wrap"><div style="display:flex;align-items:center;gap:8px"><span style="width:28px;height:28px;border-radius:var(--r-pill);background:var(--primary);display:flex;align-items:center;justify-content:center;color:var(--on-primary);font-weight:900;font-size:13px">z</span><span style="font-weight:700;color:var(--canvas);font-size:13px">我们为何阅读</span></div></div></footer>  </div>
 </div>
 
 <button class="back-to-top" id="backToTop" onclick="scrollToTop()" aria-label="返回顶部">
